@@ -1,0 +1,5 @@
+[
+  {"id":1,"title":"Camera singola · Centro","price":390,"expenses":55,"zone":"Centro","campus":"Centro · Via Savonarola","minutes":9,"km":0.7,"mode":"🚶","features":["Wi-Fi","Lavatrice","Cucina"],"trust":"dati completi","candidates":0,"available":"Settembre 2026","lat":44.8378,"lng":11.6197,"source":"demo","verified":false},
+  {"id":2,"title":"Stanza · zona Mammut","price":350,"expenses":70,"zone":"Mammut","campus":"Mammut · Polo sanitario","minutes":6,"km":1.2,"mode":"🚲","features":["Bagno condiviso","Wi-Fi"],"trust":"dati completi","candidates":2,"available":"Settembre 2026","lat":44.8206,"lng":11.6318,"source":"demo","verified":false},
+  {"id":3,"title":"Bilocale · Darsena","price":520,"expenses":80,"zone":"Darsena","campus":"Centro · Via Savonarola","minutes":11,"km":2.1,"mode":"🚲","features":["Lavatrice","Arredato"],"trust":"verificato","candidates":0,"available":"Ottobre 2026","lat":44.8301,"lng":11.6048,"source":"demo","verified":false}
+]
