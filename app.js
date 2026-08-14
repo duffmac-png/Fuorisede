@@ -1,0 +1,12 @@
+const listings=[
+{id:1,title:'Camera singola · Centro',price:390,zone:'Centro',campus:'Centro · Via Savonarola',minutes:9,km:.7,mode:'🚶',features:['Wi-Fi','Lavatrice','Cucina'],trust:'dati completi',candidates:0},
+{id:2,title:'Stanza · zona Mammut',price:350,zone:'Mammut',campus:'Mammut · Polo sanitario',minutes:6,km:1.2,mode:'🚲',features:['Bagno condiviso','Wi-Fi'],trust:'dati completi',candidates:2},
+{id:3,title:'Bilocale · Darsena',price:520,zone:'Darsena',campus:'Centro · Via Savonarola',minutes:11,km:2.1,mode:'🚲',features:['Lavatrice','Arredato'],trust:'verificato',candidates:0}
+];
+const euro=n=>new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+let favourites=new Set(JSON.parse(localStorage.getItem('fuorisede-favourites')||'[]'));
+function render(items=listings){const root=document.querySelector('.cards');if(!root)return;root.innerHTML=items.map(x=>`<article class="card" data-id="${x.id}"><div class="photo"></div><div><b>${x.title}</b><div class="meta">${x.mode} ${x.minutes} min dalla sede · 📍 ${String(x.km).replace('.',',')} km</div><div class="tags">${x.features.join(' · ')} · <span class="trust">✓ ${x.trust}</span>${x.candidates?` · <b>${x.candidates} candidati</b>`:''}</div></div><div><button class="fav" aria-label="Preferito" onclick="toggleFav(${x.id})">${favourites.has(x.id)?'♥':'♡'}</button><div class="price">${euro(x.price)}</div><small>/mese</small></div></article>`).join('');const count=document.querySelector('.sectiontop>b');if(count)count.textContent=`${items.length} risultat${items.length===1?'o':'i'}`;}
+function toggleFav(id){favourites.has(id)?favourites.delete(id):favourites.add(id);localStorage.setItem('fuorisede-favourites',JSON.stringify([...favourites]));render(currentResults());}
+function currentResults(){const campus=document.querySelector('#campus')?.value||'';const budget=Number(document.querySelector('#budget')?.value||9999);return listings.filter(x=>(!campus||campus==='Tutti i poli / sedi'||x.campus===campus)&&x.price<=budget);}
+function searchHomes(){render(currentResults());document.getElementById('results').scrollIntoView({behavior:'smooth'});}
+document.addEventListener('DOMContentLoaded',()=>{render();document.querySelector('#budget')?.addEventListener('change',searchHomes);});
