@@ -8,8 +8,13 @@
     "university": "Università degli Studi di Ferrara",
     "source": "Università degli Studi di Ferrara",
     "sourceUrl": "https://mfp.unife.it/it/strutture-didattiche/poli-didattici",
-    "coordinates": null,
-    "coordinatesStatus": "to_verify",
-    "notes": "Sede verificata da fonte ufficiale Unife. Le coordinate non vengono inserite finché non sono verificate da una fonte attendibile. Il campus è un punto di riferimento per distanza/percorrenza, non un confine geografico per gli alloggi."
+    "coordinates": {
+      "lat": 44.838886,
+      "lng": 11.634113
+    },
+    "coordinatesStatus": "verified_secondary_unife_event",
+    "coordinatesSource": "Unijunior event page for Polo Chimico Biomedico – Ferrara",
+    "coordinatesSourceUrl": "https://www.unijunior.it/calendario/polo-chimico-biomedico-ferrara/laboratorio-caccia-allantenato",
+    "notes": "Indirizzo verificato su fonte ufficiale Unife. Coordinate pubblicate per il Polo Chimico Biomedico in una pagina evento dedicata alla sede; usate come punto di riferimento cartografico. Il campus non costituisce un confine geografico per gli alloggi."
   }
 ]
