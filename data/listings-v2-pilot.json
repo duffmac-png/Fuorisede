@@ -10,37 +10,10 @@
     "expenses": null,
     "realMonthlyCost": 300,
     "realMonthlyCostStatus": "minimum_known",
-    "availability": {
-      "availableFrom": null,
-      "availableLabel": "Agosto 2026",
-      "status": "unknown",
-      "confirmedAt": null,
-      "nextCheckAt": null
-    },
-    "publication": {
-      "authorized": false,
-      "authorizationSource": null,
-      "authorizedAt": null,
-      "source": "annuncio reale raccolto",
-      "sourceUrl": null
-    },
-    "validation": {
-      "contactProvided": false,
-      "priceDeclared": true,
-      "expensesDeclared": false,
-      "contractDeclared": false,
-      "depositDeclared": false,
-      "utilitiesDeclared": false,
-      "listingConfirmedAt": null
-    },
-    "campusReference": {
-      "campusId": "mammut",
-      "campusName": "Mammut · Polo sanitario",
-      "distanceKm": null,
-      "minutesWalk": null,
-      "minutesBike": null,
-      "minutesTransit": null
-    },
+    "availability": {"availableFrom": null,"availableLabel": "Agosto 2026","status": "unknown","confirmedAt": null,"nextCheckAt": null},
+    "publication": {"authorized": false,"authorizationSource": null,"authorizedAt": null,"source": "annuncio reale raccolto","sourceUrl": null},
+    "validation": {"contactProvided": false,"priceDeclared": true,"expensesDeclared": false,"contractDeclared": false,"depositDeclared": false,"utilitiesDeclared": false,"listingConfirmedAt": null},
+    "campusReference": {"campusId": "mammut","campusName": "Mammut · Polo sanitario","distanceKm": 0.997,"distanceMethod": "great_circle","minutesWalk": null,"minutesBike": null,"minutesTransit": null},
     "contactWorkflow": null
   },
   {
@@ -54,37 +27,10 @@
     "expenses": null,
     "realMonthlyCost": 280,
     "realMonthlyCostStatus": "minimum_known",
-    "availability": {
-      "availableFrom": "2026-09-01",
-      "availableLabel": "1 settembre 2026",
-      "status": "unknown",
-      "confirmedAt": null,
-      "nextCheckAt": null
-    },
-    "publication": {
-      "authorized": false,
-      "authorizationSource": null,
-      "authorizedAt": null,
-      "source": "annuncio reale raccolto",
-      "sourceUrl": null
-    },
-    "validation": {
-      "contactProvided": false,
-      "priceDeclared": true,
-      "expensesDeclared": false,
-      "contractDeclared": false,
-      "depositDeclared": false,
-      "utilitiesDeclared": false,
-      "listingConfirmedAt": null
-    },
-    "campusReference": {
-      "campusId": "mammut",
-      "campusName": "Mammut · Polo sanitario",
-      "distanceKm": null,
-      "minutesWalk": null,
-      "minutesBike": null,
-      "minutesTransit": null
-    },
+    "availability": {"availableFrom": "2026-09-01","availableLabel": "1 settembre 2026","status": "unknown","confirmedAt": null,"nextCheckAt": null},
+    "publication": {"authorized": false,"authorizationSource": null,"authorizedAt": null,"source": "annuncio reale raccolto","sourceUrl": null},
+    "validation": {"contactProvided": false,"priceDeclared": true,"expensesDeclared": false,"contractDeclared": false,"depositDeclared": false,"utilitiesDeclared": false,"listingConfirmedAt": null},
+    "campusReference": {"campusId": "mammut","campusName": "Mammut · Polo sanitario","distanceKm": 1.49,"distanceMethod": "great_circle","minutesWalk": null,"minutesBike": null,"minutesTransit": null},
     "contactWorkflow": null
   },
   {
@@ -98,37 +44,10 @@
     "expenses": null,
     "realMonthlyCost": 380,
     "realMonthlyCostStatus": "minimum_known",
-    "availability": {
-      "availableFrom": "2026-09-01",
-      "availableLabel": "1 settembre 2026",
-      "status": "unknown",
-      "confirmedAt": null,
-      "nextCheckAt": null
-    },
-    "publication": {
-      "authorized": false,
-      "authorizationSource": null,
-      "authorizedAt": null,
-      "source": "annuncio reale raccolto",
-      "sourceUrl": null
-    },
-    "validation": {
-      "contactProvided": false,
-      "priceDeclared": true,
-      "expensesDeclared": false,
-      "contractDeclared": false,
-      "depositDeclared": false,
-      "utilitiesDeclared": true,
-      "listingConfirmedAt": null
-    },
-    "campusReference": {
-      "campusId": "mammut",
-      "campusName": "Mammut · Polo sanitario",
-      "distanceKm": null,
-      "minutesWalk": null,
-      "minutesBike": null,
-      "minutesTransit": null
-    },
+    "availability": {"availableFrom": "2026-09-01","availableLabel": "1 settembre 2026","status": "unknown","confirmedAt": null,"nextCheckAt": null},
+    "publication": {"authorized": false,"authorizationSource": null,"authorizedAt": null,"source": "annuncio reale raccolto","sourceUrl": null},
+    "validation": {"contactProvided": false,"priceDeclared": true,"expensesDeclared": false,"contractDeclared": false,"depositDeclared": false,"utilitiesDeclared": true,"listingConfirmedAt": null},
+    "campusReference": {"campusId": "mammut","campusName": "Mammut · Polo sanitario","distanceKm": 1.496,"distanceMethod": "great_circle","minutesWalk": null,"minutesBike": null,"minutesTransit": null},
     "contactWorkflow": null
   },
   {
@@ -142,37 +61,10 @@
     "expenses": null,
     "realMonthlyCost": 440,
     "realMonthlyCostStatus": "minimum_known",
-    "availability": {
-      "availableFrom": "2026-09-01",
-      "availableLabel": "1 settembre 2026",
-      "status": "unknown",
-      "confirmedAt": null,
-      "nextCheckAt": null
-    },
-    "publication": {
-      "authorized": false,
-      "authorizationSource": null,
-      "authorizedAt": null,
-      "source": "annuncio reale raccolto",
-      "sourceUrl": null
-    },
-    "validation": {
-      "contactProvided": false,
-      "priceDeclared": true,
-      "expensesDeclared": false,
-      "contractDeclared": false,
-      "depositDeclared": false,
-      "utilitiesDeclared": false,
-      "listingConfirmedAt": null
-    },
-    "campusReference": {
-      "campusId": "mammut",
-      "campusName": "Mammut · Polo sanitario",
-      "distanceKm": null,
-      "minutesWalk": null,
-      "minutesBike": null,
-      "minutesTransit": null
-    },
+    "availability": {"availableFrom": "2026-09-01","availableLabel": "1 settembre 2026","status": "unknown","confirmedAt": null,"nextCheckAt": null},
+    "publication": {"authorized": false,"authorizationSource": null,"authorizedAt": null,"source": "annuncio reale raccolto","sourceUrl": null},
+    "validation": {"contactProvided": false,"priceDeclared": true,"expensesDeclared": false,"contractDeclared": false,"depositDeclared": false,"utilitiesDeclared": false,"listingConfirmedAt": null},
+    "campusReference": {"campusId": "mammut","campusName": "Mammut · Polo sanitario","distanceKm": 0.407,"distanceMethod": "great_circle","minutesWalk": null,"minutesBike": null,"minutesTransit": null},
     "contactWorkflow": null
   },
   {
@@ -186,37 +78,10 @@
     "expenses": null,
     "realMonthlyCost": 450,
     "realMonthlyCostStatus": "minimum_known",
-    "availability": {
-      "availableFrom": null,
-      "availableLabel": "Da verificare",
-      "status": "unknown",
-      "confirmedAt": null,
-      "nextCheckAt": null
-    },
-    "publication": {
-      "authorized": false,
-      "authorizationSource": null,
-      "authorizedAt": null,
-      "source": "annuncio reale raccolto",
-      "sourceUrl": null
-    },
-    "validation": {
-      "contactProvided": false,
-      "priceDeclared": true,
-      "expensesDeclared": false,
-      "contractDeclared": false,
-      "depositDeclared": false,
-      "utilitiesDeclared": true,
-      "listingConfirmedAt": null
-    },
-    "campusReference": {
-      "campusId": "mammut",
-      "campusName": "Mammut · Polo sanitario",
-      "distanceKm": null,
-      "minutesWalk": null,
-      "minutesBike": null,
-      "minutesTransit": null
-    },
+    "availability": {"availableFrom": null,"availableLabel": "Da verificare","status": "unknown","confirmedAt": null,"nextCheckAt": null},
+    "publication": {"authorized": false,"authorizationSource": null,"authorizedAt": null,"source": "annuncio reale raccolto","sourceUrl": null},
+    "validation": {"contactProvided": false,"priceDeclared": true,"expensesDeclared": false,"contractDeclared": false,"depositDeclared": false,"utilitiesDeclared": true,"listingConfirmedAt": null},
+    "campusReference": {"campusId": "mammut","campusName": "Mammut · Polo sanitario","distanceKm": 1.789,"distanceMethod": "great_circle","minutesWalk": null,"minutesBike": null,"minutesTransit": null},
     "contactWorkflow": null
   }
 ]
