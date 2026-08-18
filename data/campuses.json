@@ -1,0 +1,15 @@
+[
+  {
+    "id": "mammut",
+    "city": "Ferrara",
+    "name": "Nuovi Istituti Biologici · Polo Chimico Biomedico (Mammuth)",
+    "shortName": "Mammuth",
+    "address": "Via Luigi Borsari 46, Ferrara",
+    "university": "Università degli Studi di Ferrara",
+    "source": "Università degli Studi di Ferrara",
+    "sourceUrl": "https://mfp.unife.it/it/strutture-didattiche/poli-didattici",
+    "coordinates": null,
+    "coordinatesStatus": "to_verify",
+    "notes": "Sede verificata da fonte ufficiale Unife. Le coordinate non vengono inserite finché non sono verificate da una fonte attendibile. Il campus è un punto di riferimento per distanza/percorrenza, non un confine geografico per gli alloggi."
+  }
+]
