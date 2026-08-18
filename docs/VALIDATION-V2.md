@@ -32,6 +32,16 @@ La scheda distingue canone, spese note e componenti non note. Se tutte le compon
 ## Sede universitaria
 Il campo `campus` non deve essere usato come confine per escludere automaticamente gli alloggi. La UI deve mostrare distanza e tempo rispetto alla sede selezionata e permettere ordinamenti per distanza/percorrenza, costo e disponibilità.
 
+### Distanza e routing
+- `distanceKm` può rappresentare la distanza geografica great-circle ed è sempre etichettata come **in linea d'aria**.
+- `routeDistanceKm` rappresenta la distanza lungo la rete percorribile e deve provenire da un motore di routing.
+- `minutesWalk` e `minutesBike` non vengono derivati con formule del tipo distanza / velocità media: devono provenire da profili di routing pedonale e ciclabile.
+- Ogni risultato di routing deve registrare almeno `routingProvider`, `routingProfile` e `routingCalculatedAt`, così da poterlo aggiornare e spiegare.
+- Se il routing non è disponibile, la UI mostra la sola distanza in linea d'aria e non inventa minuti di percorrenza.
+- Il routing è informativo e non crea soglie rigide di inclusione/esclusione degli alloggi.
+
+OSRM è compatibile con questo modello perché supporta profili distinti di routing (tipicamente car, bike e foot) e restituisce distanza/durata del percorso; in produzione FUORISEDE dovrà usare un'istanza/provider con profili effettivamente configurati per bici e pedoni, senza assumere che un endpoint pubblico generico li esponga correttamente.
+
 ## Comparatore
 Priorità delle righe:
 1. costo mensile complessivo/minimo noto;
@@ -57,3 +67,4 @@ La prima email dell'offerente deve diventare il riferimento del ciclo di aggiorn
 5. Comparatore V2.
 6. Filtro data richiesta dallo studente.
 7. Distanza dinamica rispetto alla sede selezionata.
+8. Routing pedonale/ciclabile verificato con provenienza e data di calcolo.
