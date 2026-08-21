@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>FUORISEDE · Mappa V3</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <style>
+      :root {
+        --bg: #f7f6f2;
+        --paper: #fff;
+        --ink: #171715;
+        --muted: #77736c;
+        --accent: #a54c3e;
+        --line: #e9e6df;
+        --green: #356b58;
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        overflow: hidden;
+      }
+      .header {
+        height: 70px;
+        padding: 0 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fffffff4;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+        z-index: 1001;
+      }
+      .brand {
+        font-size: 21px;
+        font-weight: 900;
+        letter-spacing: -0.045em;
+        cursor: pointer;
+      }
+      .brand i {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .back {
+        font-size: 12px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nav a {
+        font-size: 11px;
+        padding: 9px 11px;
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .nav a.active {
+        background: var(--ink);
+        color: #fff;
+      }
+      .layout {
+        height: calc(100vh - 70px);
+        display: grid;
+        grid-template-columns: 390px 1fr;
+      }
+      .side {
+        background: var(--paper);
+        border-right: 1px solid var(--line);
+        padding: 27px 22px;
+        overflow: auto;
+        z-index: 2;
+      }
+      .kicker {
+        font-size: 10px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+      }
+      .side h1 {
+        font-size: 37px;
+        line-height: 1;
+        letter-spacing: -0.055em;
+        margin: 9px 0 12px;
+      }
+      .side > p {
+        font-size: 12px;
+        line-height: 1.55;
+        color: var(--muted);
+        margin-bottom: 25px;
+      }
+      .home {
+        display: grid;
+        grid-template-columns: 94px 1fr;
+        gap: 13px;
+        padding: 13px 0;
+        border-top: 1px solid var(--line);
+        cursor: pointer;
+      }
+      .home.active b {
+        color: var(--accent);
+      }
+      .thumb {
+        height: 80px;
+        border-radius: 13px;
+        background-size: cover;
+        background-position: center;
+      }
+      .t1 {
+        background-image: url("https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=400&q=80");
+      }
+      .t2 {
+        background-image: url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=400&q=80");
+      }
+      .t3 {
+        background-image: url("https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=400&q=80");
+      }
+      .home b {
+        font-size: 13px;
+      }
+      .home small {
+        display: block;
+        color: var(--muted);
+        font-size: 9px;
+        margin: 3px 0 7px;
+      }
+      .home span {
+        font-size: 11px;
+        font-weight: 750;
+      }
+      .demoTag {
+        display: block !important;
+        margin-top: 3px;
+        font-size: 8px !important;
+        color: var(--muted);
+        font-weight: 500 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .open {
+        display: inline-block;
+        margin-top: 8px;
+        font-size: 9px;
+        font-weight: 800;
+      }
+      .mapwrap {
+        position: relative;
+        min-width: 0;
+      }
+      #map {
+        position: absolute;
+        inset: 0;
+        background: #e9e7e0;
+      }
+      .leaflet-tile-pane {
+        filter: saturate(0.38) contrast(0.88) brightness(1.08);
+      }
+      .pricepin {
+        background: 0 0;
+        border: 0;
+      }
+      .pricepin span {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border: 2px solid var(--accent);
+        border-radius: 999px;
+        padding: 0 11px;
+        font-size: 11px;
+        line-height: 1;
+        font-weight: 850;
+        color: var(--ink);
+        box-shadow: 0 5px 18px #0002;
+        white-space: nowrap;
+        text-align: center;
+      }
+      .pricepin.active span {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .campuspin {
+        background: 0 0;
+        border: 0;
+      }
+      .campuspin span {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--green);
+        color: #fff;
+        border-radius: 12px;
+        padding: 0 10px;
+        font-size: 9px;
+        line-height: 1;
+        font-weight: 850;
+        white-space: nowrap;
+        box-shadow: 0 5px 18px #0002;
+        text-align: center;
+      }
+      .floating {
+        position: absolute;
+        z-index: 500;
+        right: 22px;
+        bottom: 22px;
+        width: 310px;
+        background: #fffffff2;
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--line);
+        border-radius: 19px;
+        padding: 17px;
+        box-shadow: 0 12px 35px #0002;
+      }
+      .floating small {
+        font-size: 9px;
+        color: var(--muted);
+      }
+      .floating h2 {
+        font-size: 18px;
+        margin: 5px 0 12px;
+        letter-spacing: -0.03em;
+      }
+      .times {
+        display: flex;
+        gap: 18px;
+      }
+      .times b {
+        display: block;
+        font-size: 16px;
+      }
+      .times span {
+        font-size: 8px;
+        color: var(--muted);
+      }
+      .near {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        font-size: 9px;
+        color: var(--muted);
+      }
+      .cta {
+        margin-top: 14px;
+        width: 100%;
+        border: 0;
+        background: var(--ink);
+        color: #fff;
+        border-radius: 12px;
+        padding: 11px;
+        font-size: 10px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .cta:disabled {
+        background: #e7e4de;
+        color: #8d8982;
+        cursor: default;
+      }
+      .truth {
+        font-size: 9px !important;
+        color: var(--muted);
+        margin-top: 17px !important;
+      }
+      .leaflet-control-attribution {
+        font-size: 8px !important;
+      }
+      @media (max-width: 720px) {
+        body {
+          overflow: auto;
+        }
+        .header {
+          height: auto;
+          min-height: 92px;
+          padding: 9px 14px 7px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 7px;
+        }
+        .brand img {
+          width: 116px !important;
+        }
+        .nav {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 2px;
+        }
+        .nav a {
+          font-size: 9px;
+          padding: 7px 2px;
+          text-align: center;
+          white-space: nowrap;
+        }
+        .layout {
+          display: block;
+          height: auto;
+        }
+        .side {
+          padding: 21px 14px;
+          border: 0;
+        }
+        .side h1 {
+          font-size: 33px;
+        }
+        .homes {
+          display: flex;
+          gap: 12px;
+          overflow: auto;
+          margin-right: -14px;
+        }
+        .home {
+          min-width: 260px;
+        }
+        .mapwrap {
+          height: auto;
+          padding: 0 12px 18px;
+          background: var(--paper);
+        }
+        #map {
+          position: relative;
+          inset: auto;
+          height: min(58vh, 430px);
+          min-height: 360px;
+          border-radius: 18px;
+          overflow: hidden;
+        }
+        .floating {
+          position: relative;
+          inset: auto;
+          width: auto;
+          margin: 12px 0 0;
+          box-shadow: none;
+          border: 1px solid var(--line);
+        }
+        .pricepin span {
+          height: 30px;
+          padding: 0 7px;
+          font-size: 9px;
+        }
+        .leaflet-control-zoom {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand" onclick="location.href = 'index.html'">
+        <img
+          src="../fuorisede-logo-approved-transparent.png"
+          alt="FUORISEDE"
+          style="width: 132px; display: block"
+        />
+      </div>
+      <nav class="nav" aria-label="Navigazione principale">
+        <a href="index.html">Alloggi</a
+        ><a class="active" href="map.html">Mappa</a
+        ><a href="compare.html">Confronta</a><a href="alerts.html">Alert</a
+        ><a href="index.html?preferiti=1">Preferiti</a>
+      </nav>
+    </header>
+    <main class="layout">
+      <aside class="side">
+        <div class="kicker">Ferrara · Mammut · cartografia reale</div>
+        <h1>Vedi dove<br />vivrai.</h1>
+        <p>
+          La base cartografica e il polo Mammut usano coordinate reali. Le tre
+          posizioni degli alloggi, invece, sono dimostrative: servono a testare
+          scala, leggibilità e interazione della V3.
+        </p>
+        <div class="homes">
+          <article class="home active" data-id="0">
+            <div class="thumb t1"></div>
+            <div>
+              <b>Camera · Mammut</b><small>posizione demo vicino al polo</small
+              ><span>€535 / mese</span><span class="demoTag">stima demo</span>
+              <div class="open">Apri scheda →</div>
+            </div>
+          </article>
+          <article class="home" data-id="1">
+            <div class="thumb t2"></div>
+            <div>
+              <b>Singola · Centro est</b
+              ><small>posizione demo · zona Via Mortara</small
+              ><span>€498 / mese</span><span class="demoTag">stima demo</span>
+            </div>
+          </article>
+          <article class="home" data-id="2">
+            <div class="thumb t3"></div>
+            <div>
+              <b>Stanza · San Giorgio</b
+              ><small>posizione demo · zona sud-est</small
+              ><span>€520 / mese</span><span class="demoTag">stima demo</span>
+            </div>
+          </article>
+        </div>
+        <p class="truth">
+          Il polo Mammut è riferito a Via Luigi Borsari 46. Nella versione
+          operativa i pin degli alloggi useranno esclusivamente coordinate
+          ricavate dai dati autorizzati delle schede; tempi e POI saranno
+          calcolati su quelle coordinate.
+        </p>
+      </aside>
+      <section class="mapwrap">
+        <div id="map"></div>
+        <article class="floating">
+          <small id="selected">CAMERA · MAMMUT · POSIZIONE DEMO</small>
+          <h2>Cartografia reale, dati demo.</h2>
+          <div class="times">
+            <div><b>—</b><span>BICI AL POLO</span></div>
+            <div><b>—</b><span>A PIEDI</span></div>
+            <div><b>—</b><span>MEZZI</span></div>
+          </div>
+          <div class="near">
+            Tempi e POI saranno calcolati solo sui dati reali dell'alloggio.
+          </div>
+          <button class="cta" id="openListing" onclick="openSelected()">
+            Apri questa scheda
+          </button>
+        </article>
+      </section>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      const campus = [44.83922, 11.63154],
+        homes = [
+          {
+            p: [44.83795, 11.62975],
+            price: "€535 · demo",
+            name: "CAMERA · MAMMUT · POSIZIONE DEMO",
+            area: "mammut",
+          },
+          {
+            p: [44.83655, 11.62685],
+            price: "€498 · demo",
+            name: "SINGOLA · CENTRO EST · POSIZIONE DEMO",
+            area: "centro",
+          },
+          {
+            p: [44.83385, 11.63735],
+            price: "€520 · demo",
+            name: "STANZA · SAN GIORGIO · POSIZIONE DEMO",
+            area: "mammut",
+          },
+        ];
+      let current = 0;
+      const map = L.map("map", { zoomControl: !0 }).setView(campus, 15);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+      const campusIcon = L.divIcon({
+        className: "campuspin",
+        html: "<span>Mammut · Via Borsari 46</span>",
+        iconSize: [145, 30],
+        iconAnchor: [72, 15],
+      });
+      L.marker(campus, { icon: campusIcon, zIndexOffset: 1e3 }).addTo(map);
+      const markers = [];
+      function icon(e, a) {
+        const mobile = window.innerWidth <= 720,
+          anchors = [
+            [40, 38],
+            [-10, 15],
+            [90, 2],
+          ];
+        return L.divIcon({
+          className: "pricepin " + (a ? "active" : ""),
+          html: "<span>" + homes[e].price + "</span>",
+          iconSize: [80, mobile ? 30 : 34],
+          iconAnchor: mobile ? anchors[e % anchors.length] : [40, 17],
+        });
+      }
+      function select(e) {
+        ((current = e),
+          map.flyTo(homes[e].p, 16, { duration: 0.6 }),
+          markers.forEach((a, o) => a.setIcon(icon(o, e === o))),
+          document
+            .querySelectorAll(".home")
+            .forEach((a, o) => a.classList.toggle("active", e === o)),
+          (selected.textContent = homes[e].name));
+        const a = 0 === e;
+        ((openListing.disabled = !a),
+          (openListing.textContent = a
+            ? "Apri questa scheda"
+            : "Scheda demo non disponibile"));
+      }
+      function openSelected() {
+        0 === current && (location.href = "listing.html");
+      }
+      homes.forEach((e, a) => {
+        let o = L.marker(e.p, { icon: icon(a, 0 === a) }).addTo(map);
+        (o.on("click", () => select(a)), markers.push(o));
+      });
+      const routeLine = L.polyline([homes[0].p, campus], {
+          color: "#356b58",
+          weight: 3,
+          dashArray: "7 7",
+          opacity: 0.8,
+        }).addTo(map),
+        savedSearch = JSON.parse(
+          localStorage.getItem("fs-v3-saved-search") || "null",
+        ),
+        wantedArea = savedSearch?.polo || "all",
+        visible = homes
+          .map((e, a) => ({ home: e, index: a }))
+          .filter(
+            ({ home: e }) => "all" === wantedArea || e.area === wantedArea,
+          );
+      (markers.forEach((e, a) => {
+        visible.some((e) => e.index === a) || map.removeLayer(e);
+      }),
+        document.querySelectorAll(".home").forEach((e, a) => {
+          e.style.display = visible.some((e) => e.index === a) ? "" : "none";
+        }),
+        visible.some((e) => 0 === e.index) || map.removeLayer(routeLine),
+        visible.length &&
+          ((current = visible[0].index),
+          select(current),
+          map.fitBounds(
+            L.latLngBounds([campus, ...visible.map(({ home: e }) => e.p)]).pad(
+              0.35,
+            ),
+          )),
+        document.querySelectorAll(".home").forEach((e) =>
+          e.addEventListener("click", (a) => {
+            let o = +e.dataset.id;
+            0 === o && a.target.classList.contains("open")
+              ? (location.href = "listing.html")
+              : select(o);
+          }),
+        ));
+      const requestedId = +(localStorage.getItem("fs-v3-map-selected") || 0),
+        requestedIndex = requestedId - 1;
+      if (
+        requestedIndex >= 0 &&
+        visible.some((e) => e.index === requestedIndex)
+      )
+        select(requestedIndex);
+    </script>
+  </body>
+</html>
