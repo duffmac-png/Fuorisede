@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>FUORISEDE · V3 Design</title>
+    <style>
+      :root {
+        --bg: #f7f6f2;
+        --paper: #fff;
+        --ink: #171715;
+        --muted: #77736c;
+        --accent: #a54c3e;
+        --line: #e9e6df;
+        --green: #356b58;
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+      }
+      .shell {
+        max-width: 1120px;
+        margin: auto;
+        padding: 0 22px 90px;
+      }
+      .header {
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        font-size: 21px;
+        font-weight: 900;
+        letter-spacing: -0.045em;
+      }
+      .brand i {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .nav {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .nav a {
+        font-size: 12px;
+        padding: 10px 13px;
+        border-radius: 999px;
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .count {
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #fff;
+        display: inline-grid;
+        place-items: center;
+        font-size: 8px;
+        line-height: 1;
+      }
+      .count:empty {
+        display: none;
+      }
+      .profile {
+        height: 38px;
+        padding: 10px 13px;
+        border-radius: 999px;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      .profile:hover {
+        background: var(--paper);
+      }
+      .profile.active {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .hero {
+        padding: 34px 0 30px;
+        max-width: 760px;
+      }
+      .kicker {
+        font-size: 12px;
+        font-weight: 750;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .hero h1 {
+        font-size: clamp(42px, 7vw, 76px);
+        line-height: 0.98;
+        letter-spacing: -0.065em;
+        margin: 13px 0 20px;
+        font-weight: 760;
+      }
+      .hero p {
+        max-width: 540px;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.55;
+      }
+      .search {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 8px;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr auto;
+        gap: 4px;
+        box-shadow: 0 12px 40px #32281e0b;
+        margin-bottom: 8px;
+      }
+      .field {
+        padding: 13px 16px;
+        border-right: 1px solid var(--line);
+      }
+      .field small {
+        display: block;
+        color: var(--muted);
+        font-size: 10px;
+        margin-bottom: 5px;
+      }
+      .field strong {
+        font-size: 14px;
+      }
+      .searchbtn {
+        border: 0;
+        background: var(--ink);
+        color: #fff;
+        border-radius: 16px;
+        padding: 0 23px;
+        font-weight: 750;
+        cursor: pointer;
+      }
+      .searchnote {
+        font-size: 9px;
+        color: var(--muted);
+        margin: 0 3px 16px;
+      }
+      .filters {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 34px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .chip {
+        border: 1px solid var(--line);
+        background: 0 0;
+        border-radius: 999px;
+        padding: 9px 13px;
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .chip.on {
+        background: var(--paper);
+        color: var(--ink);
+        border-color: #cbc7be;
+      }
+      .budgetSelect {
+        border: 1px solid var(--line);
+        background: 0 0;
+        border-radius: 999px;
+        padding: 9px 13px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .morefilters {
+        display: none;
+        flex-basis: 100%;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding-top: 4px;
+      }
+      .morefilters.show {
+        display: flex;
+      }
+      .sectionhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 18px;
+      }
+      .sectionhead > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 3px;
+        min-width: 115px;
+      }
+      .sectionhead .demoFlag {
+        margin: 0;
+      }
+      .sectionhead .sortSelect {
+        margin: 0;
+        padding: 0;
+      }
+      .sectionhead h2 {
+        font-size: 25px;
+        letter-spacing: -0.04em;
+        margin: 0;
+      }
+      .sectionhead span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .sortSelect {
+        border: 0;
+        background: 0 0;
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 5px;
+        text-align: right;
+      }
+      .demoFlag {
+        display: block !important;
+        font-size: 8px !important;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-top: 4px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .listing {
+        min-width: 0;
+      }
+      .listing > a {
+        display: block;
+      }
+      .listing.demoOnly {
+        cursor: default;
+      }
+      .image {
+        height: 300px;
+        border-radius: 22px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .image.one {
+        background-image:
+          linear-gradient(180deg, transparent 65%, #0007),
+          url("https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80");
+      }
+      .image.two {
+        background-image:
+          linear-gradient(180deg, transparent 65%, #0007),
+          url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80");
+      }
+      .image.three {
+        background-image:
+          linear-gradient(180deg, transparent 65%, #0007),
+          url("https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80");
+      }
+      .heart {
+        position: absolute;
+        right: 13px;
+        top: 13px;
+        width: 39px;
+        height: 39px;
+        border-radius: 50%;
+        border: 0;
+        background: #ffffffed;
+        font-size: 18px;
+        z-index: 2;
+        cursor: pointer;
+      }
+      .heart.on {
+        background: var(--ink);
+        color: #fff;
+      }
+      .distance {
+        position: absolute;
+        left: 14px;
+        bottom: 13px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 750;
+      }
+      .meta {
+        padding: 13px 2px 0;
+      }
+      .topline {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .name {
+        font-size: 17px;
+        font-weight: 760;
+        letter-spacing: -0.025em;
+      }
+      .price {
+        font-size: 17px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+      .location {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .facts {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .dot {
+        width: 3px;
+        height: 3px;
+        background: #bbb;
+        border-radius: 50%;
+      }
+      .available {
+        color: var(--green);
+        font-weight: 750;
+      }
+      .real {
+        margin-top: 11px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .real strong {
+        font-size: 13px;
+        color: var(--ink);
+      }
+      .real em {
+        display: block;
+        font-size: 8px;
+        font-style: normal;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-top: 2px;
+      }
+      .cardstate {
+        margin-top: 8px;
+        font-size: 8px;
+        color: var(--muted);
+        font-weight: 750;
+        text-transform: uppercase;
+        letter-spacing: 0.035em;
+      }
+      .empty {
+        display: none;
+        grid-column: 1/-1;
+        padding: 58px 20px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        text-align: center;
+        background: var(--paper);
+      }
+      .empty.show {
+        display: block;
+      }
+      .empty b {
+        display: block;
+        font-size: 21px;
+        margin-bottom: 7px;
+      }
+      .empty span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 32px;
+      }
+      .actions a {
+        font-size: 12px;
+        font-weight: 750;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        border-radius: 999px;
+        padding: 12px 16px;
+      }
+      .actions a.primary {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .philosophy {
+        margin: 55px 0 20px;
+        padding: 42px;
+        border-radius: 28px;
+        background: #1c1c1a;
+        color: #fff;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+      .philosophy h3 {
+        font-size: 34px;
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+        margin: 0;
+      }
+      .philosophy p {
+        margin: 0;
+        color: #bdbbb5;
+        line-height: 1.6;
+        font-size: 14px;
+      }
+      @media (max-width: 760px) {
+        .shell {
+          padding: 0 15px 80px;
+        }
+        .header {
+          height: 64px;
+          gap: 6px;
+        }
+        .brand img {
+          width: 116px !important;
+        }
+        .nav {
+          flex: 1;
+          min-width: 0;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 2px;
+        }
+        .nav a {
+          display: none;
+        }
+        .nav a.alertlink,
+        .nav a.comparelink,
+        .nav a.maplink {
+          display: inline-flex;
+          justify-content: center;
+          min-width: 0;
+          padding: 8px 2px;
+          font-size: 9px;
+        }
+        .profile {
+          width: 100%;
+          min-width: 0;
+          height: auto;
+          min-height: 34px;
+          padding: 8px 2px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 3px;
+          font-size: 9px;
+          letter-spacing: 0;
+          white-space: nowrap;
+        }
+        .hero {
+          padding: 31px 0 27px;
+        }
+        .hero h1 {
+          font-size: 48px;
+          margin-top: 10px;
+        }
+        .hero p {
+          font-size: 15px;
+        }
+        .search {
+          grid-template-columns: 1fr;
+          border-radius: 18px;
+          padding: 6px;
+        }
+        .field {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding: 12px;
+        }
+        .searchbtn {
+          height: 48px;
+          margin-top: 2px;
+        }
+        .filters {
+          overflow: auto;
+          margin-right: -15px;
+          padding-right: 15px;
+          margin-bottom: 35px;
+        }
+        .chip {
+          white-space: nowrap;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+        .image {
+          height: 350px;
+          border-radius: 19px;
+        }
+        .sectionhead h2 {
+          font-size: 22px;
+        }
+        .actions a {
+          flex: 1;
+          text-align: center;
+        }
+        .philosophy {
+          margin-top: 45px;
+          padding: 27px 22px;
+          grid-template-columns: 1fr;
+          gap: 18px;
+          border-radius: 22px;
+        }
+      }
+      @media (max-width: 390px) {
+        .header {
+          display: grid;
+          grid-template-columns: 104px minmax(0, 1fr);
+          gap: 3px;
+        }
+        .brand img {
+          width: 104px !important;
+        }
+        .nav {
+          width: 100%;
+          gap: 0;
+        }
+        .nav a.alertlink,
+        .nav a.comparelink,
+        .nav a.maplink,
+        .profile {
+          padding-left: 0;
+          padding-right: 0;
+          font-size: 8.5px;
+        }
+        .hero h1 {
+          font-size: 43px;
+        }
+        .image {
+          height: 325px;
+        }
+      }
+      .field input,
+      .field select {
+        width: 100%;
+        border: 0;
+        background: 0 0;
+        color: var(--ink);
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        outline: 0;
+      }
+      .mappick {
+        position: absolute;
+        right: 13px;
+        bottom: 13px;
+        z-index: 3;
+        border: 0;
+        background: #fffffff0;
+        border-radius: 999px;
+        padding: 8px 11px;
+        font-size: 9px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .comparepick {
+        position: absolute;
+        left: 13px;
+        top: 13px;
+        border: 0;
+        background: #fffffff0;
+        border-radius: 999px;
+        padding: 9px 12px;
+        font-size: 10px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .comparepick.on {
+        background: var(--accent);
+        color: #fff;
+      }
+      .compareDock {
+        position: fixed;
+        z-index: 20;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        display: none;
+        align-items: center;
+        gap: 16px;
+        background: var(--ink);
+        color: #fff;
+        border-radius: 999px;
+        padding: 10px 12px 10px 18px;
+        box-shadow: 0 12px 35px #0003;
+      }
+      .compareDock.show {
+        display: flex;
+      }
+      .compareDock span {
+        font-size: 12px;
+        font-weight: 750;
+      }
+      .compareDock button {
+        border: 0;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--ink);
+        padding: 10px 15px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .compareDock button:disabled {
+        opacity: 0.45;
+      }
+      @media (max-width: 760px) {
+        .compareDock {
+          left: 12px;
+          right: 12px;
+          bottom: calc(8px + var(--visual-viewport-bottom, 0px));
+          transform: none;
+          justify-content: space-between;
+          padding-bottom: calc(10px + env(safe-area-inset-bottom));
+          transition: bottom 0.12s ease-out;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="header">
+        <a class="brand" href="index.html"
+          ><img
+            src="../fuorisede-logo-approved-transparent.png"
+            alt="FUORISEDE — Fuori casa, ma nel posto giusto."
+            style="width: 132px; display: block"
+        /></a>
+        <nav class="nav">
+          <a href="index.html">Alloggi</a
+          ><a class="maplink" href="map.html">Mappa</a
+          ><a class="comparelink" href="compare.html"
+            >Confronta <span class="count" id="compareTopCount"></span></a
+          ><a class="alertlink" href="alerts.html"
+            >Alert <span class="count" id="alertTopCount"></span></a
+          ><button
+            class="profile"
+            id="favTop"
+            onclick="showFavs()"
+            aria-label="Mostra preferiti"
+          >
+            <span>Preferiti</span><span class="count" id="favTopCount"></span>
+          </button>
+        </nav>
+      </header>
+      <section class="hero">
+        <div class="kicker">Ferrara · Mammut</div>
+        <h1>Una casa.<br />Quella giusta.</h1>
+        <p>
+          Confronta ciò che conta davvero: costo reale, distanza dall'università
+          e disponibilità. Il resto c'è, quando ti serve.
+        </p>
+      </section>
+      <section class="search">
+        <div class="field">
+          <small>DOVE STUDI?</small>
+          <select id="studyPlace" aria-label="Polo universitario">
+            <option value="mammut">Mammut · Polo sanitario</option>
+            <option value="all">Tutta Ferrara</option>
+            <option value="centro">Centro universitario</option>
+          </select>
+        </div>
+        <div class="field">
+          <small>DA QUANDO?</small>
+          <input
+            id="startDate"
+            type="date"
+            value="2026-09-01"
+            aria-label="Data disponibilità"
+          />
+        </div>
+        <button
+          class="searchbtn"
+          onclick="
+            document
+              .querySelector('.sectionhead')
+              .scrollIntoView({ behavior: 'smooth' })
+          "
+        >
+          Vedi risultati
+        </button>
+      </section>
+      <div class="searchnote">
+        Ricerca preimpostata per il test V3. Nella versione operativa polo e
+        data saranno modificabili.
+      </div>
+      <div class="filters">
+        <select
+          id="budgetSelect"
+          class="budgetSelect"
+          aria-label="Budget mensile reale"
+        >
+          <option value="9999">Qualsiasi budget</option>
+          <option value="500">Fino a €500 reali</option>
+          <option value="550" selected="selected">Fino a €550 reali</option>
+          <option value="600">Fino a €600 reali</option>
+        </select>
+        <button class="chip" data-filter="now" onclick="toggleFilter(this)">
+          Disponibile subito
+        </button>
+        <button class="chip" id="moreToggle" onclick="toggleMoreFilters()">
+          Altri filtri +
+        </button>
+        <button class="chip" onclick="saveCurrentSearch()">
+          Salva ricerca
+        </button>
+        <div class="morefilters" id="moreFilters">
+          <button class="chip" data-filter="wifi" onclick="toggleFilter(this)">
+            Wi-Fi
+          </button>
+          <button
+            class="chip"
+            data-filter="wifiroom"
+            onclick="toggleFilter(this)"
+          >
+            Wi-Fi in camera
+          </button>
+          <button
+            class="chip"
+            data-filter="washer"
+            onclick="toggleFilter(this)"
+          >
+            Lavatrice
+          </button>
+          <button
+            class="chip"
+            data-filter="privatebath"
+            onclick="toggleFilter(this)"
+          >
+            Bagno privato
+          </button>
+          <button
+            class="chip"
+            data-filter="furnished"
+            onclick="toggleFilter(this)"
+          >
+            Arredata
+          </button>
+          <button
+            class="chip"
+            data-filter="flexible"
+            onclick="toggleFilter(this)"
+          >
+            Durata flessibile
+          </button>
+          <button
+            class="chip"
+            data-filter="remote"
+            onclick="toggleFilter(this)"
+          >
+            Affitto a distanza
+          </button>
+        </div>
+      </div>
+      <div class="sectionhead">
+        <h2 id="resultsTitle">Scelte per te</h2>
+        <div>
+          <span id="resultCount">3 alloggi</span
+          ><span class="demoFlag">Dati dimostrativi</span>
+          <select
+            id="sortSelect"
+            class="sortSelect"
+            aria-label="Ordina risultati"
+          >
+            <option value="recommended">Consigliati</option>
+            <option value="cost">Costo reale</option>
+            <option value="distance">Più vicini al polo</option>
+            <option value="recent">Più recenti</option>
+          </select>
+        </div>
+      </div>
+      <section class="grid">
+        <article
+          class="listing"
+          data-id="1"
+          data-wifi="1"
+          data-washer="1"
+          data-privatebath="0"
+          data-now="0"
+          data-cost="535"
+          data-area="mammut"
+          data-available="2026-09-01"
+          data-wifiroom="1"
+          data-furnished="1"
+          data-flexible="0"
+          data-remote="0"
+          data-distance="6"
+          data-recent="3"
+        >
+          <a href="listing.html"
+            ><div class="image one">
+              <button
+                class="comparepick"
+                onclick="
+                  (event.preventDefault(),
+                    event.stopPropagation(),
+                    toggleCompare('1'))
+                "
+              >
+                + Confronta
+              </button>
+              <button
+                class="heart"
+                onclick="
+                  (event.preventDefault(),
+                    event.stopPropagation(),
+                    toggleFav('1'))
+                "
+              >
+                ♡
+              </button>
+              <button
+                class="mappick"
+                onclick="
+                  (event.preventDefault(),
+                    event.stopPropagation(),
+                    openMap(this.closest('.listing').dataset.id))
+                "
+              >
+                Mappa
+              </button>
+              <div class="distance">6 min in bici dal polo</div>
+            </div>
+            <div class="meta">
+              <div class="topline">
+                <div class="name">Camera luminosa · Mammut</div>
+                <div class="price">€470</div>
+              </div>
+              <div class="location">Via XX Settembre · Ferrara</div>
+              <div class="facts">
+                <span class="available">Disponibile 1 set</span
+                ><span class="dot"></span><span>Wi-Fi</span
+                ><span class="dot"></span><span>Lavatrice</span>
+              </div>
+              <div class="real">
+                <span>Costo reale<em>stima demo</em></span
+                ><strong>€535 / mese</strong>
+              </div>
+            </div></a
+          >
+        </article>
+        <article
+          class="listing demoOnly"
+          data-id="2"
+          data-wifi="1"
+          data-washer="1"
+          data-privatebath="1"
+          data-now="1"
+          data-cost="498"
+          data-area="mammut"
+          data-available="2026-08-20"
+          data-wifiroom="0"
+          data-furnished="1"
+          data-flexible="1"
+          data-remote="1"
+          data-distance="9"
+          data-recent="1"
+        >
+          <div class="image two">
+            <button class="comparepick" onclick="toggleCompare('2')">
+              + Confronta
+            </button>
+            <button class="heart" onclick="toggleFav('2')">♡</button>
+            <button
+              class="mappick"
+              onclick="
+                (event.preventDefault(),
+                  event.stopPropagation(),
+                  openMap(this.closest('.listing').dataset.id))
+              "
+            >
+              Mappa
+            </button>
+            <div class="distance">9 min in bici dal polo</div>
+          </div>
+          <div class="meta">
+            <div class="topline">
+              <div class="name">Singola · Centro est</div>
+              <div class="price">€430</div>
+            </div>
+            <div class="location">Via Mortara · Ferrara</div>
+            <div class="facts">
+              <span class="available">Disponibile subito</span
+              ><span class="dot"></span><span>Wi-Fi</span
+              ><span class="dot"></span><span>Lavatrice</span>
+            </div>
+            <div class="real">
+              <span>Costo reale<em>stima demo</em></span
+              ><strong>€498 / mese</strong>
+            </div>
+            <div class="cardstate">Scheda demo non disponibile</div>
+          </div>
+        </article>
+        <article
+          class="listing demoOnly"
+          data-id="3"
+          data-wifi="0"
+          data-washer="1"
+          data-privatebath="0"
+          data-now="0"
+          data-cost="520"
+          data-area="mammut"
+          data-available="2026-09-01"
+          data-wifiroom="0"
+          data-furnished="1"
+          data-flexible="0"
+          data-remote="0"
+          data-distance="12"
+          data-recent="2"
+        >
+          <div class="image three">
+            <button class="comparepick" onclick="toggleCompare('3')">
+              + Confronta
+            </button>
+            <button class="heart" onclick="toggleFav('3')">♡</button>
+            <button
+              class="mappick"
+              onclick="
+                (event.preventDefault(),
+                  event.stopPropagation(),
+                  openMap(this.closest('.listing').dataset.id))
+              "
+            >
+              Mappa
+            </button>
+            <div class="distance">12 min a piedi dal polo</div>
+          </div>
+          <div class="meta">
+            <div class="topline">
+              <div class="name">Stanza ampia · San Giorgio</div>
+              <div class="price">€450</div>
+            </div>
+            <div class="location">Ferrara</div>
+            <div class="facts">
+              <span class="available">Disponibile 1 set</span
+              ><span class="dot"></span><span>Bagno condiviso</span>
+            </div>
+            <div class="real">
+              <span>Costo reale<em>stima demo</em></span
+              ><strong>€520 / mese</strong>
+            </div>
+            <div class="cardstate">Scheda demo non disponibile</div>
+          </div>
+        </article>
+        <div class="empty" id="empty">
+          <b id="emptyTitle">Nessun alloggio con questi criteri.</b
+          ><span id="emptyText"
+            >Prova a togliere un filtro: le altre scelte restano
+            disponibili.</span
+          >
+        </div>
+      </section>
+      <div class="actions">
+        <a class="primary" href="compare.html">Confronta</a>
+      </div>
+      <section class="philosophy">
+        <h3>Meno rumore.<br />Più scelta.</h3>
+        <p>
+          La V3 non elimina informazioni: elimina la competizione tra le
+          informazioni. La prima schermata mostra solo ciò che serve per
+          decidere se un alloggio merita attenzione. Dettagli, affidabilità,
+          servizi, contratto, circondario e confronto entrano nel momento
+          successivo.
+        </p>
+      </section>
+    </main>
+    <div class="compareDock" id="compareDock">
+      <span id="compareCount">0 alloggi selezionati</span>
+      <button onclick="openCompare()">Confronta</button>
+    </div>
+    <script>
+      let favs = JSON.parse(localStorage.getItem("fs-v3-favs") || "[]"),
+        compareIds = JSON.parse(localStorage.getItem("fs-v3-compare") || "[]"),
+        favOnly = new URLSearchParams(location.search).get("preferiti") === "1";
+      function syncFavs() {
+        (document.querySelectorAll(".listing").forEach((e) => {
+          let t = favs.includes(e.dataset.id),
+            a = e.querySelector(".heart");
+          (a.classList.toggle("on", t), (a.textContent = t ? "♥" : "♡"));
+        }),
+          (favTopCount.textContent = favs.length ? favs.length : ""),
+          favTop.classList.toggle("active", favOnly),
+          favTop.setAttribute(
+            "aria-label",
+            favOnly ? "Mostra tutti gli alloggi" : "Mostra preferiti",
+          ));
+      }
+      function toggleFav(e) {
+        ((favs = favs.includes(e) ? favs.filter((t) => t !== e) : [...favs, e]),
+          localStorage.setItem("fs-v3-favs", JSON.stringify(favs)),
+          syncFavs(),
+          applyFilters());
+      }
+      function toggleFilter(e) {
+        (e.classList.toggle("on"), applyFilters());
+      }
+      function toggleCompare(e) {
+        ((compareIds = compareIds.includes(e)
+          ? compareIds.filter((t) => t !== e)
+          : compareIds.length < 3
+            ? [...compareIds, e]
+            : compareIds),
+          localStorage.setItem("fs-v3-compare", JSON.stringify(compareIds)),
+          renderCompare());
+      }
+      function renderCompare() {
+        (document.querySelectorAll(".listing").forEach((e) => {
+          const t = e.querySelector(".comparepick"),
+            a = compareIds.includes(e.dataset.id);
+          (t.classList.toggle("on", a),
+            (t.textContent = a ? "✓ Nel confronto" : "+ Confronta"));
+        }),
+          (compareCount.textContent =
+            compareIds.length +
+            (1 === compareIds.length
+              ? " alloggio selezionato"
+              : " alloggi selezionati")),
+          compareDock.classList.toggle("show", compareIds.length > 0),
+          (compareDock.querySelector("button").disabled =
+            compareIds.length < 2),
+          (compareTopCount.textContent = compareIds.length
+            ? compareIds.length
+            : ""));
+      }
+      function openMap(e) {
+        (localStorage.setItem("fs-v3-map-selected", e),
+          (location.href = "map.html"));
+      }
+      function openCompare() {
+        compareIds.length >= 2 && (location.href = "compare.html");
+      }
+      function toggleMoreFilters() {
+        const e = moreFilters.classList.toggle("show");
+        moreToggle.textContent = e ? "Altri filtri −" : "Altri filtri +";
+      }
+      function saveCurrentSearch() {
+        const e = [...document.querySelectorAll(".chip.on[data-filter]")].map(
+          (e) => e.dataset.filter,
+        );
+        (localStorage.setItem(
+          "fs-v3-saved-search",
+          JSON.stringify({
+            polo: studyPlace.value,
+            date: startDate.value,
+            budget: budgetSelect.value,
+            filters: e,
+          }),
+        ),
+          (location.href = "alerts.html"));
+      }
+      function matches(e) {
+        if ("all" !== studyPlace.value && e.dataset.area !== studyPlace.value)
+          return !1;
+        if (startDate.value && e.dataset.available > startDate.value) return !1;
+        if (+e.dataset.cost > +budgetSelect.value) return !1;
+        for (const t of document.querySelectorAll(".chip.on[data-filter]")) {
+          let a = t.dataset.filter;
+          if ("1" !== e.dataset[a]) return !1;
+        }
+        return !favOnly || favs.includes(e.dataset.id);
+      }
+      function applyFilters() {
+        let e = 0;
+        const t = [...document.querySelectorAll(".listing")],
+          a = sortSelect.value;
+        ("recommended" !== a &&
+          (t.sort((e, t) =>
+            "recent" === a
+              ? +e.dataset.recent - +t.dataset.recent
+              : +e.dataset[a] - +t.dataset[a],
+          ),
+          t.forEach((e) => document.querySelector(".grid").appendChild(e)),
+          document.querySelector(".grid").appendChild(empty)),
+          document.querySelectorAll(".listing").forEach((t) => {
+            let a = matches(t);
+            ((t.style.display = a ? "" : "none"), a && e++);
+          }),
+          empty.classList.toggle("show", 0 === e),
+          (resultCount.textContent = e + (1 === e ? " alloggio" : " alloggi")),
+          (resultsTitle.textContent = favOnly
+            ? "I tuoi preferiti"
+            : "Scelte per te"),
+          0 === e && favOnly
+            ? ((emptyTitle.textContent = favs.length
+                ? "Nessun preferito con questi filtri."
+                : "Non hai ancora salvato nessun alloggio."),
+              (emptyText.textContent = favs.length
+                ? "Prova a togliere un filtro per rivedere i tuoi preferiti."
+                : "Tocca il cuore su un alloggio per ritrovarlo qui."))
+            : ((emptyTitle.textContent = "Nessun alloggio con questi criteri."),
+              (emptyText.textContent =
+                "Prova a togliere un filtro: le altre scelte restano disponibili.")),
+          syncFavs());
+      }
+      function showFavs() {
+        ((favOnly = !favOnly), applyFilters());
+      }
+      function syncCompareDockToViewport() {
+        const viewport = window.visualViewport;
+        if (!viewport) return;
+        const coveredBottom = Math.max(
+          0,
+          window.innerHeight - viewport.height - viewport.offsetTop,
+        );
+        document.documentElement.style.setProperty(
+          "--visual-viewport-bottom",
+          coveredBottom + "px",
+        );
+      }
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener(
+          "resize",
+          syncCompareDockToViewport,
+        );
+        window.visualViewport.addEventListener(
+          "scroll",
+          syncCompareDockToViewport,
+        );
+        window.addEventListener("scroll", syncCompareDockToViewport, {
+          passive: true,
+        });
+        syncCompareDockToViewport();
+      }
+      (studyPlace.addEventListener("change", applyFilters),
+        startDate.addEventListener("change", applyFilters),
+        budgetSelect.addEventListener("change", applyFilters),
+        sortSelect.addEventListener("change", applyFilters),
+        (alertTopCount.textContent =
+          "1" === localStorage.getItem("fs-v3-alert") ? "1" : ""),
+        syncFavs(),
+        renderCompare(),
+        applyFilters());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/demo/", "permanent": false },
+    { "source": "/lab", "destination": "/preview-v3/", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/preview-v3/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ]
+}
