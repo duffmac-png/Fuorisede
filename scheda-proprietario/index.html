@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FUORISEDE | Inserisci il tuo alloggio</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f6f7f9;color:#171717;margin:0}.wrap{max-width:760px;margin:30px auto;padding:20px}.card{background:#fff;border-radius:18px;padding:28px;box-shadow:0 8px 30px #0001}h1{margin-top:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{font-weight:700;font-size:14px}input,select,textarea{width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #ccc;border-radius:9px;font:inherit}textarea{min-height:110px}button{background:#111;color:#fff;border:0;border-radius:10px;padding:14px 22px;font-weight:700;cursor:pointer}.msg{margin-top:16px;font-weight:700}@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.wrap{margin:0;padding:12px}.card{padding:20px}}
+</style>
+</head><body><div class="wrap"><div class="card">
+<h1>Proponi un alloggio a FUORISEDE</h1><p>Compila la scheda con le informazioni disponibili. Potremo completare insieme i dettagli mancanti.</p>
+<form id="f"><div class="grid">
+<div><label>Nome e cognome<input name="nome_contatto" required></label></div><div><label>Email<input type="email" name="email" required></label></div>
+<div><label>Telefono<input name="telefono"></label></div><div><label>Tipo di offerta<select name="tipo_offerta"><option value="">Seleziona</option><option>Intero alloggio</option><option>Stanza singola</option><option>Stanza doppia</option><option>Posto letto</option></select></label></div>
+<div class="full"><label>Titolo annuncio<input name="titolo_annuncio"></label></div><div class="full"><label>Descrizione<textarea name="descrizione"></textarea></label></div>
+<div class="full"><label>Indirizzo<input name="indirizzo"></label></div><div><label>Città<input name="citta"></label></div><div><label>Zona<input name="zona"></label></div>
+<div><label>Tipologia alloggio<input name="tipologia_alloggio"></label></div><div><label>Posti letto<input type="number" min="0" name="posti_letto"></label></div>
+<div><label>Camere<input type="number" min="0" name="camere"></label></div><div><label>Bagni<input type="number" min="0" name="bagni"></label></div>
+<div><label>Canone mensile €<input type="number" min="0" step="0.01" name="canone_mensile"></label></div><div><label>Spese mensili €<input type="number" min="0" step="0.01" name="spese_mensili"></label></div>
+<div><label>Deposito cauzionale €<input type="number" min="0" step="0.01" name="deposito_cauzionale"></label></div><div><label>Disponibile da<input type="date" name="disponibile_da"></label></div>
+<div><label>Durata minima<input name="durata_minima"></label></div><div><label>Arredato<select name="arredato"><option value="">Seleziona</option><option>Sì</option><option>No</option><option>Parzialmente</option></select></label></div>
+<div><label>Utenze incluse<input name="utenze_incluse"></label></div><div><label>Internet<input name="internet"></label></div>
+<div class="full"><label>Università vicine<input name="universita_vicine"></label></div><div class="full"><label>Mezzi pubblici<input name="mezzi_pubblici"></label></div>
+<div class="full"><label>Link annuncio<input type="url" name="link_annuncio"></label></div><div class="full"><label>Note<textarea name="note"></textarea></label></div>
+<div class="full"><button type="submit">Invia la scheda</button><div id="msg" class="msg"></div></div>
+</div></form></div></div>
+<script>
+const SUPABASE_URL='https://ehocybzccajjyzfcyyqs.supabase.co';
+const SUPABASE_KEY='__SUPABASE_PUBLISHABLE_KEY__';
+const numeric=new Set(['posti_letto','camere','bagni','canone_mensile','spese_mensili','deposito_cauzionale']);
+document.getElementById('f').addEventListener('submit',async e=>{e.preventDefault();const msg=document.getElementById('msg');if(SUPABASE_KEY.startsWith('__')){msg.textContent='Configurazione in corso: chiave Supabase non ancora impostata.';return}const fd=new FormData(e.target),data={};for(const [k,v] of fd.entries()){if(v==='')continue;data[k]=numeric.has(k)?Number(v):v}msg.textContent='Invio in corso…';try{const r=await fetch(SUPABASE_URL+'/rest/v1/schede_alloggi',{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(data)});if(!r.ok)throw new Error(await r.text());e.target.reset();msg.textContent='Scheda inviata. Grazie!';}catch(err){console.error(err);msg.textContent='Invio non riuscito. Riprova tra poco.';}});
+</script></body></html>
