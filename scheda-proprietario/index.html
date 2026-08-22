@@ -1,31 +1,133 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FUORISEDE | Inserisci il tuo alloggio</title>
-<style>
-body{font-family:Arial,sans-serif;background:#f6f7f9;color:#171717;margin:0}.wrap{max-width:760px;margin:30px auto;padding:20px}.card{background:#fff;border-radius:18px;padding:28px;box-shadow:0 8px 30px #0001}h1{margin-top:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{font-weight:700;font-size:14px}input,select,textarea{width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #ccc;border-radius:9px;font:inherit}textarea{min-height:110px}button{background:#111;color:#fff;border:0;border-radius:10px;padding:14px 22px;font-weight:700;cursor:pointer}.msg{margin-top:16px;font-weight:700}@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.wrap{margin:0;padding:12px}.card{padding:20px}}
-</style>
-</head><body><div class="wrap"><div class="card">
-<h1>Proponi un alloggio a FUORISEDE</h1><p>Compila la scheda con le informazioni disponibili. Potremo completare insieme i dettagli mancanti.</p>
-<form id="f"><div class="grid">
-<div><label>Nome e cognome<input name="nome_contatto" required></label></div><div><label>Email<input type="email" name="email" required></label></div>
-<div><label>Telefono<input name="telefono"></label></div><div><label>Tipo di offerta<select name="tipo_offerta"><option value="">Seleziona</option><option>Intero alloggio</option><option>Stanza singola</option><option>Stanza doppia</option><option>Posto letto</option></select></label></div>
-<div class="full"><label>Titolo annuncio<input name="titolo_annuncio"></label></div><div class="full"><label>Descrizione<textarea name="descrizione"></textarea></label></div>
-<div class="full"><label>Indirizzo<input name="indirizzo"></label></div><div><label>Città<input name="citta"></label></div><div><label>Zona<input name="zona"></label></div>
-<div><label>Tipologia alloggio<input name="tipologia_alloggio"></label></div><div><label>Posti letto<input type="number" min="0" name="posti_letto"></label></div>
-<div><label>Camere<input type="number" min="0" name="camere"></label></div><div><label>Bagni<input type="number" min="0" name="bagni"></label></div>
-<div><label>Canone mensile €<input type="number" min="0" step="0.01" name="canone_mensile"></label></div><div><label>Spese mensili €<input type="number" min="0" step="0.01" name="spese_mensili"></label></div>
-<div><label>Deposito cauzionale €<input type="number" min="0" step="0.01" name="deposito_cauzionale"></label></div><div><label>Disponibile da<input type="date" name="disponibile_da"></label></div>
-<div><label>Durata minima<input name="durata_minima"></label></div><div><label>Arredato<select name="arredato"><option value="">Seleziona</option><option>Sì</option><option>No</option><option>Parzialmente</option></select></label></div>
-<div><label>Utenze incluse<input name="utenze_incluse"></label></div><div><label>Internet<input name="internet"></label></div>
-<div class="full"><label>Università vicine<input name="universita_vicine"></label></div><div class="full"><label>Mezzi pubblici<input name="mezzi_pubblici"></label></div>
-<div class="full"><label>Link annuncio<input type="url" name="link_annuncio"></label></div><div class="full"><label>Note<textarea name="note"></textarea></label></div>
-<div class="full"><button type="submit">Invia la scheda</button><div id="msg" class="msg"></div></div>
-</div></form></div></div>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>FUORISEDE · Inserisci il tuo alloggio</title>
+  <style>
+    :root{--blue:#176b87;--blue-dark:#0d4e67;--sky:#eaf6fa;--ink:#18333d;--muted:#627981;--line:#d8e6ea;--paper:#fff;--ok:#287a55;--warn:#a64b3c;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#edf8fb 0,#f8fbfc 240px);color:var(--ink)}button,input,select,textarea{font:inherit}.shell{max-width:680px;margin:auto;padding:18px 16px 110px}.top{display:flex;align-items:center;justify-content:space-between;min-height:58px}.logo{width:145px;height:auto}.demo{font-size:11px;font-weight:800;color:var(--blue-dark);background:#dff0f5;padding:7px 10px;border-radius:999px}.progress-wrap{margin:18px 0 26px}.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px}.progress{height:9px;border-radius:99px;background:#dcecf0;overflow:hidden}.bar{height:100%;width:0;background:var(--blue);transition:.25s}.card{background:var(--paper);border:1px solid var(--line);border-radius:25px;padding:clamp(22px,5vw,38px);box-shadow:0 18px 55px rgba(24,76,93,.09)}.eyebrow{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:10px}h1{font-size:clamp(30px,7vw,45px);line-height:1.05;letter-spacing:-.045em;margin:0 0 14px}h2{font-size:clamp(25px,6vw,34px);line-height:1.12;letter-spacing:-.03em;margin:0 0 10px}.lead{font-size:16px;line-height:1.55;color:var(--muted);margin:0 0 24px}.small{font-size:12px;line-height:1.5;color:var(--muted)}.step{display:none}.step.active{display:block}.choices{display:grid;gap:11px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice label{display:flex;align-items:center;gap:12px;min-height:58px;border:2px solid var(--line);border-radius:16px;padding:14px 16px;font-weight:750;cursor:pointer;background:#fff}.choice label:before{content:"";width:21px;height:21px;border:2px solid #afc4ca;border-radius:50%;flex:none}.choice input:checked+label{border-color:var(--blue);background:var(--sky);color:var(--blue-dark)}.choice input:checked+label:before{border:6px solid var(--blue)}.field{margin:16px 0}.field label,.group-label{display:block;font-weight:800;font-size:14px;margin:0 0 8px}.field input,.field select,.field textarea{width:100%;min-height:56px;border:2px solid var(--line);border-radius:15px;padding:14px 15px;background:#fff;color:var(--ink);outline:none}.field textarea{min-height:96px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px}.check input{position:absolute;opacity:0}.check label{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:15px;padding:13px;min-height:54px;font-weight:700;cursor:pointer}.check label:before{content:"✓";display:grid;place-items:center;width:22px;height:22px;border:2px solid #afc4ca;border-radius:6px;color:transparent;flex:none}.check input:checked+label{border-color:var(--blue);background:var(--sky)}.check input:checked+label:before{background:var(--blue);border-color:var(--blue);color:#fff}.photo-box{border:2px dashed #abcbd5;border-radius:18px;padding:22px;text-align:center;background:#f7fcfd}.photo-box input{max-width:100%;margin-top:14px}.privacy{border:2px solid var(--line);border-radius:17px;padding:16px;background:#f9fcfd}.privacy label{display:flex;align-items:flex-start;gap:12px;line-height:1.5;font-size:14px}.privacy input{width:22px;height:22px;flex:none;margin-top:1px}.privacy a{color:var(--blue-dark);font-weight:800}.nav{display:flex;gap:10px;margin-top:28px}.btn{border:0;border-radius:14px;min-height:54px;padding:13px 20px;font-weight:850;cursor:pointer}.primary{background:var(--blue-dark);color:#fff;flex:1}.secondary{background:#eef4f6;color:var(--ink)}.error{display:none;color:var(--warn);font-size:13px;font-weight:750;margin-top:12px}.review{display:grid;gap:9px}.review div{background:#f4f9fa;border-radius:12px;padding:12px 14px}.review b{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}.done{text-align:center}.done .tick{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:#e4f4eb;color:var(--ok);font-size:35px;font-weight:900;margin:0 auto 18px}.notice{margin-top:18px;background:#fff6e9;border-radius:13px;padding:12px 14px;font-size:12px;line-height:1.5;color:#7b5a28}@media(max-width:560px){.shell{padding-left:12px;padding-right:12px}.card{border-radius:21px;padding:22px 17px}.row,.checks{grid-template-columns:1fr}.choice label{min-height:62px}.nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);padding:11px 14px calc(11px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:5}.btn{min-height:52px}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header class="top"><img class="logo" src="fuorisede-logo-approved-transparent.png" alt="FUORISEDE — Fuori casa, ma nel posto giusto."><span class="demo">PROVA · NON INVIA DATI</span></header>
+  <div class="progress-wrap"><div class="progress-label"><span id="progressText">Inizio</span><span id="progressCount">0 di 9</span></div><div class="progress"><div class="bar" id="bar"></div></div></div>
+  <section class="card">
+    <form id="wizard" novalidate>
+      <div class="step active" data-title="Inizio">
+        <div class="eyebrow">Inserisci gratuitamente il tuo alloggio</div>
+        <h1>Ci vogliono pochi minuti.</h1>
+        <p class="lead">Una domanda alla volta, quasi tutte a scelta. Se qualcosa non lo sai, potrai indicarlo. Prima della pubblicazione controlleremo insieme la scheda.</p>
+        <div class="notice"><b>Questa è una copia di collaudo.</b> Puoi provarla liberamente: nessuna risposta e nessuna fotografia vengono trasmesse.</div>
+      </div>
+
+      <div class="step" data-title="Che cosa affitti?" data-required="type">
+        <div class="eyebrow">1 di 9</div><h2>Che cosa vuoi affittare?</h2><p class="lead">Scegli una sola risposta.</p>
+        <div class="choices">
+          <div class="choice"><input id="t1" name="type" value="Una camera singola" type="radio"><label for="t1">Una camera singola</label></div>
+          <div class="choice"><input id="t2" name="type" value="Una camera doppia" type="radio"><label for="t2">Una camera doppia</label></div>
+          <div class="choice"><input id="t3" name="type" value="Un appartamento intero" type="radio"><label for="t3">Un appartamento intero</label></div>
+          <div class="choice"><input id="t4" name="type" value="Più camere o posti letto" type="radio"><label for="t4">Più camere o posti letto</label></div>
+        </div>
+      </div>
+
+      <div class="step" data-title="Dove si trova?" data-required="city,address">
+        <div class="eyebrow">2 di 9</div><h2>Dove si trova?</h2>
+        <div class="field"><label for="city">Comune</label><input id="city" name="city" autocomplete="address-level2" placeholder="Es. Ferrara"></div>
+        <div class="field"><label for="address">Via e numero civico</label><input id="address" name="address" autocomplete="street-address" placeholder="Es. Via Corta 12"></div>
+        <p class="small">Prima di rendere pubblica la scheda potrai scegliere se mostrare l’indirizzo completo oppure soltanto la zona.</p>
+      </div>
+
+      <div class="step" data-title="Posti disponibili" data-required="places">
+        <div class="eyebrow">3 di 9</div><h2>Quanti posti sono disponibili?</h2>
+        <div class="choices">
+          <div class="choice"><input id="p1" name="places" value="1" type="radio"><label for="p1">1 posto</label></div>
+          <div class="choice"><input id="p2" name="places" value="2" type="radio"><label for="p2">2 posti</label></div>
+          <div class="choice"><input id="p3" name="places" value="3" type="radio"><label for="p3">3 posti</label></div>
+          <div class="choice"><input id="p4" name="places" value="4 o più" type="radio"><label for="p4">4 o più posti</label></div>
+        </div>
+      </div>
+
+      <div class="step" data-title="Quanto costa?" data-required="price,expenses">
+        <div class="eyebrow">4 di 9</div><h2>Quanto costa al mese?</h2>
+        <div class="field"><label for="price">Canone mensile in euro</label><input id="price" name="price" type="number" min="0" inputmode="numeric" placeholder="Es. 450"></div>
+        <span class="group-label">Le spese sono comprese?</span>
+        <div class="choices">
+          <div class="choice"><input id="e1" name="expenses" value="Tutte comprese" type="radio"><label for="e1">Sì, tutte comprese</label></div>
+          <div class="choice"><input id="e2" name="expenses" value="Alcune comprese" type="radio"><label for="e2">Solo alcune</label></div>
+          <div class="choice"><input id="e3" name="expenses" value="Escluse" type="radio"><label for="e3">No, sono escluse</label></div>
+          <div class="choice"><input id="e4" name="expenses" value="Da verificare" type="radio"><label for="e4">Non lo so / da verificare</label></div>
+        </div>
+      </div>
+
+      <div class="step" data-title="Disponibilità" data-required="available">
+        <div class="eyebrow">5 di 9</div><h2>Da quando è disponibile?</h2>
+        <div class="field"><label for="available">Data indicativa</label><input id="available" name="available" type="date"></div>
+        <div class="field"><label for="duration">Per quanto tempo deve restare almeno l’inquilino?</label><select id="duration" name="duration"><option>Nessun minimo</option><option>12 mesi</option><option>24 mesi</option><option>Da concordare</option></select></div>
+      </div>
+
+      <div class="step" data-title="Che cosa offre?">
+        <div class="eyebrow">6 di 9</div><h2>Che cosa c’è nell’alloggio?</h2><p class="lead">Puoi scegliere più risposte.</p>
+        <div class="checks">
+          <div class="check"><input id="s1" name="services" value="Arredato" type="checkbox"><label for="s1">Arredato</label></div>
+          <div class="check"><input id="s2" name="services" value="Wi‑Fi" type="checkbox"><label for="s2">Wi‑Fi</label></div>
+          <div class="check"><input id="s3" name="services" value="Lavatrice" type="checkbox"><label for="s3">Lavatrice</label></div>
+          <div class="check"><input id="s4" name="services" value="Bagno privato" type="checkbox"><label for="s4">Bagno privato</label></div>
+          <div class="check"><input id="s5" name="services" value="Cucina" type="checkbox"><label for="s5">Cucina</label></div>
+          <div class="check"><input id="s6" name="services" value="Riscaldamento" type="checkbox"><label for="s6">Riscaldamento</label></div>
+        </div>
+        <div class="field"><label for="notes">Vuoi aggiungere qualcosa? (facoltativo)</label><textarea id="notes" name="notes" placeholder="Es. vicino all’università, ideale per due amici…"></textarea></div>
+      </div>
+
+      <div class="step" data-title="Le fotografie">
+        <div class="eyebrow">7 di 9</div><h2>Aggiungi le fotografie</h2><p class="lead">Scegli le foto direttamente dal telefono. Anche una sola va bene; potrai aggiungerne altre dopo.</p>
+        <div class="photo-box"><b>📷 Scegli le foto dell’alloggio</b><br><span class="small">Nella prova restano soltanto sul tuo dispositivo.</span><input id="photos" type="file" accept="image/*" multiple></div>
+        <p id="photoCount" class="small">Nessuna foto selezionata.</p>
+      </div>
+
+      <div class="step" data-title="Come ti contattiamo?" data-required="name,contact">
+        <div class="eyebrow">8 di 9</div><h2>Come possiamo contattarti?</h2>
+        <div class="field"><label for="name">Nome e cognome</label><input id="name" name="name" autocomplete="name" placeholder="Il tuo nome"></div>
+        <div class="field"><label for="contact">Telefono oppure email</label><input id="contact" name="contact" autocomplete="email" placeholder="Quello che usi più facilmente"></div>
+        <span class="group-label">Vuoi mostrarlo nella scheda pubblica?</span>
+        <div class="choices">
+          <div class="choice"><input id="c1" name="publicContact" value="No" type="radio" checked><label for="c1">No, usatelo solo per contattarmi</label></div>
+          <div class="choice"><input id="c2" name="publicContact" value="Sì" type="radio"><label for="c2">Sì, può comparire nella scheda</label></div>
+        </div>
+      </div>
+
+      <div class="step" data-title="Conferma" data-required="authorization">
+        <div class="eyebrow">9 di 9</div><h2>Ultima conferma</h2>
+        <div class="privacy"><label><input id="authorization" name="authorization" type="checkbox"><span>Confermo che i dati inseriti sono corretti, che posso utilizzare le fotografie caricate e autorizzo FUORISEDE a preparare gratuitamente la scheda dell’alloggio. Potrò chiederne modifica o rimozione in qualsiasi momento.</span></label></div>
+        <p class="small">Antaris Migani è il titolare del trattamento. I recapiti non destinati alla pubblicazione servono soltanto a verificare e gestire la scheda. <a href="#" onclick="showPrivacy(event)">Come utilizziamo i tuoi dati</a>.</p>
+      </div>
+
+      <div class="step" data-title="Riepilogo">
+        <div class="eyebrow">Controlla con calma</div><h2>È tutto giusto?</h2><p class="lead">Questa è l’ultima schermata prima dell’invio.</p>
+        <div class="review" id="review"></div>
+      </div>
+
+      <div class="step done" data-title="Completato">
+        <div class="tick">✓</div><h2>Prova completata.</h2><p class="lead">Il percorso funziona. In questa copia non abbiamo ricevuto né conservato alcun dato.</p>
+        <button type="button" class="btn secondary" onclick="restart()">Ricomincia la prova</button>
+      </div>
+
+      <div class="error" id="error">Rispondi a questa domanda per continuare.</div>
+      <nav class="nav" id="nav"><button class="btn secondary" id="back" type="button" onclick="move(-1)">Indietro</button><button class="btn primary" id="next" type="button" onclick="move(1)">Continua</button></nav>
+    </form>
+  </section>
+</main>
 <script>
-const SUPABASE_URL='https://ehocybzccajjyzfcyyqs.supabase.co';
-const SUPABASE_KEY='sb_publishable_BZ1ixBKG2lbEJHJdvQCO4w_xseLH4gx';
-const numeric=new Set(['posti_letto','camere','bagni','canone_mensile','spese_mensili','deposito_cauzionale']);
-document.getElementById('f').addEventListener('submit',async e=>{e.preventDefault();const msg=document.getElementById('msg');if(SUPABASE_KEY.startsWith('__')){msg.textContent='Configurazione in corso: chiave Supabase non ancora impostata.';return}const fd=new FormData(e.target),data={};for(const [k,v] of fd.entries()){if(v==='')continue;data[k]=numeric.has(k)?Number(v):v}msg.textContent='Invio in corso…';try{const r=await fetch(SUPABASE_URL+'/rest/v1/schede_alloggi',{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(data)});if(!r.ok)throw new Error(await r.text());e.target.reset();msg.textContent='Scheda inviata. Grazie!';}catch(err){console.error(err);msg.textContent='Invio non riuscito. Riprova tra poco.';}});
-</script></body></html>
+const steps=[...document.querySelectorAll('.step')], form=document.getElementById('wizard');let current=0;
+function value(name){const els=[...form.elements].filter(x=>x.name===name);if(!els.length)return'';if(els[0].type==='radio')return els.find(x=>x.checked)?.value||'';if(els[0].type==='checkbox')return els.filter(x=>x.checked).map(x=>x.value).join(', ');return els[0].value.trim()}
+function valid(){const required=(steps[current].dataset.required||'').split(',').filter(Boolean);const missing=required.some(name=>!value(name));document.getElementById('error').style.display=missing?'block':'none';return!missing}
+function render(){steps.forEach((s,i)=>s.classList.toggle('active',i===current));const count=Math.min(Math.max(current,0),9);document.getElementById('progressText').textContent=steps[current].dataset.title;document.getElementById('progressCount').textContent=current===0?'0 di 9':current<=9?current+' di 9':current===10?'Riepilogo':'Fatto';document.getElementById('bar').style.width=(count/9*100)+'%';document.getElementById('back').style.display=current===0||current===11?'none':'block';document.getElementById('next').textContent=current===0?'Inizia':current===10?'Conferma la prova':'Continua';document.getElementById('nav').style.display=current===11?'none':'flex';window.scrollTo({top:0,behavior:'smooth'})}
+function move(dir){if(dir>0&&!valid())return;if(current===9&&dir>0)buildReview();if(current===10&&dir>0){current=11;render();return}current=Math.max(0,Math.min(steps.length-1,current+dir));render()}
+function buildReview(){const rows=[['Alloggio',value('type')],['Dove',value('address')+', '+value('city')],['Posti',value('places')],['Canone','€ '+value('price')+' · '+value('expenses')],['Disponibile',value('available')+' · '+value('duration')],['Servizi',value('services')||'Non indicati'],['Referente',value('name')],['Contatto pubblico',value('publicContact')]];document.getElementById('review').innerHTML=rows.map(([a,b])=>`<div><b>${a}</b>${b}</div>`).join('')}
+function showPrivacy(e){e.preventDefault();alert('Informativa breve di collaudo: Antaris Migani, titolare di FUORISEDE, userà i dati soltanto per verificare, creare e aggiornare la scheda. I recapiti restano privati salvo scelta espressa. Prima dell’attivazione reale sarà disponibile l’informativa completa con tempi, fornitori e diritti.')}
+function restart(){form.reset();current=0;document.getElementById('photoCount').textContent='Nessuna foto selezionata.';render()}
+document.getElementById('photos').addEventListener('change',e=>{const n=e.target.files.length;document.getElementById('photoCount').textContent=n?n+(n===1?' foto selezionata.':' foto selezionate.'):'Nessuna foto selezionata.'});render();
+</script>
+</body>
+</html>
