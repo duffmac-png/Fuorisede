@@ -2,7 +2,7 @@
 const ENDPOINT='https://script.google.com/macros/s/AKfycbxOqlBGAAR8KK5Xx3wDnX7f89iGWyxT3WcXkX7_fbo_3LSyaMJBKb9pRdh2eOEr1xIg/exec';
 const listingId=new URLSearchParams(location.search).get('id')||'1';
 const listingData={
- '1':{code:'FE-DEMO-001',name:'Camera luminosa · Mammut',detail:'€535 costo reale stimato · disponibile 1 settembre',alloggio:activeListing.alloggio,photo:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&q=80',count:'3'},
+ '1':{code:'FE-DEMO-001',name:'Camera luminosa · Mammut',detail:'€535 costo reale stimato · disponibile 1 settembre',alloggio:'Camera luminosa · Mammut · Via XX Settembre, Ferrara',photo:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&q=80',count:'3'},
  '2':{code:'FE-DEMO-002',name:'Singola · Centro est',detail:'€498 costo reale stimato · disponibile subito',alloggio:'Singola · Centro est · Via Mortara, Ferrara',photo:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=500&q=80',count:'2'},
  '3':{code:'FE-DEMO-003',name:'Stanza ampia · San Giorgio',detail:'€520 costo reale stimato · disponibile 15 settembre',alloggio:'Stanza ampia · San Giorgio · Ferrara',photo:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=500&q=80',count:'1'}
 };
@@ -49,7 +49,7 @@ async function submitInterest(){
   const payload={
     tipoRichiesta:'Mi interessa',
     idAlloggio:activeListing.code,
-    alloggio:'Camera luminosa · Mammut · Via XX Settembre, Ferrara',
+    alloggio:activeListing.alloggio,
     datoDaVerificare:'',
     nomeStudente:document.getElementById('name').value.trim(),
     email:email.value.trim(),
@@ -69,7 +69,7 @@ async function submitInterest(){
       body:JSON.stringify(payload)
     });
     if(localStorage.getItem(interestKey)!=='1'){
-      localStorage.setItem(interestCountKey,String(+(localStorage.getItem(interestCountKey)||'3')+1));
+      localStorage.setItem(interestCountKey,String(+(localStorage.getItem(interestCountKey)||activeListing.count)+1));
     }
     localStorage.setItem(interestKey,'1');
     showDone(false);
@@ -81,7 +81,7 @@ async function submitInterest(){
 }
 function restartDemo(){
   localStorage.removeItem(interestKey);
-  localStorage.setItem(interestCountKey,'3');
+  localStorage.setItem(interestCountKey,activeListing.count);
   document.getElementById('done').classList.remove('show');
   document.getElementById('form').style.display='block';
   document.getElementById('submitButton').disabled=false;
