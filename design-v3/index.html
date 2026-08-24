@@ -260,6 +260,7 @@
       }
       .listing {
         min-width: 0;
+        cursor: pointer;
       }
       .listing > a {
         display: block;
@@ -886,7 +887,11 @@
           >
         </article>
         <article
-          class="listing demoOnly"
+          class="listing"
+          role="link"
+          tabindex="0"
+          onclick="if (!event.target.closest('button')) location.href='listing.html?id=2'"
+          onkeydown="if (event.key === 'Enter') location.href='listing.html?id=2'"
           data-id="2"
           data-wifi="1"
           data-washer="1"
@@ -934,11 +939,14 @@
               <span>Costo reale<em>stima demo</em></span
               ><strong>€498 / mese</strong>
             </div>
-            <div class="cardstate">Scheda demo non disponibile</div>
           </div>
         </article>
         <article
-          class="listing demoOnly"
+          class="listing"
+          role="link"
+          tabindex="0"
+          onclick="if (!event.target.closest('button')) location.href='listing.html?id=3'"
+          onkeydown="if (event.key === 'Enter') location.href='listing.html?id=3'"
           data-id="3"
           data-wifi="0"
           data-washer="1"
@@ -985,7 +993,6 @@
               <span>Costo reale<em>stima demo</em></span
               ><strong>€520 / mese</strong>
             </div>
-            <div class="cardstate">Scheda demo non disponibile</div>
           </div>
         </article>
         <div class="empty" id="empty">
