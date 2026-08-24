@@ -1,11 +1,11 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/demo/", "permanent": false },
-    { "source": "/lab", "destination": "/preview-v3/", "permanent": false }
+    { "source": "/", "destination": "/design-v3/operativa.html", "permanent": false },
+    { "source": "/lab", "destination": "/design-v3/", "permanent": false }
   ],
   "headers": [
     {
-      "source": "/preview-v3/(.*)",
+      "source": "/design-v3/(.*)",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
