@@ -4,7 +4,8 @@ const listingId=new URLSearchParams(location.search).get('id')||'303';
 const listingData={
  '301':{code:'FE-OPERATIVA-301',name:'Le Corti di Medoro · posto letto singolo',detail:'€429 mensili · disponibilità da verificare',alloggio:'Le Corti di Medoro · Ferrara',photo:'',count:'0'},
  '302':{code:'FE-OPERATIVA-302',name:'Residenza Putinati 149 · stanza singola',detail:'da €330 mensili · disponibilità da verificare',alloggio:'Via Putinati 149 · Ferrara',photo:'',count:'0'},
- '303':{code:'FE-OPERATIVA-303',name:'Bilocale · Via Giuoco del Pallone',detail:'da €600 mensili · disponibile ora',alloggio:'Bilocale · Via Giuoco del Pallone · Ferrara',photo:'../assets/listings/orlandini-soggiorno.jpeg',count:'0'}
+ '303':{code:'FE-OPERATIVA-303',name:'Bilocale · Via Giuoco del Pallone',detail:'da €600 mensili · disponibile ora',alloggio:'Bilocale · Via Giuoco del Pallone · Ferrara',photo:'../assets/listings/orlandini-soggiorno.jpeg',count:'0'},
+ '304':{code:'FE-OPERATIVA-304',name:'Appartamento · zona Mammut',detail:'canone da definire · disponibile da fine novembre 2026',alloggio:'Appartamento · zona Mammut · Ferrara',photo:'',count:'0'}
 };
 const activeListing=listingData[listingId]||listingData['303'];
 document.querySelector('.home b').textContent=activeListing.name;
