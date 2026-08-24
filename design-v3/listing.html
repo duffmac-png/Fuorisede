@@ -772,7 +772,34 @@
       </div>
     </div>
     <script>
-      const id = "1";
+      const id = new URLSearchParams(location.search).get("id") || "1";
+      const demoListings = {
+        "1": { kicker:"Camera singola · Mammut", title:"Luminosa, vicina.<br />Senza sorprese.", place:"Via XX Settembre · Ferrara", distance:"6 min in bici", available:"1 settembre", rent:"€470", fixed:"€35", utilities:"€30", real:"€535", interests:"3 studenti interessati · conteggio dimostrativo", photos:["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=700&q=80","https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=80"] },
+        "2": { kicker:"Camera singola · Centro est", title:"Comoda, pronta.<br />Da vivere subito.", place:"Via Mortara · Ferrara", distance:"9 min in bici", available:"subito", rent:"€430", fixed:"€38", utilities:"€30", real:"€498", interests:"2 studenti interessati · conteggio dimostrativo", photos:["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=700&q=80","https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80"] },
+        "3": { kicker:"Camera singola · San Giorgio", title:"Ampia, tranquilla.<br />Ben collegata.", place:"San Giorgio · Ferrara", distance:"12 min a piedi", available:"15 settembre", rent:"€450", fixed:"€40", utilities:"€30", real:"€520", interests:"1 studente interessato · conteggio dimostrativo", photos:["https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80","https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=80"] }
+      };
+      const currentListing = demoListings[id] || demoListings["1"];
+      document.querySelector(".kicker").textContent = currentListing.kicker;
+      document.querySelector(".title").innerHTML = currentListing.title;
+      document.querySelector(".place").textContent = currentListing.place;
+      const essentialValues = document.querySelectorAll(".essential b");
+      essentialValues[0].textContent = currentListing.distance;
+      essentialValues[1].textContent = currentListing.available;
+      essentialValues[2].textContent = currentListing.real + " / mese";
+      const costValues = document.querySelectorAll(".costrow b");
+      [currentListing.rent,currentListing.fixed,currentListing.utilities,currentListing.real].forEach((v,i)=>costValues[i].textContent=v);
+      const galleryPhotos = document.querySelectorAll(".gallery .photo");
+      currentListing.photos.forEach((url,i)=>galleryPhotos[i].style.backgroundImage='url("'+url+'")');
+      const routeValues = document.querySelectorAll(".route b");
+      routeValues[0].textContent = currentListing.distance.replace(" in bici","").replace(" a piedi","");
+      document.querySelector(".maplink").onclick = () => location.href = "map.html?focus=" + id;
+      document.querySelector(".aside .price").innerHTML = currentListing.rent + ' <small>/ mese</small>';
+      document.querySelector(".aside .real b").textContent = currentListing.real;
+      document.querySelector(".aside .available").textContent = "Disponibile " + currentListing.available + " · demo";
+      document.getElementById("interestCount").textContent = currentListing.interests;
+      document.querySelector(".mobileprice b").textContent = currentListing.real + " / mese";
+      document.querySelectorAll('[onclick*="apply.html"]').forEach((el)=>el.onclick=()=>location.href="apply.html?id="+id);
+      document.querySelectorAll('[onclick*="integration.html"]').forEach((el)=>el.onclick=()=>location.href="integration.html?id="+id);
       let favs = JSON.parse(localStorage.getItem("fs-v3-favs") || "[]");
       function renderSave() {
         const e = favs.includes(id),
