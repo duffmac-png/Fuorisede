@@ -736,9 +736,9 @@
           class="budgetSelect"
           aria-label="Budget mensile reale"
         >
-          <option value="9999">Qualsiasi budget</option>
+          <option value="9999" selected="selected">Qualsiasi budget</option>
           <option value="500">Fino a €500 reali</option>
-          <option value="550" selected="selected">Fino a €550 reali</option>
+          <option value="550">Fino a €550 reali</option>
           <option value="600">Fino a €600 reali</option>
         </select>
         <button class="chip" data-filter="now" onclick="toggleFilter(this)">
@@ -1015,6 +1015,21 @@
       <button onclick="openCompare()">Confronta</button>
     </div>
     <script>
+      const externalEntry = (() => {
+        try {
+          return (
+            !document.referrer ||
+            new URL(document.referrer).origin !== location.origin
+          );
+        } catch (error) {
+          return true;
+        }
+      })();
+      if (externalEntry) {
+        Object.keys(localStorage)
+          .filter((key) => key.startsWith("fs-v3-"))
+          .forEach((key) => localStorage.removeItem(key));
+      }
       let favs = JSON.parse(localStorage.getItem("fs-v3-favs") || "[]"),
         compareIds = JSON.parse(localStorage.getItem("fs-v3-compare") || "[]"),
         favOnly = new URLSearchParams(location.search).get("preferiti") === "1";
