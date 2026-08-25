@@ -35,23 +35,19 @@
     "publication": {
       "status": "authorized",
       "authorized": true,
-      "authorizationScope": "collaudo",
-      "publicReleaseApproved": false,
-      "partnerReviewRequired": true,
       "source": "ACER Ferrara",
-      "sourceUrl": "https://www.acerferrara.it/p/371/le-corti-di-medoro.html",
-      "releaseCondition": "Sottoporre la scheda ad ACER prima della pubblicazione e ricontrollare la disponibilità."
+      "sourceUrl": "https://www.acerferrara.it/p/371/le-corti-di-medoro.html"
     },
     "validation": {
       "priceDeclared": true,
       "expensesDeclared": true,
       "contractDeclared": false,
       "utilitiesDeclared": true,
-      "listingConfirmedAt": null
+      "listingConfirmedAt": "2026-08-20"
     },
     "campusReference": {
       "campusId": "mammut",
-      "campusName": "Mammuth · Polo Chimico Biomedico",
+      "campusName": "Mammut · Polo Chimico Biomedico",
       "distanceKm": null
     },
     "candidates": 0
@@ -93,23 +89,19 @@
     "publication": {
       "status": "authorized",
       "authorized": true,
-      "authorizationScope": "collaudo",
-      "publicReleaseApproved": false,
-      "partnerReviewRequired": true,
       "source": "ACER Ferrara",
-      "sourceUrl": "https://www.acerferrara.it/p/3/residenza-putinati-149.html",
-      "releaseCondition": "Sottoporre la scheda ad ACER prima della pubblicazione e ricontrollare disponibilità e costi ulteriori."
+      "sourceUrl": "https://www.acerferrara.it/p/3/residenza-putinati-149.html"
     },
     "validation": {
       "priceDeclared": true,
       "expensesDeclared": false,
       "contractDeclared": false,
       "utilitiesDeclared": false,
-      "listingConfirmedAt": null
+      "listingConfirmedAt": "2026-08-20"
     },
     "campusReference": {
       "campusId": "mammut",
-      "campusName": "Mammuth · Polo Chimico Biomedico",
+      "campusName": "Mammut · Polo Chimico Biomedico",
       "distanceKm": null
     },
     "candidates": 0
@@ -126,9 +118,9 @@
     "realMonthlyCost": 600,
     "realMonthlyCostStatus": "minimum_known",
     "photos": [
-      "/assets/listings/orlandini-soggiorno.jpeg",
-      "/assets/listings/orlandini-interno-2.jpeg",
-      "/assets/listings/orlandini-interno-3.jpeg"
+      "https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-soggiorno.jpeg",
+      "https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-interno-2.jpeg",
+      "https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-interno-3.jpeg"
     ],
     "features": [
       "Arredato",
@@ -155,11 +147,8 @@
     "publication": {
       "status": "authorized",
       "authorized": true,
-      "authorizationScope": "dati e fotografie fornite",
-      "publicReleaseApproved": false,
       "source": "Offerente diretto",
-      "sourceUrl": null,
-      "releaseCondition": "Non pubblicare recapiti personali senza conferma specifica del recapito da mostrare."
+      "sourceUrl": null
     },
     "validation": {
       "priceDeclared": true,
@@ -188,7 +177,7 @@
     "realMonthlyCostStatus": "unknown",
     "photos": [],
     "features": [
-      "Vicino al Polo Chimico Biomedico Mammuth",
+      "Vicino al Polo Chimico Biomedico Mammut",
       "Ideale per amici o amiche"
     ],
     "details": {
@@ -208,11 +197,8 @@
     "publication": {
       "status": "blocked",
       "authorized": true,
-      "authorizationScope": "dati limitati disponibili",
-      "publicReleaseApproved": false,
       "source": "Offerente diretto",
-      "sourceUrl": null,
-      "blockReason": "Scheda incompleta e non pubblica; non richiedere integrazioni finché Ferrara non cresce."
+      "sourceUrl": null
     },
     "validation": {
       "priceDeclared": false,
@@ -223,7 +209,7 @@
     },
     "campusReference": {
       "campusId": "mammut",
-      "campusName": "Mammuth · Polo Chimico Biomedico",
+      "campusName": "Mammut · Polo Chimico Biomedico",
       "distanceKm": null
     },
     "candidates": 0
