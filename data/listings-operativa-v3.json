@@ -49,7 +49,9 @@
     "campusReference": {
       "campusId": "mammut",
       "campusName": "Mammut · Polo Chimico Biomedico",
-      "distanceKm": null
+      "distanceKm": 4.0,
+      "minutesBike": 16,
+      "travelEstimate": true
     },
     "candidates": 0
   },
@@ -104,7 +106,9 @@
     "campusReference": {
       "campusId": "mammut",
       "campusName": "Mammut · Polo Chimico Biomedico",
-      "distanceKm": null
+      "distanceKm": 2.0,
+      "minutesBike": 8,
+      "travelEstimate": true
     },
     "candidates": 0
   },
@@ -163,7 +167,9 @@
     "campusReference": {
       "campusId": "centro",
       "campusName": "Centro · sedi universitarie",
-      "distanceKm": null
+      "distanceKm": 0.7,
+      "minutesBike": 3,
+      "travelEstimate": true
     },
     "candidates": 0
   },
@@ -214,7 +220,9 @@
     "campusReference": {
       "campusId": "mammut",
       "campusName": "Mammut · Polo Chimico Biomedico",
-      "distanceKm": null
+      "distanceKm": null,
+      "minutesBike": null,
+      "travelEstimate": true
     },
     "candidates": 0
   }
