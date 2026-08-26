@@ -75,3 +75,42 @@ export function campusDistanceLabel(listing, campusId) {
   const km = listing?.campusReference?.distanceKm;
   return Number.isFinite(km) ? `≈ ${km.toLocaleString('it-IT', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} km` : 'Distanza non disponibile';
 }
+
+const ACCOMMODATION_TYPES = new Set(['bed', 'room', 'home']);
+
+export function accommodationType(listing) {
+  const declared = listing?.accommodationType || listing?.type;
+  if (ACCOMMODATION_TYPES.has(declared)) return declared;
+  const text = [listing?.title, ...(listing?.features || [])].join(' ').toLowerCase();
+  if (/posto\s+letto|letto\s+(?:singolo|doppio)/.test(text)) return 'bed';
+  if (/camera|stanza/.test(text)) return 'room';
+  if (/monolocale|bilocale|trilocale|appartamento|alloggio\s+intero/.test(text)) return 'home';
+  return null;
+}
+
+export function accommodationTypeLabel(type) {
+  return ({ bed: 'posto letto', room: 'camera', home: 'alloggio intero' })[type] || 'tipologia da verificare';
+}
+
+export function comparisonCompatibility(selectedListings, candidate) {
+  const selected = (selectedListings || []).filter(Boolean);
+  const candidateType = accommodationType(candidate);
+  if (!selected.length) return { allowed: Boolean(candidateType), type: candidateType };
+  const selectedType = accommodationType(selected[0]);
+  return {
+    allowed: Boolean(selectedType && candidateType && selectedType === candidateType),
+    type: selectedType,
+    message: selectedType && candidateType !== selectedType
+      ? `Puoi confrontare solo ${accommodationTypeLabel(selectedType)} con ${accommodationTypeLabel(selectedType)}.`
+      : null
+  };
+}
+
+export function resetComparisonOnFilterChange(state, changes = {}) {
+  const next = { ...state, ...changes };
+  if (state?.selected instanceof Set) next.selected = new Set();
+  else if (Array.isArray(state?.selected)) next.selected = [];
+  else next.selected = new Set();
+  next.compareOpen = false;
+  return next;
+}
