@@ -1,6 +1,233 @@
 [
-  {"id":301,"title":"Le Corti di Medoro · posto letto singolo","city":"Ferrara","address":"Le Corti di Medoro, Ferrara","lat":44.82032,"lng":11.59593,"locationStatus":"verified_area","price":429,"expenses":0,"realMonthlyCost":429,"realMonthlyCostStatus":"complete","photos":[],"features":["Posto letto singolo","Appartamenti ammobiliati","Classe energetica A","Wi-Fi","Linea bus 11"],"details":{"utilities":"Canone e oneri accessori compresi","contract":"Requisiti e assegnazione sul sito ACER","deposit":"Da verificare sul sito ACER","bathroom":"Da verificare sul sito ACER","floor":"Struttura di 5 piani","description":"Alloggio per studenti nella residenza Le Corti di Medoro. Appartamenti arredati in classe energetica A, Wi-Fi e linea bus 11."},"availability":{"availableFrom":null,"availableLabel":"Disponibilità da verificare","status":"unknown","confirmedAt":null},"publication":{"status":"authorized","authorized":true,"source":"ACER Ferrara","sourceUrl":"https://www.acerferrara.it/p/371/le-corti-di-medoro.html"},"validation":{"priceDeclared":true,"expensesDeclared":true,"contractDeclared":false,"utilitiesDeclared":true,"listingConfirmedAt":"2026-08-20"},"campusReference":{"campusId":"mammut","campusName":"Mammut · Polo Chimico Biomedico","distanceKm":4.0,"minutesBike":16,"travelEstimate":true},"candidates":0},
-  {"id":302,"title":"Residenza Putinati 149 · stanza singola","city":"Ferrara","address":"Via Putinati 149, Ferrara","lat":44.82687,"lng":11.616,"locationStatus":"verified_street","price":330,"expenses":null,"realMonthlyCost":330,"realMonthlyCostStatus":"minimum_known","photos":[],"features":["Bagno privato","Balcone","Wi-Fi gratuito","Lavanderia","Sale studio","Cucine comuni"],"details":{"utilities":"Eventuali ulteriori costi da verificare sul sito ACER","contract":"Requisiti e assegnazione sul sito ACER","deposit":"3 mensilità","bathroom":"Privato","floor":"Due ascensori","description":"Camera singola arredata con balcone e bagno privato. Sale studio, cucine comuni, lavanderia, deposito biciclette e Wi-Fi gratuito."},"availability":{"availableFrom":null,"availableLabel":"Disponibilità da verificare","status":"unknown","confirmedAt":null},"publication":{"status":"authorized","authorized":true,"source":"ACER Ferrara","sourceUrl":"https://www.acerferrara.it/p/3/residenza-putinati-149.html"},"validation":{"priceDeclared":true,"expensesDeclared":false,"contractDeclared":false,"utilitiesDeclared":false,"listingConfirmedAt":"2026-08-20"},"campusReference":{"campusId":"mammut","campusName":"Mammut · Polo Chimico Biomedico","distanceKm":2.0,"minutesBike":8,"travelEstimate":true},"candidates":0},
-  {"id":303,"title":"Bilocale · Via Giuoco del Pallone","city":"Ferrara","address":"Via Giuoco del Pallone, Ferrara","lat":44.830978,"lng":11.6225,"locationStatus":"verified_street","price":600,"expenses":0,"realMonthlyCost":600,"realMonthlyCostStatus":"minimum_known","photos":["https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-soggiorno.jpeg","https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-interno-2.jpeg","https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-interno-3.jpeg"],"features":["Arredato","Wi-Fi","Lavatrice","Riscaldamento a gas","Bagno privato finestrato","Cucina separata"],"details":{"utilities":"Nessuna spesa condominiale; utenze escluse","contract":"Durata minima annuale","deposit":"3 mensilità","bathroom":"Privato e finestrato","floor":"Senza ascensore","description":"Ampio bilocale nel centro storico con soggiorno e zona pranzo, cucina separata finestrata, camera matrimoniale e bagno privato finestrato. Foto autorizzate dall’offerente."},"availability":{"availableFrom":null,"availableLabel":"Disponibile ora","status":"confirmed","confirmedAt":"2026-08-19"},"publication":{"status":"authorized","authorized":true,"source":"Offerente diretto","sourceUrl":null},"validation":{"priceDeclared":true,"expensesDeclared":true,"contractDeclared":true,"utilitiesDeclared":true,"listingConfirmedAt":"2026-08-19"},"campusReference":{"campusId":"centro","campusName":"Centro · sedi universitarie","distanceKm":0.7,"minutesBike":3,"travelEstimate":true},"candidates":0},
-  {"id":304,"title":"Appartamento · Via Corta 12","city":"Ferrara","address":"Via Corta 12, Ferrara","lat":44.8392,"lng":11.6264,"locationStatus":"approximate_area","price":null,"expenses":null,"realMonthlyCost":null,"realMonthlyCostStatus":"unknown","photos":[],"features":["Vicino al Polo Chimico Biomedico Mammut","Ideale per amici o amiche"],"details":{"utilities":"Da verificare","contract":"Da verificare","deposit":"Da verificare","bathroom":"Da verificare","floor":"Da verificare","description":"Segnalazione autorizzata dall’offerente. Prezzo, dotazioni e fotografie devono ancora essere integrati; disponibilità prevista da fine novembre 2026."},"availability":{"availableFrom":"2026-11-25","availableLabel":"Da fine novembre 2026","status":"confirmed","confirmedAt":"2026-08-19"},"publication":{"status":"authorized","authorized":true,"source":"Offerente diretto","sourceUrl":null},"validation":{"priceDeclared":false,"expensesDeclared":false,"contractDeclared":false,"utilitiesDeclared":false,"listingConfirmedAt":"2026-08-19"},"campusReference":{"campusId":"mammut","campusName":"Mammut · Polo Chimico Biomedico","distanceKm":null,"minutesBike":null,"travelEstimate":true},"candidates":0}
+  {
+    "id": 301,
+    "title": "Le Corti di Medoro · posto letto singolo",
+    "city": "Ferrara",
+    "address": "Le Corti di Medoro, Ferrara",
+    "lat": 44.82032,
+    "lng": 11.59593,
+    "locationStatus": "verified_area",
+    "price": 429,
+    "expenses": 0,
+    "realMonthlyCost": 429,
+    "realMonthlyCostStatus": "complete",
+    "photos": [],
+    "features": [
+      "Posto letto singolo",
+      "Appartamenti ammobiliati",
+      "Classe energetica A",
+      "Wi-Fi",
+      "Linea bus 11"
+    ],
+    "details": {
+      "utilities": "Canone e oneri accessori compresi",
+      "contract": "Requisiti e assegnazione sul sito ACER",
+      "deposit": "Da verificare sul sito ACER",
+      "bathroom": "Da verificare sul sito ACER",
+      "floor": "Struttura di 5 piani",
+      "description": "Alloggio per studenti nella residenza Le Corti di Medoro. Appartamenti arredati in classe energetica A, Wi-Fi e linea bus 11."
+    },
+    "availability": {
+      "availableFrom": null,
+      "availableLabel": "Disponibilità da verificare",
+      "status": "unknown",
+      "confirmedAt": null
+    },
+    "publication": {
+      "status": "authorized",
+      "authorized": true,
+      "source": "ACER Ferrara",
+      "sourceUrl": "https://www.acerferrara.it/p/371/le-corti-di-medoro.html"
+    },
+    "validation": {
+      "priceDeclared": true,
+      "expensesDeclared": true,
+      "contractDeclared": false,
+      "utilitiesDeclared": true,
+      "listingConfirmedAt": "2026-08-20"
+    },
+    "campusReference": {
+      "campusId": "mammut",
+      "campusName": "Mammut · Polo Chimico Biomedico",
+      "distanceKm": 4.0,
+      "minutesBike": 16,
+      "travelEstimate": true
+    },
+    "candidates": 0,
+    "accommodationType": "bed"
+  },
+  {
+    "id": 302,
+    "title": "Residenza Putinati 149 · stanza singola",
+    "city": "Ferrara",
+    "address": "Via Putinati 149, Ferrara",
+    "lat": 44.82687,
+    "lng": 11.616,
+    "locationStatus": "verified_street",
+    "price": 330,
+    "expenses": null,
+    "realMonthlyCost": 330,
+    "realMonthlyCostStatus": "minimum_known",
+    "photos": [],
+    "features": [
+      "Bagno privato",
+      "Balcone",
+      "Wi-Fi gratuito",
+      "Lavanderia",
+      "Sale studio",
+      "Cucine comuni"
+    ],
+    "details": {
+      "utilities": "Eventuali ulteriori costi da verificare sul sito ACER",
+      "contract": "Requisiti e assegnazione sul sito ACER",
+      "deposit": "3 mensilità",
+      "bathroom": "Privato",
+      "floor": "Due ascensori",
+      "description": "Camera singola arredata con balcone e bagno privato. Sale studio, cucine comuni, lavanderia, deposito biciclette e Wi-Fi gratuito."
+    },
+    "availability": {
+      "availableFrom": null,
+      "availableLabel": "Disponibilità da verificare",
+      "status": "unknown",
+      "confirmedAt": null
+    },
+    "publication": {
+      "status": "authorized",
+      "authorized": true,
+      "source": "ACER Ferrara",
+      "sourceUrl": "https://www.acerferrara.it/p/3/residenza-putinati-149.html"
+    },
+    "validation": {
+      "priceDeclared": true,
+      "expensesDeclared": false,
+      "contractDeclared": false,
+      "utilitiesDeclared": false,
+      "listingConfirmedAt": "2026-08-20"
+    },
+    "campusReference": {
+      "campusId": "mammut",
+      "campusName": "Mammut · Polo Chimico Biomedico",
+      "distanceKm": 2.0,
+      "minutesBike": 8,
+      "travelEstimate": true
+    },
+    "candidates": 0,
+    "accommodationType": "room"
+  },
+  {
+    "id": 303,
+    "title": "Bilocale · Via Giuoco del Pallone",
+    "city": "Ferrara",
+    "address": "Via Giuoco del Pallone, Ferrara",
+    "lat": 44.830978,
+    "lng": 11.6225,
+    "locationStatus": "verified_street",
+    "price": 600,
+    "expenses": 0,
+    "realMonthlyCost": 600,
+    "realMonthlyCostStatus": "minimum_known",
+    "photos": [
+      "https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-soggiorno.jpeg",
+      "https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-interno-2.jpeg",
+      "https://raw.githubusercontent.com/duffmac-png/Fuorisede/fuorisede-v3-operativa-4-schede/assets/listings/orlandini-interno-3.jpeg"
+    ],
+    "features": [
+      "Arredato",
+      "Wi-Fi",
+      "Lavatrice",
+      "Riscaldamento a gas",
+      "Bagno privato finestrato",
+      "Cucina separata"
+    ],
+    "details": {
+      "utilities": "Nessuna spesa condominiale; utenze escluse",
+      "contract": "Durata minima annuale",
+      "deposit": "3 mensilità",
+      "bathroom": "Privato e finestrato",
+      "floor": "Senza ascensore",
+      "description": "Ampio bilocale nel centro storico con soggiorno e zona pranzo, cucina separata finestrata, camera matrimoniale e bagno privato finestrato. Foto autorizzate dall’offerente."
+    },
+    "availability": {
+      "availableFrom": null,
+      "availableLabel": "Disponibile ora",
+      "status": "confirmed",
+      "confirmedAt": "2026-08-19"
+    },
+    "publication": {
+      "status": "authorized",
+      "authorized": true,
+      "source": "Offerente diretto",
+      "sourceUrl": null
+    },
+    "validation": {
+      "priceDeclared": true,
+      "expensesDeclared": true,
+      "contractDeclared": true,
+      "utilitiesDeclared": true,
+      "listingConfirmedAt": "2026-08-19"
+    },
+    "campusReference": {
+      "campusId": "centro",
+      "campusName": "Centro · sedi universitarie",
+      "distanceKm": 0.7,
+      "minutesBike": 3,
+      "travelEstimate": true
+    },
+    "candidates": 0,
+    "accommodationType": "home"
+  },
+  {
+    "id": 304,
+    "title": "Appartamento · Via Corta 12",
+    "city": "Ferrara",
+    "address": "Via Corta 12, Ferrara",
+    "lat": 44.8392,
+    "lng": 11.6264,
+    "locationStatus": "approximate_area",
+    "price": null,
+    "expenses": null,
+    "realMonthlyCost": null,
+    "realMonthlyCostStatus": "unknown",
+    "photos": [],
+    "features": [
+      "Vicino al Polo Chimico Biomedico Mammut",
+      "Ideale per amici o amiche"
+    ],
+    "details": {
+      "utilities": "Da verificare",
+      "contract": "Da verificare",
+      "deposit": "Da verificare",
+      "bathroom": "Da verificare",
+      "floor": "Da verificare",
+      "description": "Segnalazione autorizzata dall’offerente. Prezzo, dotazioni e fotografie devono ancora essere integrati; disponibilità prevista da fine novembre 2026."
+    },
+    "availability": {
+      "availableFrom": "2026-11-25",
+      "availableLabel": "Da fine novembre 2026",
+      "status": "confirmed",
+      "confirmedAt": "2026-08-19"
+    },
+    "publication": {
+      "status": "authorized",
+      "authorized": true,
+      "source": "Offerente diretto",
+      "sourceUrl": null
+    },
+    "validation": {
+      "priceDeclared": false,
+      "expensesDeclared": false,
+      "contractDeclared": false,
+      "utilitiesDeclared": false,
+      "listingConfirmedAt": "2026-08-19"
+    },
+    "campusReference": {
+      "campusId": "mammut",
+      "campusName": "Mammut · Polo Chimico Biomedico",
+      "distanceKm": null,
+      "minutesBike": null,
+      "travelEstimate": true
+    },
+    "candidates": 0,
+    "accommodationType": "home"
+  }
 ]
