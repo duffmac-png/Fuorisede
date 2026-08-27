@@ -53,8 +53,7 @@
       "minutesBike": 16,
       "travelEstimate": true
     },
-    "candidates": 0,
-    "accommodationType": "bed"
+    "candidates": 0
   },
   {
     "id": 302,
@@ -111,8 +110,7 @@
       "minutesBike": 8,
       "travelEstimate": true
     },
-    "candidates": 0,
-    "accommodationType": "room"
+    "candidates": 0
   },
   {
     "id": 303,
@@ -173,8 +171,7 @@
       "minutesBike": 3,
       "travelEstimate": true
     },
-    "candidates": 0,
-    "accommodationType": "home"
+    "candidates": 0
   },
   {
     "id": 304,
@@ -227,7 +224,7 @@
       "minutesBike": null,
       "travelEstimate": true
     },
-    "candidates": 0,
-    "accommodationType": "home"
+    "candidates": 0
   }
 ]
+
