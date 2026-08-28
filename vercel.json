@@ -5,7 +5,15 @@
       "destination": "/?city=Milano&campus=milano-bocconi"
     },
     {
+      "source": "/milano/bocconi/",
+      "destination": "/?city=Milano&campus=milano-bocconi"
+    },
+    {
       "source": "/milano/politecnico-leonardo",
+      "destination": "/?city=Milano&campus=milano-polimi-leonardo"
+    },
+    {
+      "source": "/milano/politecnico-leonardo/",
       "destination": "/?city=Milano&campus=milano-polimi-leonardo"
     },
     {
@@ -13,7 +21,15 @@
       "destination": "/?city=Milano&campus=milano-polimi-bovisa"
     },
     {
+      "source": "/milano/politecnico-bovisa/",
+      "destination": "/?city=Milano&campus=milano-polimi-bovisa"
+    },
+    {
       "source": "/milano/statale",
+      "destination": "/?city=Milano&campus=milano-statale"
+    },
+    {
+      "source": "/milano/statale/",
       "destination": "/?city=Milano&campus=milano-statale"
     },
     {
@@ -21,11 +37,23 @@
       "destination": "/?city=Milano&campus=milano-bicocca"
     },
     {
+      "source": "/milano/bicocca/",
+      "destination": "/?city=Milano&campus=milano-bicocca"
+    },
+    {
       "source": "/milano/cattolica",
       "destination": "/?city=Milano&campus=milano-cattolica"
     },
     {
+      "source": "/milano/cattolica/",
+      "destination": "/?city=Milano&campus=milano-cattolica"
+    },
+    {
       "source": "/milano/iulm",
+      "destination": "/?city=Milano&campus=milano-iulm"
+    },
+    {
+      "source": "/milano/iulm/",
       "destination": "/?city=Milano&campus=milano-iulm"
     }
   ]
