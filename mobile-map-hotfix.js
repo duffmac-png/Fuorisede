@@ -18,21 +18,49 @@
       .mapminilist{max-width:100%!important;overscroll-behavior-x:contain!important}
       .mapmini{min-width:0!important;max-width:86vw!important}
       .mapcanvas{overflow:hidden!important}
-
-      /* Android: the navigation must remain a separate row, never over the page title. */
       .v3nav{position:relative!important;top:auto!important;z-index:4!important;display:flex!important;flex-wrap:nowrap!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;margin:0 0 18px!important;padding:5px!important;gap:2px!important;scrollbar-width:none!important}
       .v3nav::-webkit-scrollbar{display:none!important}
       .v3nav button{flex:1 0 auto!important;min-width:max-content!important;padding:9px 7px!important;font-size:10.5px!important;line-height:1.15!important;white-space:nowrap!important}
       .v3nav b{min-width:17px!important;font-size:8px!important}
       .comparehead{clear:both!important;margin-top:0!important;padding-top:0!important}
       .comparehead h1,.comparetitle{position:relative!important;z-index:1!important;margin-top:0!important}
-
-      /* Detail page: restore the same horizontal gutter on both sides. */
       .detail,.dddetail,.detaildesign,.design-detail{width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important;overflow-x:hidden!important}
       .detailphoto,.ddphoto,.ddhero,.designhero{width:calc(100% - 26px)!important;max-width:calc(100% - 26px)!important;margin-left:13px!important;margin-right:13px!important;background-position:center center!important}
       .ddtitleline,.ddmeta,.ddessentials,.ddcostbox,.ddbody,.ddcontent,.ddaside,.detailmapcard{max-width:calc(100% - 26px)!important;margin-left:13px!important;margin-right:13px!important}
     }
   </style>`);
+
+  // Android first-load guard. If the JSON fetch fails on the first navigation,
+  // load the same authorised core listings as a classic script instead of
+  // leaving the user on the retry screen.
+  function recoverInitialListings(){
+    if(!isMobileMap())return;
+    const root=document.getElementById('v3-root');
+    if(!root || state.items.length)return;
+    if(!/connessione non ha caricato gli alloggi/i.test(root.textContent||''))return;
+    if(window.__fuorisedeFallbackLoading)return;
+    window.__fuorisedeFallbackLoading=true;
+    const script=document.createElement('script');
+    script.src='/data/listings-fallback.js?v=20260828-1';
+    script.onload=()=>{
+      const fallback=window.FUORISEDE_FALLBACK_LISTINGS;
+      if(Array.isArray(fallback)&&fallback.length){
+        state.items=fallback.filter(x=>x.publication?.status!=='blocked');
+        try{applyInboundDiscovery()}catch(e){}
+        render();
+        document.querySelector('.preview').textContent=`UNIVERSALE · ${new Set(state.items.map(x=>x.city)).size} CITTÀ ATTIVE`;
+      }
+    };
+    script.onerror=()=>{window.__fuorisedeFallbackLoading=false};
+    document.head.appendChild(script);
+  }
+
+  const recoveryRoot=document.getElementById('v3-root');
+  if(recoveryRoot){
+    new MutationObserver(()=>setTimeout(recoverInitialListings,0)).observe(recoveryRoot,{childList:true,subtree:true,characterData:true});
+    setTimeout(recoverInitialListings,2500);
+    setTimeout(recoverInitialListings,6000);
+  }
 
   function rectsOverlap(a,b,pad=6){
     return !(a.right+pad<=b.left || b.right+pad<=a.left || a.bottom+pad<=b.top || b.bottom+pad<=a.top);
@@ -106,7 +134,6 @@
     if(isMobileMap())['demo-map','home-map'].forEach(scheduleDeclutter);
   });
 
-  // Re-run after DOM renders and comparison changes.
   const root=document.getElementById('v3-root');
   if(root)new MutationObserver(()=>{
     if(isMobileMap())setTimeout(()=>['demo-map','home-map'].forEach(scheduleDeclutter),80);
