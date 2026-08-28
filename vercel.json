@@ -1,14 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/milano/bocconi",
-      "destination": "/?city=Milano&campus=milano-bocconi"
-    },
-    {
-      "source": "/milano/bocconi/",
-      "destination": "/?city=Milano&campus=milano-bocconi"
-    },
-    {
       "source": "/milano/politecnico-leonardo",
       "destination": "/?city=Milano&campus=milano-polimi-leonardo"
     },
