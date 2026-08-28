@@ -461,3 +461,7 @@ toggleCompareFromMap=function(id){mapCompareAction(id)};
 
 // Tipografia uniforme per i tre comandi di navigazione della scheda.
 document.head.insertAdjacentHTML('beforeend',`<style>.dddetailnav .designback,.dddetailnav .ddreturnmap,.dddetailnav .ddreturncompare{font-family:inherit!important;font-size:11px!important;font-weight:400!important;font-style:normal!important;line-height:1.25!important;letter-spacing:0!important;text-transform:none!important;color:var(--design-muted)!important}</style>`);
+
+
+/* Correzione layout desktop: la pagina Mappa occupa tutta la griglia. */
+document.head.insertAdjacentHTML('beforeend',`<style>.mapview{grid-column:1/-1;width:100%;min-width:0}.mapworkspace{width:100%;min-width:0}.mapcanvas{min-width:0}@media(min-width:701px){.mapcanvas,#demo-map,#home-map{width:100%}}</style>`);
