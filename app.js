@@ -508,3 +508,61 @@ initMap=function(id='demo-map',items=state.items,attempt=0){
   };
   setTimeout(()=>contain(),120);
 };
+
+
+/* Distribuzione anti-sovrapposizione delle etichette prezzo sulla mappa. */
+function arrangeMapPriceLabels(mapId='demo-map'){
+  const context=activeMapMarkers.get(mapId);
+  if(!context||!window.L)return;
+  const size=context.map.getSize(),placed=[];
+  const entries=[...context.markers.entries()].sort(([a],[b])=>{
+    const sa=state.selected.has(Number(a))?0:1,sb=state.selected.has(Number(b))?0:1;
+    return sa-sb;
+  });
+  const candidates=[
+    {direction:'top',rect:(p,w,h)=>({x:p.x-w/2,y:p.y-h-15,w,h})},
+    {direction:'right',rect:(p,w,h)=>({x:p.x+15,y:p.y-h/2,w,h})},
+    {direction:'bottom',rect:(p,w,h)=>({x:p.x-w/2,y:p.y+15,w,h})},
+    {direction:'left',rect:(p,w,h)=>({x:p.x-w-15,y:p.y-h/2,w,h})}
+  ];
+  const overlap=(a,b)=>Math.max(0,Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x))*Math.max(0,Math.min(a.y+a.h,b.y+b.h)-Math.max(a.y,b.y));
+  entries.forEach(([key,{marker,x}],index)=>{
+    const tooltip=marker.getTooltip();
+    if(!tooltip)return;
+    const p=context.map.latLngToContainerPoint(marker.getLatLng());
+    const label=`${state.favs.has(Number(key))?'♥ ':''}${state.selected.has(Number(key))?'★ ':''}${euro(x.price)}`;
+    const w=Math.max(48,Math.min(110,label.length*7+18)),h=28;
+    let best=null;
+    candidates.forEach((candidate,candidateIndex)=>{
+      const rect=candidate.rect(p,w,h);
+      const outside=Math.max(0,-rect.x)+Math.max(0,-rect.y)+Math.max(0,rect.x+rect.w-size.x)+Math.max(0,rect.y+rect.h-size.y);
+      const collisions=placed.reduce((sum,other)=>sum+overlap(rect,other),0);
+      const selectedBias=state.selected.has(Number(key))?((index+candidateIndex)%candidates.length)*2:candidateIndex;
+      const score=outside*100+collisions*10+selectedBias;
+      if(!best||score<best.score)best={...candidate,rect,score};
+    });
+    tooltip.options.direction=best.direction;
+    tooltip.options.offset=L.point(0,0);
+    placed.push(best.rect);
+    if(marker.isTooltipOpen()){marker.closeTooltip();marker.openTooltip()}
+  });
+}
+function installMapLabelCollisionHandling(mapId='demo-map',tries=0){
+  const context=activeMapMarkers.get(mapId);
+  if(!context&&tries<30){setTimeout(()=>installMapLabelCollisionHandling(mapId,tries+1),100);return}
+  if(!context||context.map.__fuorisedeLabelCollision)return;
+  context.map.__fuorisedeLabelCollision=true;
+  const update=()=>requestAnimationFrame(()=>arrangeMapPriceLabels(mapId));
+  context.map.on('zoomend moveend resize',update);
+  update();
+}
+const initMapWithSeparatedPriceLabels=initMap;
+initMap=function(id='demo-map',items=state.items,attempt=0){
+  initMapWithSeparatedPriceLabels(id,items,attempt);
+  setTimeout(()=>installMapLabelCollisionHandling(id),180);
+};
+const refreshMapComparisonWithSeparatedLabels=refreshMapComparison;
+refreshMapComparison=function(activeId){
+  refreshMapComparisonWithSeparatedLabels(activeId);
+  setTimeout(()=>arrangeMapPriceLabels('demo-map'),40);
+};
