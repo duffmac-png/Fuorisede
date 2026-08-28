@@ -64,8 +64,19 @@ const milanCampuses={
   'milano-cattolica':{name:'Cattolica · Largo Gemelli',lat:45.4631,lng:9.1761},
   'milano-iulm':{name:'IULM · Via Carlo Bo',lat:45.4430,lng:9.1641}
 };
+const campusPathMap={
+  '/milano/bocconi/':'milano-bocconi',
+  '/milano/politecnico-leonardo/':'milano-polimi-leonardo',
+  '/milano/politecnico-bovisa/':'milano-polimi-bovisa',
+  '/milano/statale/':'milano-statale',
+  '/milano/bicocca/':'milano-bicocca',
+  '/milano/cattolica/':'milano-cattolica',
+  '/milano/iulm/':'milano-iulm'
+};
 function applyInboundDiscovery(){
-  const params=new URLSearchParams(location.search),city=params.get('city'),campus=params.get('campus');
+  const params=new URLSearchParams(location.search),city=params.get('city');
+  const normalizedPath=location.pathname.endsWith('/')?location.pathname:`${location.pathname}/`;
+  const campus=params.get('campus')||campusPathMap[normalizedPath];
   if(city==='Milano'||city==='Ferrara')state.city=city;
   if(campus&&milanCampuses[campus]){
     state.city='Milano';
@@ -74,6 +85,11 @@ function applyInboundDiscovery(){
     document.title=`Alloggi studenti vicino a ${campusName} | FUORISEDE`;
     const description=document.querySelector('meta[name="description"]');
     if(description)description.content=`Confronta gli alloggi per studenti vicino a ${campusName} a Milano: costi, disponibilità, posizione e distanza dalla sede.`;
+    const cleanPath=Object.entries(campusPathMap).find(([,id])=>id===campus)?.[0];
+    const canonical=document.querySelector('link[rel="canonical"]');
+    if(canonical&&cleanPath)canonical.href=`${location.origin}${cleanPath}`;
+    const openGraphUrl=document.querySelector('meta[property="og:url"]');
+    if(openGraphUrl&&cleanPath)openGraphUrl.content=`${location.origin}${cleanPath}`;
   }
 }
 function syncDiscoveryUrl(){
