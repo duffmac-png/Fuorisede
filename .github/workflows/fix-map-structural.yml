@@ -16,12 +16,12 @@ jobs:
           from pathlib import Path
           p=Path('app.js')
           s=p.read_text()
-          marker='/* STRUCTURAL MOBILE MAP FIX 20260828 */'
+          marker='/* STRUCTURAL MOBILE MAP FIX 20260901 */'
           if marker in s:
               raise SystemExit(0)
           s += r'''
 
-/* STRUCTURAL MOBILE MAP FIX 20260828 */
+/* STRUCTURAL MOBILE MAP FIX 20260901 */
 (function(){
   const mobile=()=>matchMedia('(max-width:700px),(pointer:coarse)').matches;
   const previousInit=initMap;
@@ -34,42 +34,54 @@ jobs:
       if(!c){if(++tries>40)clearInterval(timer);return}
       clearInterval(timer);
       const map=c.map;
-      const groups=[];
-      c.markers.forEach(entry=>{
-        const ll=entry.marker.getLatLng();
-        let g=groups.find(q=>map.distance(q.base,ll)<22);
-        if(!g){g={base:ll,items:[]};groups.push(g)}
-        g.items.push(entry);
-      });
-      groups.forEach(g=>{
-        if(g.items.length<2)return;
-        const cp=map.latLngToLayerPoint(g.base),n=g.items.length;
-        g.items.forEach((entry,i)=>{
-          const a=(Math.PI*2*i/n)-Math.PI/2;
-          entry.marker.setLatLng(map.layerPointToLatLng(L.point(cp.x+Math.cos(a)*24,cp.y+Math.sin(a)*24)));
-          entry.marker.setStyle?.({radius:12});
+      const spread=()=>{
+        const entries=[...c.markers.values()];
+        const groups=[];
+        entries.forEach(entry=>{
+          const p=map.latLngToContainerPoint(entry.marker.getLatLng());
+          let g=groups.find(q=>Math.hypot(q.p.x-p.x,q.p.y-p.y)<58);
+          if(!g){g={p,items:[]};groups.push(g)}
+          g.items.push(entry);
         });
-      });
+        groups.forEach(g=>{
+          if(g.items.length<2)return;
+          const n=g.items.length,r=n>3?34:29;
+          g.items.forEach((entry,i)=>{
+            const a=(Math.PI*2*i/n)-Math.PI/2;
+            const target=L.point(g.p.x+Math.cos(a)*r,g.p.y+Math.sin(a)*r);
+            entry.marker.setLatLng(map.containerPointToLatLng(target));
+          });
+        });
+      };
+      spread();
       c.markers.forEach(({marker})=>{
         const pop=marker.getPopup?.();
-        if(pop){pop.options.maxWidth=240;pop.options.minWidth=210;pop.options.autoPan=true;pop.options.keepInView=true;pop.options.autoPanPaddingTopLeft=L.point(36,36);pop.options.autoPanPaddingBottomRight=L.point(36,36)}
+        if(pop){
+          pop.options.maxWidth=210;
+          pop.options.minWidth=0;
+          pop.options.autoPan=true;
+          pop.options.keepInView=true;
+          pop.options.autoPanPaddingTopLeft=L.point(28,72);
+          pop.options.autoPanPaddingBottomRight=L.point(28,34);
+        }
       });
       map.on('popupopen',e=>{
-        const popup=e.popup,el=popup.getElement();
-        if(!el)return;
+        const popup=e.popup;
         requestAnimationFrame(()=>{
-          const box=map.getContainer().getBoundingClientRect(),r=el.getBoundingClientRect(),pad=20;
+          const el=popup.getElement();
+          if(!el)return;
+          const box=map.getContainer().getBoundingClientRect(),r=el.getBoundingClientRect(),pad=14;
           let dx=0,dy=0;
           if(r.right>box.right-pad)dx=r.right-box.right+pad;
-          if(r.left<box.left+pad)dx=r.left-box.left-pad;
+          else if(r.left<box.left+pad)dx=r.left-box.left-pad;
           if(r.top<box.top+pad)dy=r.top-box.top-pad;
-          if(r.bottom>box.bottom-pad)dy=r.bottom-box.bottom+pad;
+          else if(r.bottom>box.bottom-pad)dy=r.bottom-box.bottom+pad;
           if(dx||dy)map.panBy([dx,dy],{animate:false});
         });
       });
     },100);
   };
-  document.head.insertAdjacentHTML('beforeend',`<style>@media(max-width:700px),(pointer:coarse){.leaflet-popup{width:240px!important;max-width:calc(100% - 40px)!important}.leaflet-popup-content-wrapper{width:240px!important;max-width:calc(100vw - 52px)!important}.leaflet-popup-content{width:auto!important;max-width:none!important;margin:10px 12px!important}.leaflet-popup-content .pinactions button,.leaflet-popup-content .pinopen,.leaflet-popup-content .pincompare{white-space:nowrap!important;width:100%!important}}</style>`);
+  document.head.insertAdjacentHTML('beforeend',`<style>@media(max-width:700px),(pointer:coarse){.leaflet-popup{max-width:calc(100vw - 34px)!important}.leaflet-popup-content-wrapper{width:auto!important;max-width:210px!important}.leaflet-popup-content{width:auto!important;max-width:184px!important;margin:10px 11px!important;overflow-wrap:anywhere!important}.leaflet-popup-content b{display:block;line-height:1.25}.leaflet-popup-content .pinactions{display:grid!important;grid-template-columns:1fr!important;gap:5px!important}.leaflet-popup-content .pinactions button,.leaflet-popup-content .pinopen,.leaflet-popup-content .pincompare{display:block!important;width:100%!important;min-width:0!important;white-space:normal!important;margin:0!important;padding:7px 8px!important}.listing-price-tooltip{font-size:11px!important;padding:3px 6px!important}}</style>`);
 })();
 '''
           p.write_text(s)
@@ -80,5 +92,5 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add app.js
           git diff --cached --quiet && exit 0
-          git commit -m "Fix mobile map popup and overlapping markers in app"
+          git commit -m "Fix Android map popup containment and marker overlap"
           git push
