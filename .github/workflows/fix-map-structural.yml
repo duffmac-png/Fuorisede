@@ -16,12 +16,12 @@ jobs:
           from pathlib import Path
           p=Path('app.js')
           s=p.read_text()
-          marker='/* STRUCTURAL MOBILE MAP FIX 20260901 */'
+          marker='/* DETERMINISTIC ANDROID MAP FIX 20260901B */'
           if marker in s:
               raise SystemExit(0)
           s += r'''
 
-/* STRUCTURAL MOBILE MAP FIX 20260901 */
+/* DETERMINISTIC ANDROID MAP FIX 20260901B */
 (function(){
   const mobile=()=>matchMedia('(max-width:700px),(pointer:coarse)').matches;
   const previousInit=initMap;
@@ -31,57 +31,57 @@ jobs:
     let tries=0;
     const timer=setInterval(()=>{
       const c=activeMapMarkers.get(id);
-      if(!c){if(++tries>40)clearInterval(timer);return}
+      if(!c){if(++tries>50)clearInterval(timer);return}
       clearInterval(timer);
       const map=c.map;
-      const spread=()=>{
-        const entries=[...c.markers.values()];
-        const groups=[];
-        entries.forEach(entry=>{
-          const p=map.latLngToContainerPoint(entry.marker.getLatLng());
-          let g=groups.find(q=>Math.hypot(q.p.x-p.x,q.p.y-p.y)<58);
-          if(!g){g={p,items:[]};groups.push(g)}
-          g.items.push(entry);
+      const entries=[...c.markers.values()];
+      const groups=new Map();
+      entries.forEach(entry=>{
+        const ll=entry.marker.getLatLng();
+        const key=ll.lat.toFixed(6)+','+ll.lng.toFixed(6);
+        if(!groups.has(key))groups.set(key,[]);
+        groups.get(key).push(entry);
+      });
+      groups.forEach(group=>{
+        if(group.length<2)return;
+        const base=group[0].marker.getLatLng();
+        const center=map.latLngToLayerPoint(base);
+        const radius=Math.max(34,Math.min(54,28+group.length*6));
+        group.forEach((entry,i)=>{
+          const angle=-Math.PI/2+(Math.PI*2*i/group.length);
+          const pt=L.point(center.x+Math.cos(angle)*radius,center.y+Math.sin(angle)*radius);
+          entry.marker.setLatLng(map.layerPointToLatLng(pt));
+          entry.marker.setStyle?.({radius:13,weight:3});
+          entry.marker.bringToFront?.();
         });
-        groups.forEach(g=>{
-          if(g.items.length<2)return;
-          const n=g.items.length,r=n>3?34:29;
-          g.items.forEach((entry,i)=>{
-            const a=(Math.PI*2*i/n)-Math.PI/2;
-            const target=L.point(g.p.x+Math.cos(a)*r,g.p.y+Math.sin(a)*r);
-            entry.marker.setLatLng(map.containerPointToLatLng(target));
-          });
-        });
-      };
-      spread();
+      });
       c.markers.forEach(({marker})=>{
         const pop=marker.getPopup?.();
-        if(pop){
-          pop.options.maxWidth=210;
-          pop.options.minWidth=0;
-          pop.options.autoPan=true;
-          pop.options.keepInView=true;
-          pop.options.autoPanPaddingTopLeft=L.point(28,72);
-          pop.options.autoPanPaddingBottomRight=L.point(28,34);
-        }
+        if(!pop)return;
+        Object.assign(pop.options,{maxWidth:176,minWidth:0,autoPan:true,keepInView:true,autoPanPadding:L.point(18,18),autoPanPaddingTopLeft:L.point(18,76),autoPanPaddingBottomRight:L.point(18,38)});
       });
       map.on('popupopen',e=>{
         const popup=e.popup;
-        requestAnimationFrame(()=>{
+        const contain=()=>{
           const el=popup.getElement();
           if(!el)return;
-          const box=map.getContainer().getBoundingClientRect(),r=el.getBoundingClientRect(),pad=14;
+          el.style.width='176px';
+          el.style.maxWidth='calc(100vw - 28px)';
+          const box=map.getContainer().getBoundingClientRect();
+          const r=el.getBoundingClientRect();
+          const pad=10;
           let dx=0,dy=0;
-          if(r.right>box.right-pad)dx=r.right-box.right+pad;
-          else if(r.left<box.left+pad)dx=r.left-box.left-pad;
-          if(r.top<box.top+pad)dy=r.top-box.top-pad;
-          else if(r.bottom>box.bottom-pad)dy=r.bottom-box.bottom+pad;
+          if(r.right>box.right-pad)dx=r.right-(box.right-pad);
+          if(r.left<box.left+pad)dx=r.left-(box.left+pad);
+          if(r.bottom>box.bottom-pad)dy=r.bottom-(box.bottom-pad);
+          if(r.top<box.top+pad)dy=r.top-(box.top+pad);
           if(dx||dy)map.panBy([dx,dy],{animate:false});
-        });
+        };
+        requestAnimationFrame(()=>requestAnimationFrame(contain));
       });
-    },100);
+    },80);
   };
-  document.head.insertAdjacentHTML('beforeend',`<style>@media(max-width:700px),(pointer:coarse){.leaflet-popup{max-width:calc(100vw - 34px)!important}.leaflet-popup-content-wrapper{width:auto!important;max-width:210px!important}.leaflet-popup-content{width:auto!important;max-width:184px!important;margin:10px 11px!important;overflow-wrap:anywhere!important}.leaflet-popup-content b{display:block;line-height:1.25}.leaflet-popup-content .pinactions{display:grid!important;grid-template-columns:1fr!important;gap:5px!important}.leaflet-popup-content .pinactions button,.leaflet-popup-content .pinopen,.leaflet-popup-content .pincompare{display:block!important;width:100%!important;min-width:0!important;white-space:normal!important;margin:0!important;padding:7px 8px!important}.listing-price-tooltip{font-size:11px!important;padding:3px 6px!important}}</style>`);
+  document.head.insertAdjacentHTML('beforeend',`<style>@media(max-width:700px),(pointer:coarse){.leaflet-popup{width:176px!important;max-width:calc(100vw - 28px)!important}.leaflet-popup-content-wrapper{box-sizing:border-box!important;width:176px!important;max-width:calc(100vw - 28px)!important}.leaflet-popup-content{box-sizing:border-box!important;width:154px!important;max-width:154px!important;margin:9px 11px!important;font-size:12px!important;line-height:1.25!important;overflow-wrap:anywhere!important}.leaflet-popup-content b{display:block!important;white-space:normal!important}.leaflet-popup-content button,.leaflet-popup-content .pinopen,.leaflet-popup-content .pincompare{box-sizing:border-box!important;display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;white-space:normal!important;margin:5px 0 0!important;padding:6px 5px!important;font-size:11px!important;line-height:1.15!important}.listing-price-tooltip{font-size:10px!important;padding:2px 5px!important}}</style>`);
 })();
 '''
           p.write_text(s)
@@ -92,5 +92,5 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add app.js
           git diff --cached --quiet && exit 0
-          git commit -m "Fix Android map popup containment and marker overlap"
+          git commit -m "Separate coincident Android markers and contain popup"
           git push
