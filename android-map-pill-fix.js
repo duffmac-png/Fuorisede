@@ -19,8 +19,16 @@
       const html=popup?.getContent?.()||`<b>${x.title||'Alloggio'}</b><br>${window.euro?euro(x.price):x.price||''}`;
       context.map.closePopup();
       card.innerHTML=`<button class="fs-mobile-map-card-close" type="button" aria-label="Chiudi">×</button><div class="fs-mobile-map-card-body">${html}</div>`;
+      card.dataset.listingId=String(Number(x.id));
       card.hidden=false;
       card.querySelector('.fs-mobile-map-card-close').onclick=(e)=>{e.stopPropagation();card.hidden=true};
+      // Il comando nel pannello aggiorna lo stato della mappa. Subito dopo
+      // rigeneriamo anche il pannello stesso dal popup appena aggiornato,
+      // così etichetta e pulsante Confronta/Togli restano sincronizzati.
+      card.querySelector('.pincompare')?.addEventListener('click',()=>{
+        const key=Number(card.dataset.listingId);
+        setTimeout(()=>show(context.markers.get(key)),30);
+      });
     };
     // Leaflet ricrea il nodo DOM del tooltip quando cambia direzione o viene
     // riaperto. Un listener collegato direttamente alla pillola va quindi
@@ -65,6 +73,7 @@
   const css=document.createElement('style');css.textContent=`
   @media(max-width:700px),(pointer:coarse){
     .listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;z-index:900!important}
+    .listing-price-tooltip.mobile-price-hidden{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
     .leaflet-popup{display:none!important}
     .fs-mobile-map-card{position:absolute;z-index:1200;left:10px;right:10px;bottom:12px;max-height:46%;overflow:auto;background:#fff;border:1px solid #e5ddd2;border-radius:16px;padding:14px 40px 14px 14px;box-shadow:0 8px 28px #0004;color:#222}
     .fs-mobile-map-card[hidden]{display:none!important}.fs-mobile-map-card-close{position:absolute;right:8px;top:7px;width:30px;height:30px;border:0;border-radius:50%;background:#f2eee9;font-size:22px;line-height:1;cursor:pointer}
