@@ -22,6 +22,28 @@
       card.hidden=false;
       card.querySelector('.fs-mobile-map-card-close').onclick=(e)=>{e.stopPropagation();card.hidden=true};
     };
+    // Leaflet ricrea il nodo DOM del tooltip quando cambia direzione o viene
+    // riaperto. Un listener collegato direttamente alla pillola va quindi
+    // perso dopo zoom/pan. La delega sul contenitore della mappa sopravvive a
+    // ogni ridisegno e risolve il tap Android anche sulle pillole ricreate.
+    if(!canvas.__fsPillDelegation){
+      canvas.__fsPillDelegation=true;
+      let lastPillActivation=0;
+      const activatePill=(ev)=>{
+        const pill=ev.target?.closest?.('.listing-price-tooltip');
+        if(!pill||!canvas.contains(pill))return;
+        const entry=[...context.markers.values()].find(({marker})=>marker.getTooltip?.()?.getElement?.()===pill);
+        if(!entry)return;
+        ev.preventDefault();
+        ev.stopPropagation();
+        const now=Date.now();
+        if(now-lastPillActivation<350)return;
+        lastPillActivation=now;
+        show(entry);
+      };
+      canvas.addEventListener('pointerup',activatePill,{capture:true,passive:false});
+      canvas.addEventListener('click',activatePill,{capture:true,passive:false});
+    }
     context.markers.forEach((entry)=>{
       const {marker}=entry;
       if(marker.__fsPillDirect)return;marker.__fsPillDirect=true;
@@ -31,9 +53,10 @@
         const el=tip?.getElement?.();
         if(!el)return false;
         el.style.pointerEvents='auto';el.style.cursor='pointer';el.style.touchAction='manipulation';
+        // Conserviamo anche il binding diretto come fallback per WebView meno
+        // recenti; il binding delegato sopra resta la fonte principale.
         const activate=(ev)=>{ev.preventDefault();ev.stopPropagation();show(entry)};
         el.addEventListener('click',activate,{passive:false});
-        el.addEventListener('touchend',activate,{passive:false});
         return true;
       };
       if(!bindPill()){let n=0,t=setInterval(()=>{if(bindPill()||++n>20)clearInterval(t)},100)}
