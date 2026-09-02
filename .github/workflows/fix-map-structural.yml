@@ -1,10 +1,8 @@
 name: Structural mobile map fix
 on:
-  push:
-    branches: [fuorisede-evoluzione-universale]
+  workflow_dispatch:
 jobs:
   patch:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: write

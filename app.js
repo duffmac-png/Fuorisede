@@ -571,3 +571,58 @@ refreshMapComparison=function(activeId){
   refreshMapComparisonWithSeparatedLabels(activeId);
   setTimeout(()=>arrangeMapPriceLabels('demo-map'),40);
 };
+
+/* ANDROID PRICE PILL + INMAP CARD 20260901C */
+(function(){
+  const mobile=()=>matchMedia('(max-width:700px),(pointer:coarse)').matches;
+  const previousInit=initMap;
+  initMap=function(id='demo-map',items=state.items,attempt=0){
+    previousInit(id,items,attempt);
+    if(!mobile())return;
+    let tries=0;
+    const timer=setInterval(()=>{
+      const c=activeMapMarkers.get(id);
+      if(!c){if(++tries>50)clearInterval(timer);return}
+      clearInterval(timer);
+      const map=c.map, container=map.getContainer();
+      container.style.position='relative';
+      let panel=container.querySelector('.fs-mobile-map-card');
+      if(!panel){
+        panel=document.createElement('div');
+        panel.className='fs-mobile-map-card';
+        container.appendChild(panel);
+        L.DomEvent.disableClickPropagation(panel);
+        L.DomEvent.disableScrollPropagation(panel);
+      }
+      const show=(entry)=>{
+        const marker=entry.marker;
+        const popup=marker.getPopup?.();
+        let html=popup?.getContent?.()||'';
+        if(typeof html!=='string')html='';
+        panel.innerHTML='<button class="fs-map-card-close" aria-label="Chiudi">×</button><div class="fs-map-card-body">'+html+'</div>';
+        panel.classList.add('show');
+        panel.querySelector('.fs-map-card-close').onclick=()=>panel.classList.remove('show');
+        marker.closePopup?.();
+      };
+      c.markers.forEach(entry=>{
+        const marker=entry.marker;
+        marker.off('click');
+        marker.on('click',()=>show(entry));
+        const tip=marker.getTooltip?.();
+        if(tip){
+          marker.on('tooltipopen',()=>{
+            const el=tip.getElement?.();
+            if(!el||el.dataset.fsTap)return;
+            el.dataset.fsTap='1';
+            el.style.pointerEvents='auto';
+            el.style.cursor='pointer';
+            const tap=ev=>{ev.preventDefault();ev.stopPropagation();show(entry)};
+            el.addEventListener('click',tap,{passive:false});
+            el.addEventListener('touchend',tap,{passive:false});
+          });
+        }
+      });
+    },80);
+  };
+  document.head.insertAdjacentHTML('beforeend',`<style>@media(max-width:700px),(pointer:coarse){.listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;z-index:900!important}.fs-mobile-map-card{display:none;position:absolute!important;z-index:1600!important;left:10px!important;right:10px!important;bottom:10px!important;width:auto!important;max-width:none!important;box-sizing:border-box!important;background:#fff!important;border:1px solid rgba(0,0,0,.14)!important;border-radius:14px!important;box-shadow:0 8px 28px rgba(0,0,0,.24)!important;padding:12px 38px 12px 12px!important;font-size:12px!important;line-height:1.3!important;overflow:hidden!important}.fs-mobile-map-card.show{display:block!important}.fs-map-card-close{position:absolute!important;right:7px!important;top:5px!important;width:28px!important;height:28px!important;border:0!important;background:transparent!important;font-size:24px!important;line-height:28px!important;cursor:pointer!important}.fs-map-card-body{max-height:190px!important;overflow:auto!important;overflow-wrap:anywhere!important}.fs-map-card-body b{display:block!important;padding-right:4px!important}.fs-map-card-body button,.fs-map-card-body .pinopen,.fs-map-card-body .pincompare{box-sizing:border-box!important;display:block!important;width:100%!important;max-width:100%!important;white-space:normal!important;margin:6px 0 0!important;padding:7px 8px!important}.leaflet-popup{display:none!important}}</style>`);
+})();

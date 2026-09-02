@@ -1,13 +1,12 @@
 name: Fix Android campus startup
 on:
-  push:
-    branches:
-      - fuorisede-evoluzione-universale
+  workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
   fix:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,18 +16,25 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          p = Path('app.js')
-          s = p.read_text()
+
+          path = Path("app.js")
+          source = path.read_text()
           old = "landingName=landingCampus?.name.split('·')[0].trim()"
           new = "landingName=landingCampus?.name?.split('·')[0]?.trim()||''"
-          if old not in s:
-              raise SystemExit('Target expression not found')
-          p.write_text(s.replace(old, new, 1))
+
+          if new in source:
+              print("Android campus guard already present.")
+          elif old in source:
+              path.write_text(source.replace(old, new, 1))
+              print("Android campus guard applied.")
+          else:
+              raise SystemExit("Expected campus expression not found; app.js was not changed.")
           PY
-      - name: Commit source fix
+      - name: Commit source fix when needed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add app.js
+          git diff --cached --quiet && exit 0
           git commit -m "Fix empty campus name crash on Android"
           git push origin HEAD:fuorisede-evoluzione-universale
