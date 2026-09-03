@@ -26,7 +26,10 @@
   function clearMini(){document.querySelectorAll('.mapmini.active').forEach(el=>el.classList.remove('active'))}
   function syncOffset(card){
     const dock=document.querySelector('.comparedock');
-    card.style.bottom=dock&&!card.hidden?`${Math.ceil(dock.getBoundingClientRect().height)+51}px`:'';
+    // The comparison dock is already lifted above Android's browser/navigation
+    // controls by app.js.  Use its actual screen position instead of adding only
+    // its height, otherwise the card and dock overlap on real Android devices.
+    card.style.bottom=dock&&!card.hidden?`${Math.ceil(window.innerHeight-dock.getBoundingClientRect().top+10)}px`:'';
     card.style.maxHeight=dock&&!card.hidden?'32vh':'';
   }
   function syncDock(card){
@@ -72,6 +75,15 @@
     separate(context);paint(context);card.hidden=true;
   }
   function boot(){install();setTimeout(()=>install(),500);setTimeout(()=>install(),1400)}
+  function scrollPageTop(){
+    const jump=()=>{document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0)};
+    jump();requestAnimationFrame(jump);setTimeout(jump,120);setTimeout(jump,400);
+  }
+  document.addEventListener('click',event=>{
+    const button=event.target?.closest?.('.ddbacktotop button,.globalbacktotop button');
+    if(!button||!mobile())return;
+    event.preventDefault();event.stopPropagation();scrollPageTop();
+  },true);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
   const oldRender=window.render;if(typeof oldRender==='function')window.render=function(){installedContext=null;const result=oldRender.apply(this,arguments);setTimeout(boot,160);return result};
 })();
