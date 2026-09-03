@@ -29,14 +29,26 @@
     card.style.bottom=dock&&!card.hidden?`${Math.ceil(dock.getBoundingClientRect().height)+51}px`:'';
     card.style.maxHeight=dock&&!card.hidden?'32vh':'';
   }
+  function syncDock(card){
+    let dock=document.querySelector('.comparedock');
+    if(state.selected.size<2){dock?.remove();syncOffset(card);return}
+    if(!dock){
+      const root=document.getElementById('v3-root');
+      if(root&&typeof compareDock==='function'){
+        root.insertAdjacentHTML('beforeend',compareDock());
+        dock=document.querySelector('.comparedock');
+      }
+    }
+    syncOffset(card);
+  }
   function popupHtml(entry){return entry.marker.getPopup?.()?.getContent?.()||`<b>${entry.x.title||'Alloggio'}</b>`}
   function show(context,card,entry){
     if(!entry)return;activeId=num(entry.x.id);state.mapActiveListingId=activeId;context.map.closePopup();clearMini();
     document.getElementById(`map-mini-${activeId}`)?.classList.add('active');paint(context);
     card.innerHTML=`<button class="fs-mobile-map-card-close" type="button" aria-label="Chiudi">×</button><div class="fs-mobile-map-card-body">${popupHtml(entry)}</div>`;
-    card.dataset.listingId=String(activeId);card.hidden=false;syncOffset(card);
+    card.dataset.listingId=String(activeId);card.hidden=false;syncDock(card);
     card.querySelector('.fs-mobile-map-card-close').onclick=ev=>{ev.preventDefault();ev.stopPropagation();card.hidden=true;activeId=null;state.mapActiveListingId=null;clearMini();paint(context);syncOffset(card)};
-    card.querySelector('.pincompare')?.addEventListener('click',()=>{const key=num(card.dataset.listingId);setTimeout(()=>{const current=context.markers.get(key);if(current)show(context,card,current)},40)});
+    card.querySelector('.pincompare')?.addEventListener('click',()=>{const key=num(card.dataset.listingId);setTimeout(()=>{syncDock(card);const current=context.markers.get(key);if(current)show(context,card,current)},80)});
   }
   function separate(context){
     const {map,markers}=context;
