@@ -5,11 +5,12 @@
   const css=document.createElement('style');
   css.textContent=`
   @media(max-width:700px),(pointer:coarse){
+    .v3nav{position:relative!important;top:auto!important;display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;margin:0 0 18px!important}
     .mapzoomhint,.leaflet-popup{display:none!important}.mapcanvas{position:relative!important;overflow:hidden!important}
     .listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;z-index:900!important;font-size:10px!important;padding:4px 7px!important}
     .listing-price-tooltip.mobile-price-hidden{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
     .leaflet-control-attribution{max-width:72vw!important;font-size:7px!important}
-    .fs-mobile-map-card{position:absolute;z-index:1200;left:10px;right:10px;bottom:12px;max-height:44%;overflow:auto;background:#fff;border:1px solid #e5ddd2;border-radius:16px;padding:14px 40px 14px 14px;box-shadow:0 8px 28px #0004;color:#222}
+    .fs-mobile-map-card{position:fixed;z-index:1200;left:10px;right:10px;bottom:72px;max-height:40vh;overflow:auto;background:#fff;border:1px solid #e5ddd2;border-radius:16px;padding:14px 40px 14px 14px;box-shadow:0 8px 28px #0004;color:#222}
     .fs-mobile-map-card[hidden]{display:none!important}.fs-mobile-map-card-close{position:absolute;right:8px;top:7px;width:30px;height:30px;border:0;border-radius:50%;background:#f2eee9;font-size:22px;line-height:1;cursor:pointer}
     .fs-mobile-map-card-body{font-size:13px;line-height:1.4;overflow-wrap:anywhere}.fs-mobile-map-card-body .pinactions{display:flex!important;gap:7px!important;margin-top:10px!important}
     .fs-mobile-map-card-body .pinactions button{display:block!important;flex:1!important;width:auto!important;min-width:0!important;white-space:normal!important}.comparedock{z-index:1300!important}
@@ -25,8 +26,8 @@
   function clearMini(){document.querySelectorAll('.mapmini.active').forEach(el=>el.classList.remove('active'))}
   function syncOffset(card){
     const dock=document.querySelector('.comparedock');
-    card.style.bottom=dock&&!card.hidden?`${Math.ceil(dock.getBoundingClientRect().height)+39}px`:'';
-    card.style.maxHeight=dock&&!card.hidden?'32%':'';
+    card.style.bottom=dock&&!card.hidden?`${Math.ceil(dock.getBoundingClientRect().height)+51}px`:'';
+    card.style.maxHeight=dock&&!card.hidden?'32vh':'';
   }
   function popupHtml(entry){return entry.marker.getPopup?.()?.getContent?.()||`<b>${entry.x.title||'Alloggio'}</b>`}
   function show(context,card,entry){
@@ -62,3 +63,4 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
   const oldRender=window.render;if(typeof oldRender==='function')window.render=function(){installedContext=null;const result=oldRender.apply(this,arguments);setTimeout(boot,160);return result};
 })();
+  
