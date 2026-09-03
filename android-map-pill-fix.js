@@ -9,11 +9,18 @@
   if (forcedTest()) document.documentElement.classList.add('fs-android-test');
   let activeId = null;
   let installToken = 0;
+  const initializedCanvases = new WeakSet();
 
   document.head.insertAdjacentHTML('beforeend', `<style>
     .fs-mobile-map-card{display:none}
     @media(max-width:700px),(pointer:coarse){
       body.fs-map-mobile{padding-bottom:0}
+      .v3nav{position:relative!important;top:auto!important;display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;margin:0 0 18px!important}
+      .mapzoomhint{display:none!important}
+      .mapcanvas{position:relative!important;overflow:hidden!important}
+      .listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;z-index:900!important;font-size:10px!important;padding:4px 7px!important}
+      .listing-price-tooltip.mobile-price-hidden{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+      .leaflet-control-attribution{max-width:72vw!important;font-size:7px!important}
       .fs-mobile-map-card{position:fixed;z-index:1900;left:12px;right:12px;bottom:max(72px,calc(env(safe-area-inset-bottom) + 64px));display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003}
       .fs-mobile-map-card.visible{display:grid}
       .fs-mobile-map-card-copy{min-width:0}
@@ -28,6 +35,7 @@
       body.fs-map-mobile .leaflet-popup{display:none!important}
       body.fs-map-mobile .comparedock{z-index:2000!important}
     }
+    html.fs-android-test .v3nav{position:relative!important;top:auto!important}
     html.fs-android-test .fs-mobile-map-card{position:fixed;z-index:1900;left:12px;right:12px;bottom:72px;display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003}
     html.fs-android-test .fs-mobile-map-card.visible{display:grid}
     html.fs-android-test body.fs-map-mobile .leaflet-popup{display:none!important}
@@ -148,6 +156,10 @@
       return;
     }
     document.body.classList.add('fs-map-mobile');
+    if (!initializedCanvases.has(canvas)) {
+      initializedCanvases.add(canvas);
+      clearMapUi();
+    }
     context.markers.forEach(({marker, x}) => {
       marker.off('click');
       marker.on('click', () => showCard(Number(x.id)));
