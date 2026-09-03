@@ -1,85 +1,64 @@
-/* ANDROID DIRECT PRICE PILL FIX 20260901D */
+/* FUORISEDE mobile map controller 20260903A */
 (function(){
-  const mobile=()=>window.matchMedia('(max-width:700px),(pointer:coarse)').matches;
-  function install(mapId='demo-map',tries=0){
-    if(!mobile())return;
-    const context=window.activeMapMarkers?.get?.(mapId);
-    const canvas=document.getElementById(mapId);
-    if((!context||!canvas)&&tries<40){setTimeout(()=>install(mapId,tries+1),100);return}
-    if(!context||!canvas)return;
-    canvas.style.position='relative';
-    let card=canvas.querySelector('.fs-mobile-map-card');
-    if(!card){
-      card=document.createElement('div');card.className='fs-mobile-map-card';card.hidden=true;canvas.appendChild(card);
-    }
-    const show=(entry)=>{
-      if(!entry)return;
-      const {marker,x}=entry;
-      const popup=marker.getPopup?.();
-      const html=popup?.getContent?.()||`<b>${x.title||'Alloggio'}</b><br>${window.euro?euro(x.price):x.price||''}`;
-      context.map.closePopup();
-      card.innerHTML=`<button class="fs-mobile-map-card-close" type="button" aria-label="Chiudi">×</button><div class="fs-mobile-map-card-body">${html}</div>`;
-      card.dataset.listingId=String(Number(x.id));
-      card.hidden=false;
-      card.querySelector('.fs-mobile-map-card-close').onclick=(e)=>{e.stopPropagation();card.hidden=true};
-      // Il comando nel pannello aggiorna lo stato della mappa. Subito dopo
-      // rigeneriamo anche il pannello stesso dal popup appena aggiornato,
-      // così etichetta e pulsante Confronta/Togli restano sincronizzati.
-      card.querySelector('.pincompare')?.addEventListener('click',()=>{
-        const key=Number(card.dataset.listingId);
-        setTimeout(()=>show(context.markers.get(key)),30);
-      });
-    };
-    // Leaflet ricrea il nodo DOM del tooltip quando cambia direzione o viene
-    // riaperto. Un listener collegato direttamente alla pillola va quindi
-    // perso dopo zoom/pan. La delega sul contenitore della mappa sopravvive a
-    // ogni ridisegno e risolve il tap Android anche sulle pillole ricreate.
-    if(!canvas.__fsPillDelegation){
-      canvas.__fsPillDelegation=true;
-      let lastPillActivation=0;
-      const activatePill=(ev)=>{
-        const pill=ev.target?.closest?.('.listing-price-tooltip');
-        if(!pill||!canvas.contains(pill))return;
-        const entry=[...context.markers.values()].find(({marker})=>marker.getTooltip?.()?.getElement?.()===pill);
-        if(!entry)return;
-        ev.preventDefault();
-        ev.stopPropagation();
-        const now=Date.now();
-        if(now-lastPillActivation<350)return;
-        lastPillActivation=now;
-        show(entry);
-      };
-      canvas.addEventListener('pointerup',activatePill,{capture:true,passive:false});
-      canvas.addEventListener('click',activatePill,{capture:true,passive:false});
-    }
-    context.markers.forEach((entry)=>{
-      const {marker}=entry;
-      if(marker.__fsPillDirect)return;marker.__fsPillDirect=true;
-      marker.on('click',()=>show(entry));
-      const bindPill=()=>{
-        const tip=marker.getTooltip?.();
-        const el=tip?.getElement?.();
-        if(!el)return false;
-        el.style.pointerEvents='auto';el.style.cursor='pointer';el.style.touchAction='manipulation';
-        // Conserviamo anche il binding diretto come fallback per WebView meno
-        // recenti; il binding delegato sopra resta la fonte principale.
-        const activate=(ev)=>{ev.preventDefault();ev.stopPropagation();show(entry)};
-        el.addEventListener('click',activate,{passive:false});
-        return true;
-      };
-      if(!bindPill()){let n=0,t=setInterval(()=>{if(bindPill()||++n>20)clearInterval(t)},100)}
+  const MAP_ID='demo-map', mobile=()=>matchMedia('(max-width:700px),(pointer:coarse)').matches;
+  let installedContext=null,activeId=null;
+  const css=document.createElement('style');
+  css.textContent=`
+  @media(max-width:700px),(pointer:coarse){
+    .mapzoomhint,.leaflet-popup{display:none!important}.mapcanvas{position:relative!important;overflow:hidden!important}
+    .listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;z-index:900!important;font-size:10px!important;padding:4px 7px!important}
+    .listing-price-tooltip.mobile-price-hidden{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+    .leaflet-control-attribution{max-width:72vw!important;font-size:7px!important}
+    .fs-mobile-map-card{position:absolute;z-index:1200;left:10px;right:10px;bottom:12px;max-height:44%;overflow:auto;background:#fff;border:1px solid #e5ddd2;border-radius:16px;padding:14px 40px 14px 14px;box-shadow:0 8px 28px #0004;color:#222}
+    .fs-mobile-map-card[hidden]{display:none!important}.fs-mobile-map-card-close{position:absolute;right:8px;top:7px;width:30px;height:30px;border:0;border-radius:50%;background:#f2eee9;font-size:22px;line-height:1;cursor:pointer}
+    .fs-mobile-map-card-body{font-size:13px;line-height:1.4;overflow-wrap:anywhere}.fs-mobile-map-card-body .pinactions{display:flex!important;gap:7px!important;margin-top:10px!important}
+    .fs-mobile-map-card-body .pinactions button{display:block!important;flex:1!important;width:auto!important;min-width:0!important;white-space:normal!important}.comparedock{z-index:1300!important}
+  }`;document.head.appendChild(css);
+  const num=id=>Number(id), base=entry=>markerAppearance(entry.x,false);
+  function active(entry){return {...base(entry),radius:18,weight:6,color:'#171715',fillColor:'#fff',fillOpacity:1}}
+  function paint(context){
+    context.markers.forEach((entry,id)=>{
+      entry.marker.setStyle(num(id)===activeId?active(entry):base(entry));
+      if(num(id)===activeId)entry.marker.bringToFront();else if(state.selected.has(num(id)))entry.marker.bringToBack();
     });
   }
-  const css=document.createElement('style');css.textContent=`
-  @media(max-width:700px),(pointer:coarse){
-    .listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;z-index:900!important}
-    .listing-price-tooltip.mobile-price-hidden{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
-    .leaflet-popup{display:none!important}
-    .fs-mobile-map-card{position:absolute;z-index:1200;left:10px;right:10px;bottom:12px;max-height:46%;overflow:auto;background:#fff;border:1px solid #e5ddd2;border-radius:16px;padding:14px 40px 14px 14px;box-shadow:0 8px 28px #0004;color:#222}
-    .fs-mobile-map-card[hidden]{display:none!important}.fs-mobile-map-card-close{position:absolute;right:8px;top:7px;width:30px;height:30px;border:0;border-radius:50%;background:#f2eee9;font-size:22px;line-height:1;cursor:pointer}
-    .fs-mobile-map-card-body{font-size:13px;line-height:1.4;overflow-wrap:anywhere}.fs-mobile-map-card-body button,.fs-mobile-map-card-body a{max-width:100%;white-space:normal}
-  }`;document.head.appendChild(css);
-  function boot(){install('demo-map');setTimeout(()=>install('demo-map'),600);setTimeout(()=>install('demo-map'),1600)}
+  function clearMini(){document.querySelectorAll('.mapmini.active').forEach(el=>el.classList.remove('active'))}
+  function syncOffset(card){
+    const dock=document.querySelector('.comparedock');
+    card.style.bottom=dock&&!card.hidden?`${Math.ceil(dock.getBoundingClientRect().height)+39}px`:'';
+    card.style.maxHeight=dock&&!card.hidden?'32%':'';
+  }
+  function popupHtml(entry){return entry.marker.getPopup?.()?.getContent?.()||`<b>${entry.x.title||'Alloggio'}</b>`}
+  function show(context,card,entry){
+    if(!entry)return;activeId=num(entry.x.id);state.mapActiveListingId=activeId;context.map.closePopup();clearMini();
+    document.getElementById(`map-mini-${activeId}`)?.classList.add('active');paint(context);
+    card.innerHTML=`<button class="fs-mobile-map-card-close" type="button" aria-label="Chiudi">×</button><div class="fs-mobile-map-card-body">${popupHtml(entry)}</div>`;
+    card.dataset.listingId=String(activeId);card.hidden=false;syncOffset(card);
+    card.querySelector('.fs-mobile-map-card-close').onclick=ev=>{ev.preventDefault();ev.stopPropagation();card.hidden=true;activeId=null;state.mapActiveListingId=null;clearMini();paint(context);syncOffset(card)};
+    card.querySelector('.pincompare')?.addEventListener('click',()=>{const key=num(card.dataset.listingId);setTimeout(()=>{const current=context.markers.get(key);if(current)show(context,card,current)},40)});
+  }
+  function separate(context){
+    const {map,markers}=context;
+    markers.forEach(entry=>{if(!entry.__fsOriginalLatLng)entry.__fsOriginalLatLng=entry.marker.getLatLng();else entry.marker.setLatLng(entry.__fsOriginalLatLng)});
+    const groups=[];
+    markers.forEach(entry=>{const point=map.latLngToContainerPoint(entry.__fsOriginalLatLng);let group=groups.find(g=>g.items.some(i=>point.distanceTo(i.point)<34));if(!group){group={items:[]};groups.push(group)}group.items.push({entry,point})});
+    groups.filter(g=>g.items.length>1).forEach(group=>{const cx=group.items.reduce((s,i)=>s+i.point.x,0)/group.items.length,cy=group.items.reduce((s,i)=>s+i.point.y,0)/group.items.length,r=group.items.length===2?28:32;group.items.forEach((item,index)=>{const angle=-Math.PI/2+2*Math.PI*index/group.items.length,point=L.point(cx+Math.cos(angle)*r,cy+Math.sin(angle)*r);item.entry.marker.setLatLng(map.containerPointToLatLng(point))})});
+    paint(context);
+  }
+  function entryForPill(context,pill){for(const entry of context.markers.values())if(entry.marker.getTooltip?.()?.getElement?.()===pill)return entry}
+  function install(tries=0){
+    if(!mobile())return;const context=activeMapMarkers?.get?.(MAP_ID),canvas=document.getElementById(MAP_ID);
+    if((!context||!canvas)&&tries<50){setTimeout(()=>install(tries+1),100);return}if(!context||!canvas||context===installedContext)return;
+    installedContext=context;activeId=null;state.mapActiveListingId=null;clearMini();context.map.closePopup();canvas.style.position='relative';
+    let card=canvas.querySelector('.fs-mobile-map-card');if(!card){card=document.createElement('div');card.className='fs-mobile-map-card';card.hidden=true;canvas.appendChild(card)}
+    let last=0;const activate=ev=>{const pill=ev.target?.closest?.('.listing-price-tooltip');if(!pill||!canvas.contains(pill))return;const entry=entryForPill(context,pill);if(!entry)return;ev.preventDefault();ev.stopPropagation();const now=Date.now();if(now-last<320)return;last=now;show(context,card,entry)};
+    canvas.addEventListener('pointerup',activate,{capture:true,passive:false});canvas.addEventListener('click',activate,{capture:true,passive:false});
+    context.markers.forEach(entry=>{entry.marker.off('click');entry.marker.on('click',()=>show(context,card,entry))});
+    ['zoomend','moveend'].forEach(name=>context.map.on(name,()=>separate(context)));
+    new MutationObserver(()=>syncOffset(card)).observe(document.getElementById('v3-root')||document.body,{childList:true,subtree:true});
+    separate(context);paint(context);card.hidden=true;
+  }
+  function boot(){install();setTimeout(()=>install(),500);setTimeout(()=>install(),1400)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  const oldRender=window.render;if(typeof oldRender==='function')window.render=function(){const r=oldRender.apply(this,arguments);setTimeout(boot,180);return r};
+  const oldRender=window.render;if(typeof oldRender==='function')window.render=function(){installedContext=null;const result=oldRender.apply(this,arguments);setTimeout(boot,160);return result};
 })();
