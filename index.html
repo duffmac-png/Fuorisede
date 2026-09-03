@@ -30,6 +30,6 @@
 <script src="/data/listings-fallback.js?v=20260828-5"></script>
 <script>(function(){function install(){var nativeFetch=window.fetch&&window.fetch.bind(window);var fallback=window.FUORISEDE_FALLBACK_LISTINGS;if(!nativeFetch||!Array.isArray(fallback)||!fallback.length)return false;window.fetch=function(input,init){var url=typeof input==='string'?input:(input&&input.url)||'';if(url.indexOf('/data/listings-operativa-v3.json')!==-1){return Promise.resolve({ok:true,status:200,json:function(){return Promise.resolve(fallback.slice())}})}return nativeFetch(input,init)};return true}if(!install()){var tries=0,t=setInterval(function(){tries++;if(install()||tries>40)clearInterval(t)},50)}})();</script>
 <script src="/app.js?v=android-20260902-18"></script>
-<script src="/android-map-pill-fix.js?v=20260903g"></script>
+<script src="/android-map-pill-fix.js?v=20260903h"></script>
 </body>
 </html>
