@@ -1,90 +1,208 @@
-/* FUORISEDE mobile map controller 20260903A */
-(function(){
-  const MAP_ID='demo-map', mobile=()=>matchMedia('(max-width:700px),(pointer:coarse)').matches;
-  let installedContext=null,activeId=null;
-  const css=document.createElement('style');
-  css.textContent=`
-  @media(max-width:700px),(pointer:coarse){
-    .v3nav{position:relative!important;top:auto!important;display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;margin:0 0 18px!important}
-    .mapzoomhint,.leaflet-popup{display:none!important}.mapcanvas{position:relative!important;overflow:hidden!important}
-    .listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;z-index:900!important;font-size:10px!important;padding:4px 7px!important}
-    .listing-price-tooltip.mobile-price-hidden{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
-    .leaflet-control-attribution{max-width:72vw!important;font-size:7px!important}
-    .fs-mobile-map-card{position:fixed;z-index:1200;left:10px;right:10px;bottom:72px;max-height:40vh;overflow:auto;background:#fff;border:1px solid #e5ddd2;border-radius:16px;padding:14px 40px 14px 14px;box-shadow:0 8px 28px #0004;color:#222}
-    .fs-mobile-map-card[hidden]{display:none!important}.fs-mobile-map-card-close{position:absolute;right:8px;top:7px;width:30px;height:30px;border:0;border-radius:50%;background:#f2eee9;font-size:22px;line-height:1;cursor:pointer}
-    .fs-mobile-map-card-body{font-size:13px;line-height:1.4;overflow-wrap:anywhere}.fs-mobile-map-card-body .pinactions{display:flex!important;gap:7px!important;margin-top:10px!important}
-    .fs-mobile-map-card-body .pinactions button{display:block!important;flex:1!important;width:auto!important;min-width:0!important;white-space:normal!important}.comparedock{z-index:1300!important}
-  }`;document.head.appendChild(css);
-  const num=id=>Number(id), base=entry=>markerAppearance(entry.x,false);
-  function active(entry){return {...base(entry),radius:18,weight:6,color:'#171715',fillColor:'#fff',fillOpacity:1}}
-  function paint(context){
-    context.markers.forEach((entry,id)=>{
-      entry.marker.setStyle(num(id)===activeId?active(entry):base(entry));
-      if(num(id)===activeId)entry.marker.bringToFront();else if(state.selected.has(num(id)))entry.marker.bringToBack();
-    });
-  }
-  function clearMini(){document.querySelectorAll('.mapmini.active').forEach(el=>el.classList.remove('active'))}
-  function syncOffset(card){
-    const dock=document.querySelector('.comparedock');
-    // The comparison dock is already lifted above Android's browser/navigation
-    // controls by app.js.  Use its actual screen position instead of adding only
-    // its height, otherwise the card and dock overlap on real Android devices.
-    card.style.bottom=dock&&!card.hidden?`${Math.ceil(window.innerHeight-dock.getBoundingClientRect().top+10)}px`:'';
-    card.style.maxHeight=dock&&!card.hidden?'32vh':'';
-  }
-  function syncDock(card){
-    let dock=document.querySelector('.comparedock');
-    if(state.selected.size<2){dock?.remove();syncOffset(card);return}
-    if(!dock){
-      const root=document.getElementById('v3-root');
-      if(root&&typeof compareDock==='function'){
-        root.insertAdjacentHTML('beforeend',compareDock());
-        dock=document.querySelector('.comparedock');
-      }
+/* FUORISEDE Android controller — 20260903E
+ * One owner for the mobile map card, active marker and comparison dock.
+ */
+(() => {
+  'use strict';
+
+  const forcedTest = () => new URLSearchParams(location.search).has('__android_test');
+  const mobile = () => forcedTest() || matchMedia('(max-width:700px), (pointer:coarse)').matches;
+  if (forcedTest()) document.documentElement.classList.add('fs-android-test');
+  let activeId = null;
+  let installToken = 0;
+
+  document.head.insertAdjacentHTML('beforeend', `<style>
+    .fs-mobile-map-card{display:none}
+    @media(max-width:700px),(pointer:coarse){
+      body.fs-map-mobile{padding-bottom:0}
+      .fs-mobile-map-card{position:fixed;z-index:1900;left:12px;right:12px;bottom:max(72px,calc(env(safe-area-inset-bottom) + 64px));display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003}
+      .fs-mobile-map-card.visible{display:grid}
+      .fs-mobile-map-card-copy{min-width:0}
+      .fs-mobile-map-card-copy small,.fs-mobile-map-card-copy strong,.fs-mobile-map-card-copy b{display:block}
+      .fs-mobile-map-card-copy small{color:#716e69;font-size:8px;text-transform:uppercase}
+      .fs-mobile-map-card-copy strong{margin:3px 0;font-size:12px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .fs-mobile-map-card-copy b{font-size:14px}
+      .fs-mobile-map-actions{display:grid;gap:6px}
+      .fs-mobile-map-actions button{min-width:104px;border:1px solid #171715;border-radius:999px;padding:8px 10px;background:#fff;color:#171715;font-size:9px;font-weight:800}
+      .fs-mobile-map-actions .fs-open{background:#171715;color:#fff}
+      .fs-mobile-map-actions .active{background:#f1f1ee}
+      body.fs-map-mobile .leaflet-popup{display:none!important}
+      body.fs-map-mobile .comparedock{z-index:2000!important}
     }
-    syncOffset(card);
+    html.fs-android-test .fs-mobile-map-card{position:fixed;z-index:1900;left:12px;right:12px;bottom:72px;display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003}
+    html.fs-android-test .fs-mobile-map-card.visible{display:grid}
+    html.fs-android-test body.fs-map-mobile .leaflet-popup{display:none!important}
+  </style>`);
+
+  const listing = id => state.items.find(item => Number(item.id) === Number(id));
+  const card = () => document.querySelector('.fs-mobile-map-card');
+  const dock = () => document.querySelector('.comparedock');
+
+  function ensureCard() {
+    let node = card();
+    if (node) return node;
+    node = document.createElement('section');
+    node.className = 'fs-mobile-map-card';
+    node.setAttribute('aria-live', 'polite');
+    node.setAttribute('aria-label', 'Alloggio selezionato sulla mappa');
+    document.body.appendChild(node);
+    return node;
   }
-  function popupHtml(entry){return entry.marker.getPopup?.()?.getContent?.()||`<b>${entry.x.title||'Alloggio'}</b>`}
-  function show(context,card,entry){
-    if(!entry)return;activeId=num(entry.x.id);state.mapActiveListingId=activeId;context.map.closePopup();clearMini();
-    document.getElementById(`map-mini-${activeId}`)?.classList.add('active');paint(context);
-    card.innerHTML=`<button class="fs-mobile-map-card-close" type="button" aria-label="Chiudi">×</button><div class="fs-mobile-map-card-body">${popupHtml(entry)}</div>`;
-    card.dataset.listingId=String(activeId);card.hidden=false;syncDock(card);
-    card.querySelector('.fs-mobile-map-card-close').onclick=ev=>{ev.preventDefault();ev.stopPropagation();card.hidden=true;activeId=null;state.mapActiveListingId=null;clearMini();paint(context);syncOffset(card)};
-    card.querySelector('.pincompare')?.addEventListener('click',()=>{const key=num(card.dataset.listingId);setTimeout(()=>{syncDock(card);const current=context.markers.get(key);if(current)show(context,card,current)},80)});
+
+  function positionCard() {
+    const node = card();
+    if (!node || !node.classList.contains('visible')) return;
+    const comparisonDock = dock();
+    const bottom = comparisonDock
+      ? Math.max(72, Math.ceil(innerHeight - comparisonDock.getBoundingClientRect().top + 12))
+      : Math.max(72, 64 + (Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom')) || 0));
+    node.style.bottom = `${bottom}px`;
+    node.style.maxHeight = `${Math.max(110, innerHeight - bottom - 76)}px`;
   }
-  function separate(context){
-    const {map,markers}=context;
-    markers.forEach(entry=>{if(!entry.__fsOriginalLatLng)entry.__fsOriginalLatLng=entry.marker.getLatLng();else entry.marker.setLatLng(entry.__fsOriginalLatLng)});
-    const groups=[];
-    markers.forEach(entry=>{const point=map.latLngToContainerPoint(entry.__fsOriginalLatLng);let group=groups.find(g=>g.items.some(i=>point.distanceTo(i.point)<34));if(!group){group={items:[]};groups.push(group)}group.items.push({entry,point})});
-    groups.filter(g=>g.items.length>1).forEach(group=>{const cx=group.items.reduce((s,i)=>s+i.point.x,0)/group.items.length,cy=group.items.reduce((s,i)=>s+i.point.y,0)/group.items.length,r=group.items.length===2?28:32;group.items.forEach((item,index)=>{const angle=-Math.PI/2+2*Math.PI*index/group.items.length,point=L.point(cx+Math.cos(angle)*r,cy+Math.sin(angle)*r);item.entry.marker.setLatLng(map.containerPointToLatLng(point))})});
-    paint(context);
+
+  function rebuildDock() {
+    document.querySelectorAll('.comparedock').forEach(node => node.remove());
+    if (state.selected.size >= 2 && state.view === 'map' && !state.detail && !state.compareOpen) {
+      document.body.insertAdjacentHTML('beforeend', compareDock());
+    }
+    requestAnimationFrame(positionCard);
   }
-  function entryForPill(context,pill){for(const entry of context.markers.values())if(entry.marker.getTooltip?.()?.getElement?.()===pill)return entry}
-  function install(tries=0){
-    if(!mobile())return;const context=activeMapMarkers?.get?.(MAP_ID),canvas=document.getElementById(MAP_ID);
-    if((!context||!canvas)&&tries<50){setTimeout(()=>install(tries+1),100);return}if(!context||!canvas||context===installedContext)return;
-    installedContext=context;activeId=null;state.mapActiveListingId=null;clearMini();context.map.closePopup();canvas.style.position='relative';
-    let card=canvas.querySelector('.fs-mobile-map-card');if(!card){card=document.createElement('div');card.className='fs-mobile-map-card';card.hidden=true;canvas.appendChild(card)}
-    let last=0;const activate=ev=>{const pill=ev.target?.closest?.('.listing-price-tooltip');if(!pill||!canvas.contains(pill))return;const entry=entryForPill(context,pill);if(!entry)return;ev.preventDefault();ev.stopPropagation();const now=Date.now();if(now-last<320)return;last=now;show(context,card,entry)};
-    canvas.addEventListener('pointerup',activate,{capture:true,passive:false});canvas.addEventListener('click',activate,{capture:true,passive:false});
-    context.markers.forEach(entry=>{entry.marker.off('click');entry.marker.on('click',()=>show(context,card,entry))});
-    ['zoomend','moveend'].forEach(name=>context.map.on(name,()=>separate(context)));
-    new MutationObserver(()=>syncOffset(card)).observe(document.getElementById('v3-root')||document.body,{childList:true,subtree:true});
-    separate(context);paint(context);card.hidden=true;
+
+  function refreshMarkers() {
+    const context = window.activeMapMarkers?.get('demo-map');
+    if (!context) return;
+    context.markers.forEach(({marker, x}, key) => {
+      const numericKey = Number(key);
+      marker.setStyle(markerAppearance(x, numericKey === activeId));
+      marker.setTooltipContent(`${state.favs.has(numericKey) ? '♥ ' : ''}${state.selected.has(numericKey) ? '★ ' : ''}${euro(x.price)}`);
+      if (numericKey === activeId) marker.bringToFront();
+      else if (state.selected.has(numericKey)) marker.bringToBack();
+    });
+    arrangeMapPriceLabels?.('demo-map');
   }
-  function boot(){install();setTimeout(()=>install(),500);setTimeout(()=>install(),1400)}
-  function scrollPageTop(){
-    const jump=()=>{document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0)};
-    jump();requestAnimationFrame(jump);setTimeout(jump,120);setTimeout(jump,400);
+
+  function showCard(id) {
+    const item = listing(id);
+    if (!item || state.view !== 'map') return;
+    activeId = Number(id);
+    state.mapActiveListingId = activeId;
+    document.querySelectorAll('.mapmini.active').forEach(node => node.classList.remove('active'));
+    document.getElementById(`map-mini-${activeId}`)?.classList.add('active');
+    window.activeMapMarkers?.get('demo-map')?.map.closePopup();
+    const selected = state.selected.has(activeId);
+    const node = ensureCard();
+    node.innerHTML = `<div class="fs-mobile-map-card-copy"><small>${item.city} · ${campusShort(item)}</small><strong>${item.title}</strong><b>${euro(item.price)} <span class="muted">/ mese</span></b></div><div class="fs-mobile-map-actions"><button class="fs-open" type="button">Apri la scheda</button><button class="fs-compare ${selected ? 'active' : ''}" type="button">${selected ? '✓ Nel confronto' : 'Confronta'}</button></div>`;
+    node.querySelector('.fs-open').onclick = () => openDetail(activeId);
+    node.querySelector('.fs-compare').onclick = () => toggleMapComparison(activeId);
+    node.classList.add('visible');
+    refreshMarkers();
+    positionCard();
   }
-  document.addEventListener('click',event=>{
-    const button=event.target?.closest?.('.ddbacktotop button,.globalbacktotop button');
-    if(!button||!mobile())return;
-    event.preventDefault();event.stopPropagation();scrollPageTop();
-  },true);
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  const oldRender=window.render;if(typeof oldRender==='function')window.render=function(){installedContext=null;const result=oldRender.apply(this,arguments);setTimeout(boot,160);return result};
+
+  function compatible(candidate) {
+    if (!state.selected.size) return true;
+    const first = state.items.find(item => state.selected.has(Number(item.id)));
+    const required = accommodationType(first);
+    if (required && accommodationType(candidate) === required) return true;
+    alert(`Puoi confrontare solo ${accommodationLabel(required)} con ${accommodationLabel(required)}.`);
+    return false;
+  }
+
+  function toggleMapComparison(id) {
+    const key = Number(id);
+    const candidate = listing(key);
+    if (!candidate) return;
+    if (state.selected.has(key)) {
+      state.selected.delete(key);
+      state.mapExplicitlyRemoved?.add(key);
+    } else {
+      if (state.selected.size >= 3) {
+        alert('Puoi confrontare fino a 3 alloggi.');
+        return;
+      }
+      if (!compatible(candidate)) return;
+      state.mapExplicitlyRemoved?.delete(key);
+      state.selected.add(key);
+    }
+    if (state.selected.size < 2) state.compareOpen = false;
+    showCard(key);
+    rebuildDock();
+  }
+
+  function clearMapUi() {
+    activeId = null;
+    state.mapActiveListingId = null;
+    document.body.classList.toggle('fs-map-mobile', mobile() && state.view === 'map');
+    document.querySelectorAll('.mapmini.active').forEach(node => node.classList.remove('active'));
+    const node = ensureCard();
+    node.classList.remove('visible');
+    node.innerHTML = '';
+    window.activeMapMarkers?.get('demo-map')?.map.closePopup();
+  }
+
+  function installMapController(token, tries = 0) {
+    if (token !== installToken || !mobile() || state.view !== 'map') return;
+    const context = window.activeMapMarkers?.get('demo-map');
+    if (!context) {
+      if (tries < 40) setTimeout(() => installMapController(token, tries + 1), 100);
+      return;
+    }
+    document.body.classList.add('fs-map-mobile');
+    clearMapUi();
+    context.markers.forEach(({marker, x}) => {
+      marker.off('click');
+      marker.on('click', () => showCard(Number(x.id)));
+      const popup = marker.getPopup();
+      if (popup) popup.options.autoPan = false;
+    });
+    document.querySelectorAll('.mapmini').forEach(node => {
+      node.onclick = event => {
+        event.preventDefault();
+        showCard(Number(node.id.replace('map-mini-', '')));
+      };
+    });
+    refreshMarkers();
+    rebuildDock();
+  }
+
+  const originalSetView = setView;
+  setView = function(view) {
+    if (mobile() && view === 'map') clearMapUi();
+    originalSetView(view);
+    installToken += 1;
+    if (mobile() && view === 'map') setTimeout(() => installMapController(installToken), 0);
+    else document.body.classList.remove('fs-map-mobile');
+  };
+
+  const originalRender = render;
+  render = function() {
+    originalRender();
+    installToken += 1;
+    if (mobile() && state.view === 'map' && !state.detail && !state.compareOpen) {
+      const token = installToken;
+      setTimeout(() => installMapController(token), 0);
+    } else {
+      card()?.classList.remove('visible');
+      document.body.classList.remove('fs-map-mobile');
+    }
+  };
+
+  window.scrollFuorisedeTop = function() {
+    const forceTop = () => {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo(0, 0);
+    };
+    document.querySelector('.top')?.scrollIntoView({block: 'start'});
+    forceTop();
+    requestAnimationFrame(forceTop);
+    [100, 350, 800].forEach(delay => setTimeout(forceTop, delay));
+  };
+
+  const originalDetailView = detailView;
+  detailView = function(item) {
+    return originalDetailView(item).replaceAll("window.scrollTo({top:0,behavior:'smooth'})", 'scrollFuorisedeTop()');
+  };
+
+  addEventListener('resize', positionCard, {passive: true});
+  addEventListener('orientationchange', () => setTimeout(positionCard, 150), {passive: true});
 })();
-  
