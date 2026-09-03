@@ -142,12 +142,12 @@
   function installMapController(token, tries = 0) {
     if (token !== installToken || !mobile() || state.view !== 'map') return;
     const context = window.activeMapMarkers?.get('demo-map');
-    if (!context) {
+    const canvas = document.getElementById('demo-map');
+    if (!context || !canvas || context.map.getContainer() !== canvas) {
       if (tries < 40) setTimeout(() => installMapController(token, tries + 1), 100);
       return;
     }
     document.body.classList.add('fs-map-mobile');
-    clearMapUi();
     context.markers.forEach(({marker, x}) => {
       marker.off('click');
       marker.on('click', () => showCard(Number(x.id)));
@@ -169,7 +169,10 @@
     if (mobile() && view === 'map') clearMapUi();
     originalSetView(view);
     installToken += 1;
-    if (mobile() && view === 'map') setTimeout(() => installMapController(installToken), 0);
+    if (mobile() && view === 'map') {
+      const token = installToken;
+      [0, 300, 1000].forEach(delay => setTimeout(() => installMapController(token), delay));
+    }
     else document.body.classList.remove('fs-map-mobile');
   };
 
@@ -179,7 +182,7 @@
     installToken += 1;
     if (mobile() && state.view === 'map' && !state.detail && !state.compareOpen) {
       const token = installToken;
-      setTimeout(() => installMapController(token), 0);
+      [0, 300, 1000].forEach(delay => setTimeout(() => installMapController(token), delay));
     } else {
       card()?.classList.remove('visible');
       document.body.classList.remove('fs-map-mobile');
