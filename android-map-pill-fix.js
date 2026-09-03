@@ -1,4 +1,4 @@
-/* FUORISEDE Android controller — 20260903E
+/* FUORISEDE Android controller — 20260903G
  * One owner for the mobile map card, active marker and comparison dock.
  */
 (() => {
@@ -10,6 +10,7 @@
   let activeId = null;
   let installToken = 0;
   const initializedCanvases = new WeakSet();
+  const pillBoundCanvases = new WeakSet();
 
   document.head.insertAdjacentHTML('beforeend', `<style>
     .fs-mobile-map-card{display:none}
@@ -34,6 +35,11 @@
       .fs-mobile-map-actions .active{background:#f1f1ee}
       body.fs-map-mobile .leaflet-popup{display:none!important}
       body.fs-map-mobile .comparedock{z-index:2000!important}
+      .fs-mobile-map-card.has-dock{bottom:max(154px,calc(env(safe-area-inset-bottom) + 146px))!important}
+      .photoviewer{left:0!important;right:auto!important;width:100vw!important;max-width:100vw!important;overflow:hidden!important;grid-template-columns:34px minmax(0,calc(100vw - 80px)) 34px!important;padding-left:6px!important;padding-right:6px!important}
+      .photoviewer figure{width:100%!important;max-width:100%!important;overflow:hidden!important}
+      .photoviewer figure>img{width:100%!important;max-width:100%!important;height:auto!important;object-fit:contain!important}
+      .photothumbs{max-width:100%!important}
     }
     html.fs-android-test .v3nav{position:relative!important;top:auto!important}
     html.fs-android-test .fs-mobile-map-card{position:fixed;z-index:1900;left:12px;right:12px;bottom:72px;display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003}
@@ -60,6 +66,7 @@
     const node = card();
     if (!node || !node.classList.contains('visible')) return;
     const comparisonDock = dock();
+    node.classList.toggle('has-dock', Boolean(comparisonDock));
     const bottom = comparisonDock
       ? Math.max(72, Math.ceil(innerHeight - comparisonDock.getBoundingClientRect().top + 12))
       : Math.max(72, 64 + (Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom')) || 0));
@@ -73,6 +80,7 @@
       document.body.insertAdjacentHTML('beforeend', compareDock());
     }
     requestAnimationFrame(positionCard);
+    [50, 180, 400].forEach(delay => setTimeout(positionCard, delay));
   }
 
   function refreshMarkers() {
@@ -163,9 +171,26 @@
     context.markers.forEach(({marker, x}) => {
       marker.off('click');
       marker.on('click', () => showCard(Number(x.id)));
-      const popup = marker.getPopup();
-      if (popup) popup.options.autoPan = false;
+      marker.closePopup();
+      marker.unbindPopup();
     });
+    if (!pillBoundCanvases.has(canvas)) {
+      pillBoundCanvases.add(canvas);
+      let lastPointerUp = 0;
+      const activatePill = event => {
+        const pill = event.target.closest?.('.listing-price-tooltip');
+        if (!pill || !canvas.contains(pill)) return;
+        if (event.type === 'click' && performance.now() - lastPointerUp < 500) return;
+        if (event.type === 'pointerup') lastPointerUp = performance.now();
+        const entry = [...context.markers.values()].find(({marker}) => marker.getTooltip()?.getElement() === pill);
+        if (!entry) return;
+        event.preventDefault();
+        event.stopPropagation();
+        showCard(Number(entry.x.id));
+      };
+      canvas.addEventListener('pointerup', activatePill, true);
+      canvas.addEventListener('click', activatePill, true);
+    }
     document.querySelectorAll('.mapmini').forEach(node => {
       node.onclick = event => {
         event.preventDefault();
