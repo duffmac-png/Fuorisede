@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://fuorisede-evoluzione-universale.vercel.app/sitemap.xml
+# SEO crawl config refreshed 2026-09-11
