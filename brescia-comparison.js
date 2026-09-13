@@ -1,0 +1,21 @@
+// Brescia comparison pilot for a real user request. Data sourced from the two CercoAlloggio links supplied by the user.
+(function(){
+const bresciaListings=[
+{id:401,title:'Stanza singola · Europa',city:'Brescia',address:'Zona Europa, Brescia',lat:45.56278,lng:10.23472,locationStatus:'approximate_area',price:350,expenses:null,realMonthlyCost:350,realMonthlyCostStatus:'minimum_known',photos:['https://cercoalloggio-reas.s3-eu-west-1.amazonaws.com/c7ba8180-36bf-4685-b5f1-10fcf0cf5975.jpg'],accommodationType:'room',features:['Stanza singola','Balcone ad uso esclusivo','Condominio incluso','Solo donne','2° piano','Senza ascensore'],details:{utilities:'Spese escluse; condominio incluso',contract:'Da verificare nell’annuncio originale',deposit:'2 mensilità',bathroom:'Non privato',floor:'2° piano · ascensore assente',description:'Camera singola per studentessa in zona Europa, con balcone ad uso esclusivo. Letto, armadio a muro, scrivania, cassettiera e comodino.'},availability:{availableFrom:null,availableLabel:'Da verificare',status:'to_reconfirm',confirmedAt:'2026-09-13'},publication:{status:'sandbox',authorized:false,source:'CercoAlloggio · confronto richiesto dall’utente',sourceType:'portal',sourceUrl:'https://cercoalloggio.com/it/property/appartamento-brescia-europa-13783-ampie-camere-singole-vicino-a-fermata-metro-europa/1-G704'},validation:{contactProvided:false,priceDeclared:true,expensesDeclared:true,contractDeclared:false,depositDeclared:true,utilitiesDeclared:true,listingConfirmedAt:'2026-09-13'},campusReference:{campusId:'brescia-unibs-ing-info',campusName:'UNIBS · Ingegneria Informatica / Via Branze',distanceKm:0.4,minutesBike:2,travelEstimate:false},candidates:0},
+{id:402,title:'Stanza singola · Casazza',city:'Brescia',address:'Zona Casazza, Brescia',lat:45.57566,lng:10.23049,locationStatus:'approximate_area',price:420,expenses:null,realMonthlyCost:420,realMonthlyCostStatus:'minimum_known',photos:['https://img-cercoalloggio.s3.eu-south-1.amazonaws.com/img-25d07479-db78-4a8e-ac4e-d29b65349c69.jpeg'],accommodationType:'room',features:['Stanza singola','4 camere singole','2 bagni','Terrazzo','Cucina abitabile','Riscaldamento centralizzato','Solo donne','2° piano','Senza ascensore'],details:{utilities:'Da verificare nell’annuncio originale',contract:'Da 6 mesi a più di un anno · canone libero',deposit:'Da verificare',bathroom:'2 bagni nell’appartamento',floor:'2° piano · ascensore assente',description:'Ampio appartamento in zona Casazza con soggiorno e accesso al terrazzo, cucina abitabile attrezzata con retrocucina, quattro camere singole e due bagni.'},availability:{availableFrom:null,availableLabel:'Da verificare',status:'to_reconfirm',confirmedAt:'2026-09-13'},publication:{status:'sandbox',authorized:false,source:'CercoAlloggio · confronto richiesto dall’utente',sourceType:'portal',sourceUrl:'https://cercoalloggio.com/it/property/appartamento-brescia-casazza-29039-disponibili-stanze-singole-per-studentesse-e-lavoratrici-in-zona-casazza'},validation:{contactProvided:false,priceDeclared:true,expensesDeclared:false,contractDeclared:true,depositDeclared:false,utilitiesDeclared:false,listingConfirmedAt:'2026-09-13'},campusReference:{campusId:'brescia-unibs-ing-info',campusName:'UNIBS · Ingegneria Informatica / Via Branze',distanceKm:1.34,minutesBike:6,travelEstimate:false},candidates:0}
+];
+function install(){
+ if(typeof state==='undefined'||typeof render!=='function'||typeof filters!=='function')return false;
+ if(!state.items.some(x=>x.city==='Brescia')) state.items.push(...bresciaListings);
+ const oldFilters=filters;
+ filters=function(){
+   let html=oldFilters();
+   if(!html.includes('value="Brescia"')) html=html.replace('<option value="Milano"','<option value="Brescia" '+(state.city==='Brescia'?'selected':'')+'>Brescia</option><option value="Milano"');
+   if(state.city==='Brescia') html=html.replace(/<label class="note">Zona \/ polo<select[\s\S]*?<\/select><\/label>/, '<label class="note">Sede di studio<select disabled><option>UNIBS · Ingegneria Informatica / Via Branze</option></select></label>');
+   return html;
+ };
+ const params=new URLSearchParams(location.search); if(params.get('city')==='Brescia') state.city='Brescia';
+ render(); return true;
+}
+if(!install()){let n=0,t=setInterval(()=>{if(install()||++n>60)clearInterval(t)},50)}
+})();
