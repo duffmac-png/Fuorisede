@@ -11,7 +11,6 @@
    context.markers.forEach(function(item){item.marker.setStyle(markerAppearance(item.x,false));});
    entry.marker.setStyle(markerAppearance(entry.x,true));
    entry.marker.bringToFront();
-   // Make the matching mini-card unmistakable and bring it into view.
    var mini=document.getElementById('map-mini-'+key);
    var list=mini&&mini.closest('.mapminilist');
    if(list){list.querySelectorAll('.mapmini').forEach(function(el){el.classList.remove('mapmini-active');el.style.outline='';el.style.boxShadow='';el.style.transform='';});}
@@ -20,8 +19,21 @@
    if(popup){popup.options.autoPan=true;popup.options.keepInView=true;popup.options.autoPanPaddingTopLeft=L.point(24,100);popup.options.autoPanPaddingBottomRight=L.point(24,90);}
    entry.marker.openPopup();
    requestAnimationFrame(function(){var p=entry.marker.getPopup&&entry.marker.getPopup();if(p){p.update();if(typeof p._adjustPan==='function')p._adjustPan();}});
-   setTimeout(function(){entry.marker.bringToFront();},35);
+   setTimeout(function(){entry.marker.setStyle(markerAppearance(entry.x,true));entry.marker.bringToFront();},35);
   };
+  // Neutralize the old marker click handlers that also manipulate selected-listing UI.
+  // A pin tap now has one job only: activate its listing and its matching mini-card.
+  activeMapMarkers.forEach(function(context,mapId){
+   if(!context||!context.markers)return;
+   context.markers.forEach(function(entry,key){
+    var marker=entry.marker;
+    marker.off('click');
+    marker.on('click',function(e){
+     if(e&&e.originalEvent){L.DomEvent.stopPropagation(e.originalEvent);}
+     selectMapListing(mapId,key);
+    });
+   });
+  });
   return true;
  }
  if(!install()){var n=0,t=setInterval(function(){if(install()||++n>80)clearInterval(t);},50);}
