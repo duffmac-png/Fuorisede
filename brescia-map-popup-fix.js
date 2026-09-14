@@ -2,34 +2,48 @@
 (function(){
  function install(){
   if(typeof selectMapListing!=='function'||typeof activeMapMarkers==='undefined'||typeof markerAppearance!=='function'||typeof L==='undefined')return false;
+
+  function highlightMatchingListing(key){
+   // The listing cards can be rebuilt by render(), so resolve the current DOM node at click time.
+   var card=document.getElementById('listing-card-'+key);
+   if(!card){
+    card=Array.from(document.querySelectorAll('.card')).find(function(el){
+     var control=el.querySelector('input[type="checkbox"]');
+     if(control){
+      var source=(control.getAttribute('onclick')||'')+' '+(control.getAttribute('onchange')||'')+' '+(control.getAttribute('value')||'');
+      if(new RegExp('(?:^|\\D)'+key+'(?:\\D|$)').test(source))return true;
+     }
+     var details=el.querySelector('[onclick*="openDetail('+key+')"],[onclick*="openDetail(\\''+key+'\\')"]');
+     return !!details;
+    })||null;
+   }
+   document.querySelectorAll('.card.map-highlight').forEach(function(el){el.classList.remove('map-highlight');});
+   if(!card)return false;
+   card.classList.add('map-highlight');
+   // Keep the map in place: the user can see the highlighted card above without a forced page jump.
+   setTimeout(function(){if(card&&card.isConnected)card.classList.remove('map-highlight');},6000);
+   return true;
+  }
+
   selectMapListing=function(mapId,id){
    var key=Number(id);
    if(typeof state!=='undefined')state.mapActiveListingId=key;
    var context=activeMapMarkers.get(mapId),entry=context&&context.markers.get(key);
    if(!entry)return;
 
-   // Reset every map marker, then make the tapped one unmistakable.
    context.markers.forEach(function(item){item.marker.setStyle(markerAppearance(item.x,false));});
    entry.marker.setStyle(markerAppearance(entry.x,true));
    entry.marker.bringToFront();
 
-   // Highlight the real listing card above the home map.
+   // On the home map highlight the corresponding full listing card; on the dedicated map highlight its mini-card.
    if(mapId==='home-map'){
-    document.querySelectorAll('.card.map-highlight').forEach(function(el){el.classList.remove('map-highlight');});
-    var card=document.getElementById('listing-card-'+key);
-    if(card){
-     card.classList.add('map-highlight');
-     card.scrollIntoView({behavior:'smooth',block:'center'});
-     setTimeout(function(){card.classList.remove('map-highlight');},6000);
-    }
+    highlightMatchingListing(key);
    } else {
-    // In the dedicated map view there are only mini-cards.
-    highlightMapMini(key);
+    if(typeof highlightMapMini==='function')highlightMapMini(key);
     var mini=document.getElementById('map-mini-'+key);
     if(mini){mini.style.outline='4px solid #d89b00';mini.style.outlineOffset='-4px';mini.style.boxShadow='0 0 0 3px rgba(216,155,0,.28)';}
    }
 
-   // Keep the popup visibly above the tapped marker instead of low/partly hidden.
    var popup=entry.marker.getPopup&&entry.marker.getPopup();
    if(popup){
     popup.options.autoPan=true;
@@ -39,14 +53,10 @@
     popup.options.autoPanPaddingBottomRight=L.point(24,130);
    }
    entry.marker.openPopup();
-   requestAnimationFrame(function(){
-    var p=entry.marker.getPopup&&entry.marker.getPopup();
-    if(p){p.update();if(typeof p._adjustPan==='function')p._adjustPan();}
-   });
+   requestAnimationFrame(function(){var p=entry.marker.getPopup&&entry.marker.getPopup();if(p){p.update();if(typeof p._adjustPan==='function')p._adjustPan();}});
    setTimeout(function(){entry.marker.setStyle(markerAppearance(entry.x,true));entry.marker.bringToFront();},35);
   };
 
-  // Replace only pin click behavior: pin -> matching card + popup.
   function bindMarkers(){
    activeMapMarkers.forEach(function(context,mapId){
     if(!context||!context.markers)return;
@@ -58,7 +68,6 @@
    });
   }
   bindMarkers();
-  // Maps are created after render, so bind once more after their markers exist.
   setTimeout(bindMarkers,100);
   setTimeout(bindMarkers,350);
   return true;
