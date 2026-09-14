@@ -1,0 +1,2 @@
+const fs=require('fs');const path=require('path');
+module.exports=function(req,res){res.setHeader('X-Robots-Tag','noindex, nofollow, noarchive');res.setHeader('Cache-Control','no-store, max-age=0');try{const html=fs.readFileSync(path.join(process.cwd(),'confronto-brescia-1.html'),'utf8');res.setHeader('Content-Type','text/html; charset=utf-8');return res.status(200).send(html)}catch(e){console.error(e);return res.status(500).send('Confronto temporaneamente non disponibile.')}};
