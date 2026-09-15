@@ -13,6 +13,13 @@ function install(){
    style.textContent='@media(max-width:900px){#v3-root{display:flex!important;flex-direction:column!important;gap:0!important}.v3nav.designnav{order:-20!important;position:relative!important;top:auto!important;margin:0 0 14px!important;justify-content:flex-start!important;overflow-x:auto!important;overflow-y:hidden!important;z-index:6!important}.v3nav.designnav button{flex:0 0 auto!important;white-space:nowrap!important}.designhero{order:-10!important;display:block!important;padding:18px 0 20px!important;margin:0!important;max-width:100%!important}.designhero .kicker{display:block!important;margin:0 0 10px!important}.designhero h1{display:block!important;margin:0 0 15px!important}.filterpanel{order:0!important}}';
    document.head.appendChild(style);
  }
+ // Android-only safety margin for Leaflet auto-pan. Keeps a popup clear of the map's upper frame without changing navigation, cards or iOS.
+ if(window.L&&L.Popup&&/Android/i.test(navigator.userAgent)&&matchMedia('(max-width:900px)').matches&&!L.Popup.prototype.options._fuorisedeAndroidTopPadding){
+   L.Popup.prototype.options.autoPan=true;
+   L.Popup.prototype.options.autoPanPaddingTopLeft=L.point(12,56);
+   L.Popup.prototype.options.autoPanPaddingBottomRight=L.point(12,18);
+   L.Popup.prototype.options._fuorisedeAndroidTopPadding=true;
+ }
  if(!state.items.some(x=>x.city==='Brescia')) state.items.push(...bresciaListings);
  if(typeof campusCoordinates!=='undefined')campusCoordinates[bresciaCampus.id]=[bresciaCampus.lat,bresciaCampus.lng];
  const oldFilters=filters;
