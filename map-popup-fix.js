@@ -9,8 +9,20 @@
       highlightMapMini(id);
       const context=activeMapMarkers.get(mapId),entry=context?.markers.get(Number(id));
       if(!entry)return;
-      context.markers.forEach(({marker,x})=>marker.setStyle(markerAppearance(x,false)));
+      context.markers.forEach(({marker,x})=>{
+        if(marker.__fsBaseRadius==null&&typeof marker.getRadius==='function')marker.__fsBaseRadius=marker.getRadius();
+        marker.setStyle(markerAppearance(x,false));
+        if(marker.__fsBaseRadius!=null&&typeof marker.setRadius==='function')marker.setRadius(marker.__fsBaseRadius);
+        const tooltip=marker.getTooltip?.();
+        const tooltipEl=tooltip?.getElement?.();
+        if(tooltipEl)tooltipEl.classList.remove('fs-active-price');
+      });
       entry.marker.setStyle(markerAppearance(entry.x,true));
+      if(entry.marker.__fsBaseRadius!=null&&typeof entry.marker.setRadius==='function')entry.marker.setRadius(entry.marker.__fsBaseRadius+7);
+      entry.marker.setStyle({color:'#171715',weight:6,fillColor:'#171715',fillOpacity:1});
+      const activeTooltip=entry.marker.getTooltip?.();
+      const activeTooltipEl=activeTooltip?.getElement?.();
+      if(activeTooltipEl)activeTooltipEl.classList.add('fs-active-price');
       entry.marker.bringToFront();
       const popup=entry.marker.getPopup?.();
       if(popup){
