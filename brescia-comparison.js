@@ -13,6 +13,26 @@ function install(){
    style.textContent='@media(max-width:900px){#v3-root{display:flex!important;flex-direction:column!important;gap:0!important}.v3nav.designnav{order:-20!important;position:relative!important;top:auto!important;margin:0 0 14px!important;justify-content:flex-start!important;overflow-x:auto!important;overflow-y:hidden!important;z-index:6!important}.v3nav.designnav button{flex:0 0 auto!important;white-space:nowrap!important}.designhero{order:-10!important;display:block!important;padding:18px 0 20px!important;margin:0!important;max-width:100%!important}.designhero .kicker{display:block!important;margin:0 0 10px!important}.designhero h1{display:block!important;margin:0 0 15px!important}.filterpanel{order:0!important}}';
    document.head.appendChild(style);
  }
+ // Brescia: auto-pan only when the popup opens. Do not keep it locked in view afterwards,
+ // so the user can immediately drag the map freely while the popup remains attached to its pin.
+ const baseSelectMapListing=selectMapListing;
+ selectMapListing=function(mapId,id,pan=true){
+   if(state.city!=='Brescia')return baseSelectMapListing(mapId,id,pan);
+   highlightMapMini(id);
+   const context=activeMapMarkers.get(mapId),entry=context?.markers.get(Number(id));
+   if(!entry)return;
+   context.markers.forEach(({marker,x})=>marker.setStyle(markerAppearance(x,false)));
+   entry.marker.setStyle(markerAppearance(entry.x,true));
+   entry.marker.bringToFront();
+   const popup=entry.marker.getPopup?.();
+   if(popup){
+     popup.options.autoPan=true;
+     popup.options.keepInView=false;
+     popup.options.autoPanPaddingTopLeft=L.point(24,56);
+     popup.options.autoPanPaddingBottomRight=L.point(24,24);
+   }
+   entry.marker.openPopup();
+ };
  if(!state.items.some(x=>x.city==='Brescia')) state.items.push(...bresciaListings);
  if(typeof campusCoordinates!=='undefined')campusCoordinates[bresciaCampus.id]=[bresciaCampus.lat,bresciaCampus.lng];
  const oldFilters=filters;
