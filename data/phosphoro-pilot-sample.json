@@ -1,6 +1,6 @@
 [
   {
-    "id": "phosphoro-70",
+    "id": 900070,
     "externalId": "70",
     "title": "Singola a Due Passi dal Centro e dalle Facoltà",
     "city": "Trento",
@@ -28,38 +28,11 @@
       "floor": "1° piano · ascensore",
       "description": "Stanza singola nella residenza studentesca PHO.ROOM. Dati importati dal feed Phosphoro/PH4YOU per il pilot FUORISEDE."
     },
-    "availability": {
-      "availableFrom": "2020-01-01",
-      "availableLabel": "Disponibilità da verificare con Phosphoro",
-      "status": "declared",
-      "confirmedAt": null
-    },
-    "publication": {
-      "status": "partner_pilot",
-      "authorized": true,
-      "source": "Phosphoro / PH4YOU",
-      "sourceType": "partner",
-      "sourceUrl": null
-    },
-    "validation": {
-      "priceDeclared": true,
-      "expensesDeclared": true,
-      "contractDeclared": true,
-      "utilitiesDeclared": true,
-      "listingConfirmedAt": "2026-09-16"
-    },
-    "partner": {
-      "listingId": "70",
-      "propertyId": "263",
-      "roomId": "729",
-      "code": "TN_GAR15-2_S3_1",
-      "enabled": true,
-      "minimumStayMonths": 4,
-      "depositPrice": 1245,
-      "roomSquareMetres": 8.81,
-      "propertySquareMetres": 43.13,
-      "energyClass": "D"
-    },
+    "availability": {"availableFrom":"2020-01-01","availableLabel":"Disponibilità da verificare con Phosphoro","status":"declared","confirmedAt":null},
+    "publication": {"status":"partner_pilot","authorized":true,"source":"Phosphoro / PH4YOU","sourceType":"partner","sourceUrl":null},
+    "validation": {"priceDeclared":true,"expensesDeclared":true,"contractDeclared":true,"utilitiesDeclared":true,"listingConfirmedAt":"2026-09-16"},
+    "campusReference": {"campusId":null,"campusName":"Università di Trento","distanceKm":null,"minutesBike":null,"travelEstimate":true},
+    "partner": {"listingId":"70","propertyId":"263","roomId":"729","code":"TN_GAR15-2_S3_1","enabled":true,"minimumStayMonths":4,"depositPrice":1245,"roomSquareMetres":8.81,"propertySquareMetres":43.13,"energyClass":"D"},
     "candidates": 0
   }
 ]
