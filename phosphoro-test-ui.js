@@ -12,8 +12,12 @@
       html=html.replace('class="ddessentials"','class="ddessentials ddessentials-two"');
     }
 
-    // Keep the standard right-hand action card untouched. The source arrow belongs
-    // only to the "Costi e disponibilità" row, immediately after the availability value.
+    // In the pilot the availability belongs in the dedicated costs section, not in the action sidebar.
+    html=html.replace(/<div class="ddavailable">[\s\S]*?<\/div>/,'');
+    html=html.replace(/<div class="ddinterest">La richiesta sarà inviata a FUORISEDE e riferita a questa scheda\.<\/div>/,'');
+
+    // The source arrow belongs only to the "Costi e disponibilità" row,
+    // immediately after the availability value.
     const official=sourceUrl(x);
     if(official){
       const value=availabilityText(x);
