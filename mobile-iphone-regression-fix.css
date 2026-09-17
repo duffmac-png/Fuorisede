@@ -1,0 +1,10 @@
+/* iPhone regression fix 2026-09-17. Keep mobile UI inside the visual viewport. */
+@media (max-width:700px){
+ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+ body{overflow-x:hidden}
+ input,select,textarea{font-size:16px!important;max-width:100%}
+ .shell,.wrap,#v3-root{width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important}
+ .comparedock{left:12px!important;right:12px!important;transform:none!important;width:auto!important;bottom:calc(18px + env(safe-area-inset-bottom))!important;max-width:none!important}
+ .leaflet-popup-content-wrapper,.leaflet-popup-tip-container{max-width:calc(100vw - 48px)!important}
+ .leaflet-popup-content{max-width:calc(100vw - 76px)!important;margin:10px 12px!important;overflow-wrap:anywhere}
+}
