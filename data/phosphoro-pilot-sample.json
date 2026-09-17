@@ -1,0 +1,65 @@
+[
+  {
+    "id": "phosphoro-70",
+    "externalId": "70",
+    "title": "Singola a Due Passi dal Centro e dalle Facoltà",
+    "city": "Trento",
+    "address": "Via Tommaso Gar 15, Trento",
+    "lat": 46.0685455,
+    "lng": 11.1169836,
+    "locationStatus": "partner_feed",
+    "accommodationType": "room",
+    "price": 415,
+    "expenses": 155,
+    "realMonthlyCost": 570,
+    "realMonthlyCostStatus": "complete",
+    "photos": [
+      "https://phosphorosrl.imgix.net/upload/form/2/stanze/729/foto_stanza/10_TN_GAR15-3_S1_1-2.jpg?w=1800&h=1200",
+      "https://phosphorosrl.imgix.net/upload/form/2/stanze/729/foto_stanza/20_TN_GAR15-3_S1_3.jpg?w=1800&h=1200",
+      "https://phosphorosrl.imgix.net/upload/form/2/stanze/729/foto_stanza/30_TN_GAR15-3_S1_12.jpg?w=1800&h=1200",
+      "https://phosphorosrl.imgix.net/upload/form/2/stanze/729/foto_stanza/40_TN_GAR15-3_S1_5.jpg?w=1800&h=1200"
+    ],
+    "features": ["Stanza singola", "Arredato", "Wi-Fi", "Ascensore", "TV", "Frigorifero", "Freezer"],
+    "details": {
+      "utilities": "Spese mensili indicate dal partner: €155",
+      "contract": "Contratto transitorio · permanenza minima 4 mesi",
+      "deposit": "€1.245",
+      "bathroom": "Bagno condiviso",
+      "floor": "1° piano · ascensore",
+      "description": "Stanza singola nella residenza studentesca PHO.ROOM. Dati importati dal feed Phosphoro/PH4YOU per il pilot FUORISEDE."
+    },
+    "availability": {
+      "availableFrom": "2020-01-01",
+      "availableLabel": "Disponibilità da verificare con Phosphoro",
+      "status": "declared",
+      "confirmedAt": null
+    },
+    "publication": {
+      "status": "partner_pilot",
+      "authorized": true,
+      "source": "Phosphoro / PH4YOU",
+      "sourceType": "partner",
+      "sourceUrl": null
+    },
+    "validation": {
+      "priceDeclared": true,
+      "expensesDeclared": true,
+      "contractDeclared": true,
+      "utilitiesDeclared": true,
+      "listingConfirmedAt": "2026-09-16"
+    },
+    "partner": {
+      "listingId": "70",
+      "propertyId": "263",
+      "roomId": "729",
+      "code": "TN_GAR15-2_S3_1",
+      "enabled": true,
+      "minimumStayMonths": 4,
+      "depositPrice": 1245,
+      "roomSquareMetres": 8.81,
+      "propertySquareMetres": 43.13,
+      "energyClass": "D"
+    },
+    "candidates": 0
+  }
+]
