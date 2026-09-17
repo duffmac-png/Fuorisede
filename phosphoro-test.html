@@ -17,6 +17,7 @@
 <script src="/app.js?v=phosphoro-standard-1"></script>
 <script src="/mobile-nav-fix.js?v=20260916-1"></script>
 <script src="/map-popup-fix.js?v=20260916-1"></script>
+<script src="/phosphoro-test-ui.js?v=20260917-1"></script>
 <script>
 (function(){function lockTest(){if(typeof state==='undefined'||typeof render!=='function')return false;state.city='Trento';state.items=state.items.filter(function(x){return x.city==='Trento'&&x.publication&&x.publication.authorized===true});render();return true}if(!lockTest()){var n=0,t=setInterval(function(){if(lockTest()||++n>60)clearInterval(t)},50)}})();
 </script>
