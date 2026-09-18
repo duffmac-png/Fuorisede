@@ -8,6 +8,7 @@
 
   var STORAGE_KEY = 'fuorisede_analytics_v1';
   var SESSION_KEY = 'fuorisede_session_v1';
+  var dedupe = {};
   var allowed = {
     qualified_visit: true,
     listing_open: true,
@@ -41,16 +42,21 @@
 
   function track(name, data) {
     if (!allowed[name]) return false;
+    data = data || {};
+    var key = name + '|' + (data.listingId || '') + '|' + (data.count || '');
+    var now = Date.now();
+    if (dedupe[key] && now - dedupe[key] < 1500) return false;
+    dedupe[key] = now;
     var events = read();
     events.push({
       event: name,
       ts: new Date().toISOString(),
       session: sessionId(),
       path: location.pathname,
-      city: data && data.city || null,
-      listingId: data && data.listingId || null,
-      count: data && data.count || null,
-      source: data && data.source || null
+      city: data.city || null,
+      listingId: data.listingId || null,
+      count: data.count || null,
+      source: data.source || null
     });
     write(events);
     return true;
