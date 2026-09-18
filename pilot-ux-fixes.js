@@ -15,3 +15,9 @@
   }
   wire(); new MutationObserver(wire).observe(document.body,{childList:true,subtree:true});
 })();
+
+// Deterministic internal return: comparison always goes back to Alloggi.
+(function(){
+  closeComparison=function(){state.compareOpen=false;state.detail=null;state.view='list';render();window.scrollTo({top:0,behavior:'smooth'})};
+  returnToChoices=function(){state.compareOpen=false;state.detail=null;state.view='list';render();window.scrollTo({top:0,behavior:'smooth'})};
+})();
