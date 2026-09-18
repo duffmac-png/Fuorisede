@@ -21,3 +21,39 @@
   closeComparison=function(){state.compareOpen=false;state.detail=null;state.view='list';render();window.scrollTo({top:0,behavior:'smooth'})};
   returnToChoices=function(){state.compareOpen=false;state.detail=null;state.view='list';render();window.scrollTo({top:0,behavior:'smooth'})};
 })();
+
+
+// Ferrara public mother: mobile stabilization after 18/09 QA.
+(function(){
+  const s=document.createElement('style');s.id='fs-mobile-stabilize-20260918';s.textContent=`
+.integrationprompt,.microaction{display:none!important}
+@media(max-width:700px){
+  #v3-root{width:100%!important;max-width:100%!important;margin:0 auto!important}
+  #v3-root>.detail,.detail{grid-column:1/-1!important;width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;transform:none!important}
+  .detailbody{width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important}
+  .fs-alert-overlay{padding:12px!important;align-items:center!important}
+  .fs-alert-card{width:calc(100vw - 24px)!important;max-width:430px!important;padding:17px!important;border-radius:18px!important;max-height:calc(100dvh - 24px)!important}
+  .fs-alert-card h2{font-size:20px!important;line-height:1.15!important;margin:4px 30px 7px 0!important}
+  .fs-alert-copy{font-size:12px!important;line-height:1.4!important}
+  .fs-alert-card label{margin:9px 0!important;font-size:11px!important}
+  .fs-alert-card input{font-size:16px!important;padding:9px 10px!important}
+  .fs-alert-note,.fs-alert-privacy{font-size:10px!important;line-height:1.35!important}
+  .fs-alert-submit,.fs-alert-success button{padding:10px 13px!important;font-size:12px!important}
+  .leaflet-popup-content-wrapper{border-radius:14px!important;max-width:240px!important}
+  .leaflet-popup-content{width:210px!important;max-width:210px!important;margin:10px 11px!important;font-size:11px!important;line-height:1.3!important}
+  .leaflet-popup-content .pinopen,.leaflet-popup-content .pincompare{padding:6px 8px!important;font-size:10px!important;margin-top:6px!important}
+}`;document.head.appendChild(s);
+  function ferraraOnly(){
+    if(typeof state!=='undefined'&&state.city==='Milano'){state.city='Ferrara';state.campus='';state.zone=''}
+    document.querySelectorAll('select').forEach(sel=>{
+      const label=sel.closest('label')?.textContent||'';
+      if(/Città/i.test(label)){
+        [...sel.options].forEach(o=>{if(o.value==='Milano')o.remove()});
+        const empty=[...sel.options].find(o=>o.value==='');
+        if(empty)empty.textContent='Ferrara';
+        if(!sel.value)sel.value='Ferrara';
+      }
+    });
+  }
+  ferraraOnly();new MutationObserver(ferraraOnly).observe(document.body,{childList:true,subtree:true});
+})();
