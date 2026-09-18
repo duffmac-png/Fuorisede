@@ -600,9 +600,8 @@ refreshMapComparison=function(activeId){
         let html=popup?.getContent?.()||'';
         if(typeof html!=='string')html='';
         panel.innerHTML='<button class="fs-map-card-close" aria-label="Chiudi">×</button><div class="fs-map-card-body">'+html+'</div>';
-        panel.classList.add('show');
-        panel.querySelector('.fs-map-card-close').onclick=()=>panel.classList.remove('show');
-        marker.closePopup?.();
+        panel.classList.remove('show');
+        marker.openPopup?.();
       };
       c.markers.forEach(entry=>{
         const marker=entry.marker;
