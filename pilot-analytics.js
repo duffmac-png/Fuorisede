@@ -14,7 +14,8 @@
     listing_open: true,
     compare_start: true,
     favorite_add: true,
-    listing_contact: true
+    listing_contact: true,
+    partner_outbound: true
   };
 
   function sessionId() {
@@ -56,7 +57,9 @@
       city: data.city || null,
       listingId: data.listingId || null,
       count: data.count || null,
-      source: data.source || null
+      source: data.source || null,
+      partner: data.partner || null,
+      campaign: data.campaign || null
     });
     write(events);
     return true;
@@ -64,7 +67,7 @@
 
   function summary() {
     var events = read();
-    var out = { qualified_visit:0, listing_open:0, compare_start:0, favorite_add:0, listing_contact:0 };
+    var out = { qualified_visit:0, listing_open:0, compare_start:0, favorite_add:0, listing_contact:0, partner_outbound:0 };
     var sessions = {};
     events.forEach(function (item) {
       if (allowed[item.event]) out[item.event] = (out[item.event] || 0) + 1;
@@ -75,7 +78,8 @@
       visit_to_listing: out.qualified_visit ? +(100*out.listing_open/out.qualified_visit).toFixed(1) : 0,
       visit_to_compare: out.qualified_visit ? +(100*out.compare_start/out.qualified_visit).toFixed(1) : 0,
       visit_to_favorite: out.qualified_visit ? +(100*out.favorite_add/out.qualified_visit).toFixed(1) : 0,
-      visit_to_contact: out.qualified_visit ? +(100*out.listing_contact/out.qualified_visit).toFixed(1) : 0
+      visit_to_contact: out.qualified_visit ? +(100*out.listing_contact/out.qualified_visit).toFixed(1) : 0,
+      visit_to_partner: out.qualified_visit ? +(100*out.partner_outbound/out.qualified_visit).toFixed(1) : 0
     };
     return out;
   }
