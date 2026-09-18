@@ -1,10 +1,21 @@
-/* iPhone regression fix 2026-09-17. Keep mobile UI inside the visual viewport. */
+/* iPhone regression fix 2026-09-18. Keep mobile UI inside the visual viewport. */
 @media (max-width:700px){
  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
  body{overflow-x:hidden}
  input,select,textarea{font-size:16px!important;max-width:100%}
- .shell,.wrap,#v3-root{width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important}
- .comparedock{left:12px!important;right:12px!important;transform:none!important;width:auto!important;bottom:calc(18px + env(safe-area-inset-bottom))!important;max-width:none!important}
- .leaflet-popup-content-wrapper,.leaflet-popup-tip-container{max-width:calc(100vw - 48px)!important}
- .leaflet-popup-content{max-width:calc(100vw - 76px)!important;margin:10px 12px!important;overflow-wrap:anywhere}
+ .shell,.wrap,#v3-root,.compareview,.compareview.designcompare,.designtable{width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;min-width:0!important}
+ .wrap{padding-left:12px!important;padding-right:12px!important}
+ .comparedock,.comparedock.designdock{left:12px!important;right:12px!important;transform:none!important;width:auto!important;max-width:none!important;bottom:max(82px,calc(58px + env(safe-area-inset-bottom)))!important}
+ .leaflet-popup-content-wrapper{max-width:calc(100vw - 42px)!important;min-width:0!important}
+ .leaflet-popup-content{width:auto!important;max-width:calc(100vw - 70px)!important;margin:10px 12px!important;overflow-wrap:anywhere}
+ .leaflet-popup-content .pinactions{display:grid!important;grid-template-columns:1fr!important;gap:6px!important}
+ .leaflet-popup-content .pinactions button{width:100%!important;min-width:0!important;white-space:normal!important}
+ .shareoverlay{padding:12px!important;align-items:center!important}
+ .sharepanel{width:min(360px,calc(100vw - 24px))!important;max-height:calc(100dvh - 24px)!important;overflow:auto!important;padding:17px!important;border-radius:17px!important}
+ .sharepanel h2{font-size:20px!important}
+ .shareoptions{grid-template-columns:1fr 1fr!important}
+ .designcomparefoot{width:100%!important}
+ .designcomparefoot .sharebottom,.sharebottom{width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+ .sharecompare,.printcompare{width:100%!important;min-height:42px!important;padding:9px 8px!important;font-size:11px!important}
+ .dddetailnavactions{min-width:0!important;flex-wrap:wrap!important;justify-content:flex-end!important}
 }
