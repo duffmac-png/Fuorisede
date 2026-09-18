@@ -23,3 +23,42 @@
 })();
 
 
+
+
+// Preserve map context when a listing is opened from a map.
+// The detail back control returns to the map, and the same popup is restored.
+(function preserveMapDetailContext(){
+  let source=null;
+  const baseSelect=selectMapListing;
+  selectMapListing=function(mapId,id,...rest){
+    source={mapId:String(mapId),id:Number(id)};
+    return baseSelect.call(this,mapId,id,...rest);
+  };
+  const baseDetail=detailView;
+  detailView=function(x){
+    let html=baseDetail(x);
+    if(source&&state.detail===Number(x.id)){
+      html=html.replace(/<button class="back" onclick="closeDetail\(\)">← Tutti gli alloggi<\/button>/,
+        '<button class="back" onclick="returnToSourceMap()">← Torna alla mappa</button>');
+    }
+    return html;
+  };
+  window.returnToSourceMap=function(){
+    if(!source){state.detail=null;state.view='map';render();return;}
+    const wanted={...source};
+    state.detail=null;state.compareOpen=false;state.view=wanted.mapId==='home-map'?'list':'map';
+    render();
+    const targetMapId=state.view==='map'?'demo-map':'home-map';
+    let tries=0;
+    const restore=()=>{
+      const entry=activeMapMarkers.get(targetMapId)?.markers?.get(Number(wanted.id));
+      if(!entry&&tries++<30){setTimeout(restore,100);return;}
+      if(entry){
+        selectMapListing(targetMapId,wanted.id);
+        requestAnimationFrame(()=>entry.marker.openPopup());
+      }
+    };
+    setTimeout(restore,80);
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+})();
