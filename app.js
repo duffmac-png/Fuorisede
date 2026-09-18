@@ -568,3 +568,91 @@ refreshMapComparison=function(activeId){
   refreshMapComparisonWithSeparatedLabels(activeId);
   setTimeout(()=>arrangeMapPriceLabels('demo-map'),40);
 };
+
+
+/* Persistenza sessione mobile: preferiti, confronto e filtri sopravvivono alla
+   navigazione tra Alert, scheda, mappa e home, senza salvare dati sensibili. */
+const FS_SESSION_KEY='fuorisede-pilot-ui-v1';
+function persistPilotUiState(){
+  try{
+    localStorage.setItem(FS_SESSION_KEY,JSON.stringify({
+      favs:[...state.favs],
+      selected:[...state.selected],
+      listingAlerts:[...(state.listingAlerts||[])],
+      neededFrom:state.neededFrom||'',
+      maxPrice:state.maxPrice||'',
+      maxDistance:state.maxDistance||'',
+      zone:state.zone||'',
+      campus:state.campus||'',
+      city:state.city||'',
+      source:state.source||'',
+      quick:[...state.quick],
+      sort:state.sort||'date'
+    }));
+  }catch(e){}
+}
+function restorePilotUiState(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(FS_SESSION_KEY)||'null');
+    if(!saved)return;
+    state.favs=new Set((saved.favs||[]).map(Number).filter(Number.isFinite));
+    state.selected=new Set((saved.selected||[]).map(Number).filter(Number.isFinite).slice(0,3));
+    state.listingAlerts=new Set((saved.listingAlerts||[]).map(Number).filter(Number.isFinite));
+    ['neededFrom','maxPrice','maxDistance','zone','campus','city','source','sort'].forEach(k=>{if(typeof saved[k]==='string')state[k]=saved[k]});
+    state.quick=new Set(Array.isArray(saved.quick)?saved.quick:[]);
+  }catch(e){}
+}
+restorePilotUiState();
+const renderWithPilotPersistence=render;
+render=function(){persistPilotUiState();renderWithPilotPersistence()};
+
+/* Il logo e i ritorni alla home cambiano vista, ma non cancellano la ricerca. */
+goHome=function(){
+  state.detail=null;
+  state.detailOpenedFromComparison=false;
+  state.compareOpen=false;
+  state.view='list';
+  persistPilotUiState();
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+/* Alert operativo nella stessa shell: niente pagina separata e quindi nessuna
+   perdita di logo, filtri, preferiti o selezione confronto. */
+function pilotAlertView(){
+  const activeFilters=[
+    state.city&&['Città',state.city],
+    (state.campus||state.zone)&&['Polo / sede',selectedStudySite()?.name||state.campus||state.zone],
+    state.neededFrom&&['Disponibilità',state.neededFrom],
+    state.maxPrice&&['Budget massimo',euro(Number(state.maxPrice))],
+    state.maxDistance&&['Distanza massima',state.maxDistance+' km']
+  ].filter(Boolean);
+  const watched=state.listingAlerts?.size||0;
+  return `<section class="pilotalert"><div class="pilotalertkicker">Alert</div><h1>Non cercare<br>ogni giorno.</h1><p>Conserva la ricerca e gli alloggi che vuoi seguire. In questa versione l’avviso è dimostrativo, ma le tue scelte restano memorizzate su questo dispositivo.</p><div class="pilotalertcard"><h2>La tua ricerca</h2>${activeFilters.length?activeFilters.map(([k,v])=>`<div class="pilotalertrow"><span>${k}</span><b>${v}</b></div>`).join(''):'<div class="pilotalertempty">Non hai ancora impostato filtri. Puoi comunque seguire singole schede.</div>'}<div class="pilotalertsummary"><span>Preferiti <b>${state.favs.size}</b></span><span>Schede seguite <b>${watched}</b></span><span>Nel confronto <b>${state.selected.size}</b></span></div><div class="pilotalertactions"><button class="detailsbtn" onclick="setView('list')">Vedi gli alloggi</button>${state.selected.size>=2?'<button class="ddsecondary" onclick="openComparison()">Apri confronto</button>':''}</div></div></section>`;
+}
+const renderWithIntegratedAlert=render;
+render=function(){
+  if(state.view==='alerts'&&!state.detail&&!state.compareOpen){
+    persistPilotUiState();
+    const root=document.getElementById('v3-root');
+    root.innerHTML=nav()+pilotAlertView();
+    document.body.classList.remove('map-mode');
+    return;
+  }
+  renderWithIntegratedAlert();
+};
+document.head.insertAdjacentHTML('beforeend',`<style>
+.pilotalert{grid-column:1/-1;max-width:900px;width:100%;margin:0 auto;padding:54px 0 70px}
+.pilotalertkicker{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--brick);font-weight:800}
+.pilotalert h1{font-size:clamp(44px,7vw,72px);line-height:.98;letter-spacing:-.06em;margin:10px 0 17px}
+.pilotalert>p{max-width:610px;color:var(--design-muted);font-size:14px;line-height:1.6}
+.pilotalertcard{margin-top:30px;padding:24px;border:1px solid var(--design-line);border-radius:22px;background:#fff;box-shadow:0 14px 40px #32281e0b}
+.pilotalertcard h2{margin:0 0 12px;font-size:20px}
+.pilotalertrow{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--design-line);font-size:12px}
+.pilotalertrow span{color:var(--design-muted)}.pilotalertrow b{text-align:right}
+.pilotalertempty{padding:13px 0;color:var(--design-muted);font-size:11px}
+.pilotalertsummary{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.pilotalertsummary span{padding:7px 10px;border-radius:999px;background:#f1f1ee;font-size:9px}
+.pilotalertactions{display:flex;gap:8px;margin-top:20px}.pilotalertactions button{min-height:42px}
+@media(max-width:700px){.pilotalert{padding:30px 0 50px}.pilotalert h1{font-size:42px}.pilotalertcard{padding:18px;border-radius:18px}.pilotalertrow{align-items:flex-start}.pilotalertactions{display:grid;grid-template-columns:1fr}.pilotalertactions button{width:100%}}
+</style>`);
