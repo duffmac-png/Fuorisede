@@ -51,9 +51,9 @@
         [...sel.options].forEach(o=>{if(o.value==='Milano')o.remove()});
         const empty=[...sel.options].find(o=>o.value==='');
         if(empty)empty.textContent='Ferrara';
-        if(!sel.value)sel.value='Ferrara';
+        if(!sel.value){sel.value='Ferrara';if(typeof state!=='undefined')state.city='Ferrara';}
       }
     });
   }
-  ferraraOnly();new MutationObserver(ferraraOnly).observe(document.body,{childList:true,subtree:true});
+  let fixing=false;function safeFerraraOnly(){if(fixing)return;fixing=true;try{ferraraOnly()}finally{fixing=false}}safeFerraraOnly();new MutationObserver(safeFerraraOnly).observe(document.body,{childList:true,subtree:true});
 })();
