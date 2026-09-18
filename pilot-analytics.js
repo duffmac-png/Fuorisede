@@ -63,10 +63,21 @@
   }
 
   function summary() {
-    return read().reduce(function (out, item) {
-      out[item.event] = (out[item.event] || 0) + 1;
-      return out;
-    }, {});
+    var events = read();
+    var out = { qualified_visit:0, listing_open:0, compare_start:0, favorite_add:0, listing_contact:0 };
+    var sessions = {};
+    events.forEach(function (item) {
+      if (allowed[item.event]) out[item.event] = (out[item.event] || 0) + 1;
+      if (item.session) sessions[item.session] = true;
+    });
+    out.sessions = Object.keys(sessions).length;
+    out.funnel = {
+      visit_to_listing: out.qualified_visit ? +(100*out.listing_open/out.qualified_visit).toFixed(1) : 0,
+      visit_to_compare: out.qualified_visit ? +(100*out.compare_start/out.qualified_visit).toFixed(1) : 0,
+      visit_to_favorite: out.qualified_visit ? +(100*out.favorite_add/out.qualified_visit).toFixed(1) : 0,
+      visit_to_contact: out.qualified_visit ? +(100*out.listing_contact/out.qualified_visit).toFixed(1) : 0
+    };
+    return out;
   }
 
   w.FuorisedeAnalytics = {
