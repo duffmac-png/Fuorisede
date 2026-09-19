@@ -568,3 +568,40 @@ refreshMapComparison=function(activeId){
   refreshMapComparisonWithSeparatedLabels(activeId);
   setTimeout(()=>arrangeMapPriceLabels('demo-map'),40);
 };
+
+
+/* Mobile compare first-tap + comparison dock visibility fix 2026-09-19 */
+let mobileCompareGuard={id:null,at:0};
+const mapCompareActionBeforeFirstTapFix=mapCompareAction;
+document.addEventListener('pointerup',event=>{
+  if(event.pointerType==='mouse')return;
+  const button=event.target?.closest?.('.leaflet-popup .pincompare');
+  if(!button)return;
+  const match=String(button.getAttribute('onclick')||'').match(/mapCompareAction\((\d+)\)/);
+  if(!match)return;
+  const id=Number(match[1]);
+  event.preventDefault();
+  event.stopPropagation();
+  mobileCompareGuard={id,at:Date.now()};
+  mapCompareActionBeforeFirstTapFix(id);
+},true);
+mapCompareAction=function(id){
+  const key=Number(id);
+  if(mobileCompareGuard.id===key&&Date.now()-mobileCompareGuard.at<500){
+    mobileCompareGuard={id:null,at:0};
+    return;
+  }
+  return mapCompareActionBeforeFirstTapFix(key);
+};
+toggleCompareFromMap=function(id){mapCompareAction(id)};
+
+const compareDockBeforeComparisonVisibilityFix=compareDock;
+compareDock=function(){
+  if(state.compareOpen)return '';
+  return compareDockBeforeComparisonVisibilityFix();
+};
+const openComparisonBeforeDockVisibilityFix=openComparison;
+openComparison=function(){
+  openComparisonBeforeDockVisibilityFix();
+  document.querySelectorAll('.comparedock').forEach(node=>node.remove());
+};
