@@ -49,7 +49,7 @@
     "campusReference": {
       "campusId": "mammut",
       "campusName": "Mammut · Polo Chimico Biomedico",
-      "distanceKm": 4.0,
+      "distanceKm": 4,
       "minutesBike": 16,
       "travelEstimate": true
     },
@@ -106,7 +106,7 @@
     "campusReference": {
       "campusId": "mammut",
       "campusName": "Mammut · Polo Chimico Biomedico",
-      "distanceKm": 2.0,
+      "distanceKm": 2,
       "minutesBike": 8,
       "travelEstimate": true
     },
@@ -225,6 +225,62 @@
       "travelEstimate": true
     },
     "candidates": 0
+  },
+  {
+    "id": 305,
+    "title": "Stanza doppia · Via Capuana 13",
+    "city": "Ferrara",
+    "address": "Via Capuana 13, Ferrara",
+    "lat": 44.835,
+    "lng": 11.647,
+    "locationStatus": "approximate_area",
+    "price": 300,
+    "expenses": 0,
+    "realMonthlyCost": 300,
+    "realMonthlyCostStatus": "complete",
+    "photos": [],
+    "features": [
+      "Stanza doppia 22 m²",
+      "Balcone 10 m²",
+      "Fibra internet",
+      "Climatizzatore / pompa di calore",
+      "Riscaldamento autonomo",
+      "Bagno finestrato"
+    ],
+    "details": {
+      "utilities": "Tutto incluso: luce, gas, acqua, fibra internet, spese condominiali, tassa igiene ambientale e pulizia annuale caldaia",
+      "contract": "Contratto studenti 12 mesi; disdetta con 3 mesi di preavviso",
+      "deposit": "Da verificare",
+      "bathroom": "1 bagno finestrato con doccia, 7,5 m²",
+      "floor": "3° piano senza ascensore",
+      "description": "Grande stanza doppia con due posti letto. In casa sono già affittate ad altre 3 studentesse due camere matrimoniali e una singola. Preferenza per due amiche/amici o conoscenti; la proprietaria prevede un unico contratto studenti per la stanza."
+    },
+    "availability": {
+      "availableFrom": null,
+      "availableLabel": "Disponibile ora",
+      "status": "confirmed",
+      "confirmedAt": "2026-09-21"
+    },
+    "publication": {
+      "status": "authorized",
+      "authorized": true,
+      "source": "Offerente diretto · Rita Benini",
+      "sourceUrl": null
+    },
+    "validation": {
+      "priceDeclared": true,
+      "expensesDeclared": true,
+      "contractDeclared": true,
+      "utilitiesDeclared": true,
+      "listingConfirmedAt": "2026-09-21"
+    },
+    "campusReference": {
+      "campusId": "mammut",
+      "campusName": "Mammut · Polo Chimico Biomedico",
+      "distanceKm": null,
+      "minutesBike": null,
+      "travelEstimate": true
+    },
+    "candidates": 0
   }
 ]
-
