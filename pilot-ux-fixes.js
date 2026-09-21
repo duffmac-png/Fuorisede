@@ -62,3 +62,60 @@
     window.scrollTo({top:0,behavior:'smooth'});
   };
 })();
+
+
+/* Unified internal navigation + desktop sharing/popup stabilization 2026-09-21 */
+(function installInternalHistory(){
+  if(window.__fsInternalHistoryInstalled)return; window.__fsInternalHistoryInstalled=true;
+  const back=[],forward=[]; let restoring=false;
+  const pageLabel=s=>s.detail?'Scheda':s.compareOpen?'Confronto':({list:'Alloggi',map:'Mappa',favs:'Preferiti',alerts:'Alert'}[s.view]||'FUORISEDE');
+  function snap(){
+    const s={view:state.view,detail:state.detail,compareOpen:state.compareOpen,label:''};
+    const ctx=activeMapMarkers?.get?.('demo-map');
+    if(state.view==='map'&&ctx?.map){const c=ctx.map.getCenter();s.map={lat:c.lat,lng:c.lng,zoom:ctx.map.getZoom()}}
+    s.label=pageLabel(s); return s;
+  }
+  function same(a,b){return a&&b&&a.view===b.view&&a.detail===b.detail&&a.compareOpen===b.compareOpen}
+  function remember(){if(restoring)return;const s=snap(),last=back[back.length-1];if(!same(last,s))back.push(s);if(back.length>30)back.shift();forward.length=0}
+  function restore(s){
+    if(!s)return; restoring=true; state.view=s.view;state.detail=s.detail;state.compareOpen=s.compareOpen;render();restoring=false;
+    if(s.map&&s.view==='map'){let n=0;const go=()=>{const ctx=activeMapMarkers.get('demo-map');if(!ctx&&n++<30)return setTimeout(go,80);ctx?.map?.setView([s.map.lat,s.map.lng],s.map.zoom,{animate:false})};setTimeout(go,60)}
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  window.fsNavBack=function(){if(!back.length)return;forward.push(snap());restore(back.pop())};
+  window.fsNavForward=function(){if(!forward.length)return;back.push(snap());restore(forward.pop())};
+  const wrap=name=>{const old=window[name]||eval(name);if(typeof old!=='function')return;window[name]=function(...args){remember();return old.apply(this,args)}};
+  ['setView','openComparison','openDetail','showListingOnMap'].forEach(wrap);
+  function bar(){
+    const nav=document.querySelector('#v3-root .v3nav');if(!nav)return;
+    document.querySelectorAll('.fs-historybar').forEach(x=>x.remove());
+    const el=document.createElement('div');el.className='fs-historybar';
+    const prev=back[back.length-1],next=forward[forward.length-1];
+    el.innerHTML=`<button ${prev?'':'disabled'} onclick="fsNavBack()">${prev?'← '+prev.label:'←'}</button><button ${next?'':'disabled'} onclick="fsNavForward()">${next?next.label+' →':'→'}</button>`;
+    nav.insertAdjacentElement('afterend',el);
+    document.querySelectorAll('.detail>.back,.dddetailnav,.comparehead>.back').forEach(x=>x.style.display='none');
+  }
+  document.head.insertAdjacentHTML('beforeend',`<style>.fs-historybar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;min-height:28px;margin:-7px 0 7px}.fs-historybar button{border:0;background:transparent;color:var(--design-muted,#77736c);font-size:11px;cursor:pointer;padding:4px 0}.fs-historybar button:disabled{visibility:hidden}.fs-historybar button:not(:disabled):hover{text-decoration:underline}</style>`);
+  bar();new MutationObserver(bar).observe(document.getElementById('v3-root'),{childList:true,subtree:true});
+})();
+
+/* Make Email sharing explicit on desktop: open the configured mail app in a new browsing context. */
+window.emailComparison=function(){
+  const url=comparisonShareUrl(),message='Guarda questo confronto di alloggi su FUORISEDE: '+url;
+  const mail='mailto:?subject='+encodeURIComponent('Confronto alloggi FUORISEDE')+'&body='+encodeURIComponent(message);
+  const a=document.createElement('a');a.href=mail;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+};
+const shareComparisonWithDesktopEmail=shareComparison;
+shareComparison=function(){
+  shareComparisonWithDesktopEmail();
+  requestAnimationFrame(()=>{const links=[...document.querySelectorAll('.shareoverlay .shareoptions a')];const email=links.find(a=>/^email$/i.test(a.textContent.trim()));if(email){email.removeAttribute('href');email.setAttribute('role','button');email.tabIndex=0;email.onclick=e=>{e.preventDefault();emailComparison()};email.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();emailComparison()}}}});
+};
+
+/* Keep edge popups inside the visible map without animated lateral jumps. */
+const selectMapListingBeforeEdgeContainment=selectMapListing;
+selectMapListing=function(mapId,id,...rest){
+  const result=selectMapListingBeforeEdgeContainment.call(this,mapId,id,...rest);
+  const ctx=activeMapMarkers.get(mapId),entry=ctx?.markers?.get(Number(id));
+  if(ctx?.map&&entry?.marker){const ll=entry.marker.getLatLng();ctx.map.panInside(ll,{paddingTopLeft:[170,120],paddingBottomRight:[170,120],animate:false});setTimeout(()=>entry.marker.openPopup(),0)}
+  return result;
+};
