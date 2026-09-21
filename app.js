@@ -613,3 +613,31 @@ openComparison=function(){
   openComparisonBeforeDockVisibilityFix();
   document.querySelectorAll('.comparedock').forEach(node=>node.remove());
 };
+
+
+/* PC stabilization bundle 2026-09-21: tappable price pills, contained popup, dock refresh. */
+document.head.insertAdjacentHTML('beforeend',`<style>
+.listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important}
+.listing-price-tooltip:before{display:none!important}
+.leaflet-tooltip-top.listing-price-tooltip:before,.leaflet-tooltip-bottom.listing-price-tooltip:before,.leaflet-tooltip-left.listing-price-tooltip:before,.leaflet-tooltip-right.listing-price-tooltip:before{display:none!important;border:0!important}
+</style>`);
+(function installUniversalPricePillSelection(){
+  function wire(){
+    if(typeof activeMapMarkers==='undefined')return;
+    activeMapMarkers.forEach((context,mapId)=>context?.markers?.forEach((entry,id)=>{
+      const marker=entry?.marker,tooltip=marker?.getTooltip?.(),el=tooltip?.getElement?.();
+      if(!el||el.dataset.fsUniversalPriceTap)return;
+      el.dataset.fsUniversalPriceTap='1';el.setAttribute('role','button');el.tabIndex=0;
+      const activate=e=>{e.preventDefault();e.stopPropagation();state.mapActiveListingId=Number(id);selectMapListing(mapId,Number(id),true)};
+      el.addEventListener('click',activate,true);
+      el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){activate(e)}});
+    }));
+  }
+  wire();new MutationObserver(wire).observe(document.body,{childList:true,subtree:true});
+})();
+const refreshMapComparisonWithStableDock=refreshMapComparison;
+refreshMapComparison=function(activeId){
+  refreshMapComparisonWithStableDock(activeId);
+  document.querySelectorAll('.comparedock').forEach(node=>node.remove());
+  if(state.selected.size>=2&&!state.compareOpen)document.body.insertAdjacentHTML('beforeend',compareDock());
+};
