@@ -641,3 +641,58 @@ refreshMapComparison=function(activeId){
   document.querySelectorAll('.comparedock').forEach(node=>node.remove());
   if(state.selected.size>=2&&!state.compareOpen)document.body.insertAdjacentHTML('beforeend',compareDock());
 };
+
+
+/* PC map trio fix 2026-09-21: 3rd comparison, popup containment, map provenance. */
+state.compareSourceView=state.compareSourceView||null;
+const fsOpenComparisonBase=openComparison;
+openComparison=function(){
+  state.compareSourceView=state.view;
+  fsOpenComparisonBase();
+};
+const fsComparisonBase=comparison;
+comparison=function(){
+  let html=fsComparisonBase();
+  if(state.compareSourceView==='map'){
+    html=html.replaceAll('← Torna agli alloggi','← Torna alla mappa');
+    html=html.replaceAll('onclick="closeComparison()"','onclick="returnToMapKeepingComparison()"');
+  }
+  return html;
+};
+function fsPcMapCompare(id){
+  const key=Number(id),candidate=state.items.find(x=>Number(x.id)===key);
+  if(!candidate)return;
+  const removing=state.selected.has(key);
+  if(removing)state.selected.delete(key);
+  else{
+    if(state.selected.size){
+      const first=state.items.find(x=>state.selected.has(Number(x.id))),required=accommodationType(first);
+      if(!required||accommodationType(candidate)!==required){alert(`Puoi confrontare solo ${accommodationLabel(required)} con ${accommodationLabel(required)}.`);return}
+    }
+    if(state.selected.size>=3){alert('Puoi confrontare fino a 3 alloggi.');return}
+    state.selected.add(key);
+  }
+  if(state.selected.size<2)state.compareOpen=false;
+  state.mapActiveListingId=key;
+  refreshMapComparison(key);
+}
+document.addEventListener('click',event=>{
+  if(event.pointerType&&event.pointerType!=='mouse')return;
+  const button=event.target?.closest?.('#demo-map .leaflet-popup .pincompare');
+  if(!button)return;
+  const match=String(button.getAttribute('onclick')||'').match(/mapCompareAction\((\d+)\)/);
+  if(!match)return;
+  event.preventDefault();event.stopImmediatePropagation();
+  fsPcMapCompare(Number(match[1]));
+},true);
+const fsSelectMapListingBase=selectMapListing;
+selectMapListing=function(mapId,id,pan=true){
+  const result=fsSelectMapListingBase(mapId,id,false);
+  const context=activeMapMarkers.get(mapId),entry=context?.markers.get(Number(id));
+  if(context?.map&&entry?.marker){
+    const ll=entry.marker.getLatLng();
+    context.map.panInside(ll,{paddingTopLeft:[150,115],paddingBottomRight:[150,115],animate:false});
+    setTimeout(()=>entry.marker.openPopup(),0);
+  }
+  return result;
+};
