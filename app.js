@@ -741,3 +741,21 @@ selectMapListing=function(mapId,id,pan=true){
   document.head.insertAdjacentHTML('beforeend',`<style>.fs-provenance-back{display:block;border:0;background:transparent;color:#171715;font-size:11px;font-weight:400;cursor:pointer;padding:6px 0;margin:0 0 8px;text-align:left}.fs-provenance-back:hover{text-decoration:underline}</style>`);
   requestAnimationFrame(installButton);
 })();
+
+
+/* PC popup alignment 2026-09-21: keep popup visually anchored without shifting the map. */
+(function stabilizeDesktopMapPopup(){
+  const base=selectMapListing;
+  selectMapListing=function(mapId,id,pan=true){
+    const context=activeMapMarkers.get(mapId),entry=context?.markers?.get(Number(id));
+    if(!context||!entry)return base(mapId,id,pan);
+    state.mapActiveListingId=Number(id);
+    highlightMapMini(id);
+    context.markers.forEach(({marker,x})=>marker.setStyle(markerAppearance(x,false)));
+    entry.marker.setStyle(markerAppearance(entry.x,true));
+    if(state.selected.has(Number(id))){entry.marker.setStyle(markerAppearance(entry.x,false));entry.marker.bringToBack()}else entry.marker.bringToFront();
+    const popup=entry.marker.getPopup?.();
+    if(popup){popup.options.autoPan=false;popup.options.keepInView=false}
+    entry.marker.openPopup();
+  };
+})();
