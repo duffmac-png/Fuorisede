@@ -71,7 +71,7 @@
   const pageLabel=s=>s.detail?'Scheda':s.compareOpen?'Confronto':({list:'Alloggi',map:'Mappa',favs:'Preferiti',alerts:'Alert'}[s.view]||'FUORISEDE');
   function snap(){
     const s={view:state.view,detail:state.detail,compareOpen:state.compareOpen,label:''};
-    const ctx=activeMapMarkers?.get?.('demo-map');
+    const ctx=window.activeMapMarkers?.get?.('demo-map');
     if(state.view==='map'&&ctx?.map){const c=ctx.map.getCenter();s.map={lat:c.lat,lng:c.lng,zoom:ctx.map.getZoom()}}
     s.label=pageLabel(s); return s;
   }
@@ -79,7 +79,7 @@
   function remember(){if(restoring)return;const s=snap(),last=back[back.length-1];if(!same(last,s))back.push(s);if(back.length>30)back.shift();forward.length=0}
   function restore(s){
     if(!s)return; restoring=true; state.view=s.view;state.detail=s.detail;state.compareOpen=s.compareOpen;render();restoring=false;
-    if(s.map&&s.view==='map'){let n=0;const go=()=>{const ctx=activeMapMarkers.get('demo-map');if(!ctx&&n++<30)return setTimeout(go,80);ctx?.map?.setView([s.map.lat,s.map.lng],s.map.zoom,{animate:false})};setTimeout(go,60)}
+    if(s.map&&s.view==='map'){let n=0;const go=()=>{const ctx=window.activeMapMarkers?.get?.('demo-map');if(!ctx&&n++<30)return setTimeout(go,80);ctx?.map?.setView([s.map.lat,s.map.lng],s.map.zoom,{animate:false})};setTimeout(go,60)}
     window.scrollTo({top:0,behavior:'smooth'});
   }
   window.fsNavBack=function(){if(!back.length)return;forward.push(snap());restore(back.pop())};
@@ -115,7 +115,7 @@ shareComparison=function(){
 const selectMapListingBeforeEdgeContainment=selectMapListing;
 selectMapListing=function(mapId,id,...rest){
   const result=selectMapListingBeforeEdgeContainment.call(this,mapId,id,...rest);
-  const ctx=activeMapMarkers.get(mapId),entry=ctx?.markers?.get(Number(id));
+  const ctx=window.activeMapMarkers?.get?.(mapId),entry=ctx?.markers?.get(Number(id));
   if(ctx?.map&&entry?.marker){const ll=entry.marker.getLatLng();ctx.map.panInside(ll,{paddingTopLeft:[170,120],paddingBottomRight:[170,120],animate:false});setTimeout(()=>entry.marker.openPopup(),0)}
   return result;
 };
