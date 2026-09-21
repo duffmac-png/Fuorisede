@@ -578,29 +578,21 @@ const detailViewWithMapSourceReturn=detailView;
 detailView=function(x){let html=detailViewWithMapSourceReturn(x);if(Number(state.mapActiveListingId)===Number(x.id)){html=html.replace('<button class="back" onclick="closeDetail()">← Tutti gli alloggi</button>','<button class="back" onclick="setView(\'map\')">← Torna alla mappa</button>');}return html;};
 
 
-/* Mobile compare first-tap + comparison dock visibility fix 2026-09-19 */
-let mobileCompareGuard={id:null,at:0};
-const mapCompareActionBeforeFirstTapFix=mapCompareAction;
-document.addEventListener('pointerup',event=>{
+/* Mobile compare: one touch = one comparison action.
+   Use click as the single authority; the old pointerup guard could consume the
+   first tap when extending an existing comparison to a third listing. */
+const mapCompareActionBeforeMobileClickFix=mapCompareAction;
+document.addEventListener('click',event=>{
   if(event.pointerType==='mouse')return;
-  const button=event.target?.closest?.('.leaflet-popup .pincompare');
+  const button=event.target?.closest?.('#demo-map .leaflet-popup .pincompare');
   if(!button)return;
   const match=String(button.getAttribute('onclick')||'').match(/mapCompareAction\((\d+)\)/);
   if(!match)return;
-  const id=Number(match[1]);
   event.preventDefault();
-  event.stopPropagation();
-  mobileCompareGuard={id,at:Date.now()};
-  mapCompareActionBeforeFirstTapFix(id);
+  event.stopImmediatePropagation();
+  mapCompareActionBeforeMobileClickFix(Number(match[1]));
 },true);
-mapCompareAction=function(id){
-  const key=Number(id);
-  if(mobileCompareGuard.id===key&&Date.now()-mobileCompareGuard.at<500){
-    mobileCompareGuard={id:null,at:0};
-    return;
-  }
-  return mapCompareActionBeforeFirstTapFix(key);
-};
+mapCompareAction=function(id){return mapCompareActionBeforeMobileClickFix(Number(id))};
 toggleCompareFromMap=function(id){mapCompareAction(id)};
 
 const compareDockBeforeComparisonVisibilityFix=compareDock;
