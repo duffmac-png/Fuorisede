@@ -138,7 +138,7 @@ const originalDetailView=detailView;
 detailView=function(x){const id=Number(x.id),applied=state.applied.has(id),signals=statisticalSignals(x);let html=originalDetailView(x);const addAction=(label,value,key)=>{html=html.replace(`<div class="row"><span>${label}</span><strong>${value}</strong></div>`,`<div class="row"><span>${label}</span><strong>${value}<br>${integrationLink(id,key)}</strong></div>`)};if(signals.length)html=html.replace('<h2 class="section-title detailsection">In breve</h2>',`<div>${signals.map(s=>`<span class="statmark${signalClass(s)}">${s}</span>`).join('')}</div><h2 class="section-title detailsection">In breve</h2>`);if(x.realMonthlyCostStatus!=='complete')addAction('Costo reale stimato',costText(x),'costo reale');if(!x.availability?.availableFrom||x.availability?.status==='to_reconfirm')addAction('Disponibilità',availabilityText(x),'disponibilità');if(!x.validation?.expensesDeclared)addAction('Spese / utenze',utilitiesText(x),'spese e utenze');if(!x.validation?.contractDeclared)addAction('Contratto',contractText(x),'contratto');if(!x.details?.deposit||/verificare/i.test(x.details.deposit))addAction('Deposito',x.details?.deposit||'Da verificare','deposito');if(!x.details?.floor||/verificare/i.test(x.details.floor))addAction('Piano / ascensore',x.details?.floor||'Da verificare','piano e ascensore');if(needsIntegration(x))html=html.replace('<h2 class="section-title detailsection">Affidabilità delle informazioni</h2>',`<button class="integrationprompt" onclick="requestIntegration(${id})">✎ Alcuni dati sono parziali o mancanti · chiedi integrazione</button><h2 class="section-title detailsection">Affidabilità delle informazioni</h2>`);html=html.replace('<div class="actions">',`${detailMapBlock(x)}<div class="actions">`);return html}
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function loadListings(){let lastError;for(let attempt=0;attempt<3;attempt++){try{const r=await fetch("/data/listings-operativa-v3.json",{cache:"no-store"});if(!r.ok)throw new Error(`HTTP ${r.status}`);return await r.json()}catch(error){lastError=error;if(attempt<2)await wait(700*(attempt+1))}}throw lastError}
-async function init(){const root=document.getElementById("v3-root");root.innerHTML='<section class="panel"><b>Caricamento degli alloggi…</b></section>';try{applyInboundDiscovery();const listings=await loadListings();state.items=listings.filter(x=>x.publication?.status!=="blocked");render();try{const sandbox=await fetch('/api/immobiliare?city=Milano',{cache:'no-store'});if(sandbox.ok){const data=await sandbox.json();const used=new Set(state.items.map(x=>Number(x.id)));let nextId=1000000;const imported=(data.items||[]).map(x=>{while(used.has(nextId))nextId++;const id=nextId++;used.add(id);return{...x,externalId:x.id,id}});state.items.push(...imported);applyCampusMetrics();}}catch(e){console.info('Sandbox Immobiliare.it non attiva')}document.querySelector('.preview').textContent=`UNIVERSALE · ${new Set(state.items.map(x=>x.city)).size} CITTÀ ATTIVE`;render()}catch(e){root.innerHTML='<section class="panel"><b>La connessione non ha caricato gli alloggi.</b><p class="note">Controlla la rete e prova di nuovo.</p><button class="detailsbtn" onclick="init()">Riprova</button></section>';console.error('Caricamento annunci fallito',e)}}init();
+async function init(){const root=document.getElementById("v3-root");root.innerHTML='<section class="panel"><b>Caricamento degli alloggi…</b></section>';try{applyInboundDiscovery();const listings=await loadListings();state.items=listings.filter(x=>x.publication?.status!=="blocked");if(String(state.city||'').toLowerCase()!=='milano')render();try{const sandbox=await fetch('/api/immobiliare?city=Milano',{cache:'no-store'});if(sandbox.ok){const data=await sandbox.json();const used=new Set(state.items.map(x=>Number(x.id)));let nextId=1000000;const imported=(data.items||[]).map(x=>{while(used.has(nextId))nextId++;const id=nextId++;used.add(id);return{...x,externalId:x.id,id}});state.items.push(...imported);applyCampusMetrics();}}catch(e){console.info('Sandbox Immobiliare.it non attiva')}document.querySelector('.preview').textContent=`UNIVERSALE · ${new Set(state.items.map(x=>x.city)).size} CITTÀ ATTIVE`;render()}catch(e){root.innerHTML='<section class="panel"><b>La connessione non ha caricato gli alloggi.</b><p class="note">Controlla la rete e prova di nuovo.</p><button class="detailsbtn" onclick="init()">Riprova</button></section>';console.error('Caricamento annunci fallito',e)}}init();
 document.head.insertAdjacentHTML('beforeend',`<style>.universalfilters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;padding-bottom:12px;border-bottom:1px solid #ffffff38}.universalfilters select{font-weight:850}@media(max-width:600px){.universalfilters{grid-template-columns:1fr}}</style>`);
 document.head.insertAdjacentHTML('beforeend',`<style>.mapworkspace{display:grid;grid-template-columns:300px minmax(0,1fr);gap:12px;height:520px}.mapminilist{display:flex;flex-direction:column;gap:9px;overflow:auto;padding:2px 5px 2px 2px;scrollbar-width:thin}.mapcanvas,#demo-map,#home-map{min-width:0;height:100%}.mapmini{display:grid;grid-template-columns:94px minmax(0,1fr);gap:10px;width:100%;padding:8px;text-align:left;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:15px;cursor:pointer;transition:.18s}.mapmini:hover,.mapmini.active{border-color:#d89b00;box-shadow:0 5px 16px #d89b0035;transform:translateY(-1px)}.mapminiphoto{display:block;height:92px;border-radius:10px;overflow:hidden}.mapminiphoto:after{display:none}.mapminiphoto.emptyphoto:before{font-size:7px;text-align:center}.mapminibody{display:flex;flex-direction:column;min-width:0}.mapminibody small{color:var(--muted);font-size:8px;font-weight:850;text-transform:uppercase}.mapminibody strong{margin:4px 0;font-size:13px;line-height:1.15}.mapminibody b{margin-top:auto;color:var(--brick);font-size:17px}.mapminibody em{font-size:9px;font-style:normal;color:var(--muted)}.mapminibody>span{font-size:9px;color:var(--muted)}@media(max-width:700px){.mapworkspace{display:flex;flex-direction:column;height:auto}.mapminilist{order:0;flex-direction:row;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x proximity}.mapmini{flex:0 0 82%;grid-template-columns:88px minmax(0,1fr);scroll-snap-align:start}.mapminiphoto{height:88px}.mapcanvas,#demo-map,#home-map{height:430px}.mapcanvas{order:1}}</style>`);
 document.head.insertAdjacentHTML('beforeend',`<style>@media(max-width:600px){.v3nav{top:calc(var(--fuorisede-header-height,58px) + 4px)!important}.comparedock{bottom:max(76px,calc(env(safe-area-inset-bottom) + 52px))!important}}</style>`);
@@ -758,4 +758,32 @@ selectMapListing=function(mapId,id,pan=true){
     if(popup){popup.options.autoPan=false;popup.options.keepInView=false}
     entry.marker.openPopup();
   };
+})();
+
+
+/* Authoritative desktop popup controller 2026-09-21. */
+(function installAuthoritativePcPopup(){
+  function openAnchored(mapId,id){
+    const context=activeMapMarkers.get(mapId),entry=context?.markers?.get(Number(id));
+    if(!context||!entry)return;
+    state.mapActiveListingId=Number(id);
+    if(typeof highlightMapMini==='function')highlightMapMini(id);
+    context.markers.forEach(({marker,x})=>marker.setStyle(markerAppearance(x,false)));
+    entry.marker.setStyle(markerAppearance(entry.x,state.selected.has(Number(id))?false:true));
+    if(state.selected.has(Number(id)))entry.marker.bringToBack();else entry.marker.bringToFront();
+    const popup=entry.marker.getPopup?.();
+    if(popup){
+      popup.options.autoPan=false;
+      popup.options.keepInView=false;
+      popup.options.autoPanPadding=L.point(0,0);
+      popup.options.autoPanPaddingTopLeft=L.point(0,0);
+      popup.options.autoPanPaddingBottomRight=L.point(0,0);
+    }
+    entry.marker.openPopup();
+  }
+  selectMapListing=function(mapId,id){openAnchored(mapId,id)};
+  document.addEventListener('popupopen',function(e){
+    const popup=e.popup;if(!popup)return;
+    popup.options.autoPan=false;popup.options.keepInView=false;
+  },true);
 })();
