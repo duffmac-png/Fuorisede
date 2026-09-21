@@ -576,3 +576,40 @@ refreshMapComparison=function(activeId){
 // Context-sensitive return for a listing opened from the dedicated map.
 const detailViewWithMapSourceReturn=detailView;
 detailView=function(x){let html=detailViewWithMapSourceReturn(x);if(Number(state.mapActiveListingId)===Number(x.id)){html=html.replace('<button class="back" onclick="closeDetail()">← Tutti gli alloggi</button>','<button class="back" onclick="setView(\'map\')">← Torna alla mappa</button>');}return html;};
+
+
+/* Mobile compare first-tap + comparison dock visibility fix 2026-09-19 */
+let mobileCompareGuard={id:null,at:0};
+const mapCompareActionBeforeFirstTapFix=mapCompareAction;
+document.addEventListener('pointerup',event=>{
+  if(event.pointerType==='mouse')return;
+  const button=event.target?.closest?.('.leaflet-popup .pincompare');
+  if(!button)return;
+  const match=String(button.getAttribute('onclick')||'').match(/mapCompareAction\((\d+)\)/);
+  if(!match)return;
+  const id=Number(match[1]);
+  event.preventDefault();
+  event.stopPropagation();
+  mobileCompareGuard={id,at:Date.now()};
+  mapCompareActionBeforeFirstTapFix(id);
+},true);
+mapCompareAction=function(id){
+  const key=Number(id);
+  if(mobileCompareGuard.id===key&&Date.now()-mobileCompareGuard.at<500){
+    mobileCompareGuard={id:null,at:0};
+    return;
+  }
+  return mapCompareActionBeforeFirstTapFix(key);
+};
+toggleCompareFromMap=function(id){mapCompareAction(id)};
+
+const compareDockBeforeComparisonVisibilityFix=compareDock;
+compareDock=function(){
+  if(state.compareOpen)return '';
+  return compareDockBeforeComparisonVisibilityFix();
+};
+const openComparisonBeforeDockVisibilityFix=openComparison;
+openComparison=function(){
+  openComparisonBeforeDockVisibilityFix();
+  document.querySelectorAll('.comparedock').forEach(node=>node.remove());
+};
