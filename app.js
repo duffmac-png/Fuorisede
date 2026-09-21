@@ -787,3 +787,43 @@ selectMapListing=function(mapId,id,pan=true){
     popup.options.autoPan=false;popup.options.keepInView=false;
   },true);
 })();
+
+
+/* Final PC popup authority 2026-09-21: one event path, no Leaflet or manual panning. */
+(function finalPcPopupAuthority(){
+  if(window.__fsFinalPcPopupAuthority)return;window.__fsFinalPcPopupAuthority=true;
+  selectMapListing=function(mapId,id){
+    const key=Number(id),context=activeMapMarkers.get(mapId),entry=context?.markers?.get(key);
+    if(!entry)return;
+    if(mapId==='demo-map')state.mapActiveListingId=key;
+    highlightMapMini(key);
+    context.markers.forEach(({marker,x})=>marker.setStyle(markerAppearance(x,false)));
+    entry.marker.setStyle(markerAppearance(entry.x,!state.selected.has(key)));
+    if(state.selected.has(key))entry.marker.bringToBack();else entry.marker.bringToFront();
+    const popup=entry.marker.getPopup?.();
+    if(popup){popup.options.autoPan=false;popup.options.keepInView=false}
+    entry.marker.openPopup();
+  };
+  const harden=(context)=>{
+    if(!context?.map)return;
+    context.map.options.closePopupOnClick=true;
+    context.markers.forEach(({marker,x})=>{
+      const popup=marker.getPopup?.();
+      if(popup){popup.options.autoPan=false;popup.options.keepInView=false}
+      marker.off('click');
+      marker.on('click',()=>{
+        const key=Number(x.id);
+        state.mapActiveListingId=key;
+        selectMapListing('demo-map',key);
+      });
+    });
+  };
+  const observer=new MutationObserver(()=>{
+    const el=document.getElementById('demo-map');
+    if(!el)return;
+    setTimeout(()=>harden(activeMapMarkers.get('demo-map')),0);
+  });
+  const root=document.getElementById('v3-root');
+  if(root)observer.observe(root,{childList:true,subtree:true});
+  setTimeout(()=>harden(activeMapMarkers.get('demo-map')),250);
+})();

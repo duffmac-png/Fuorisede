@@ -1,5 +1,6 @@
 const API_BASE = process.env.IMMOBILIARE_API_BASE || 'https://sandbox-comparables.realitycs.it';
 let cachedToken = null, tokenExpiresAt = 0;
+let cachedListings = null, listingsExpiresAt = 0, listingsRefresh = null;
 
 function env(...names) { for (const name of names) if (process.env[name]) return process.env[name]; return ''; }
 function number(value) { const n = Number(value); return Number.isFinite(n) ? n : null; }
@@ -140,15 +141,26 @@ function normalize(raw) {
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
   try {
-    const token = await accessToken();
     const limit = Math.min(Math.max(Number(req.query.limit) || 10, 1), 50);
-    const response = await fetch(`${API_BASE}/comparables/fullSearchByAttribute`, {
-      method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Filters: { contractTypeID: 2, categoryTypeID: 1, municipalityID: '15146', pubblicationStatusID: [1, 2] }, Pagination: { page: 1, limit }, Sorting: { by: 'date', direction: 'desc' } })
-    });
-    if (!response.ok) throw Object.assign(new Error('Ricerca Sandbox rifiutata'), { status: response.status });
-    const payload = await response.json(), rows = Array.isArray(payload?.items) ? payload.items : [];
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
-    return res.status(200).json({ items: rows.map(normalize), total: number(payload?._metadata?.total_count) ?? rows.length, environment: 'sandbox' });
+    const now = Date.now();
+    if (cachedListings && now < listingsExpiresAt) {
+      res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
+      return res.status(200).json({ ...cachedListings, items: cachedListings.items.slice(0, limit), cache: 'memory-hit' });
+    }
+    if (!listingsRefresh) listingsRefresh = (async () => {
+      const token = await accessToken();
+      const response = await fetch(`${API_BASE}/comparables/fullSearchByAttribute`, {
+        method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Filters: { contractTypeID: 2, categoryTypeID: 1, municipalityID: '15146', pubblicationStatusID: [1, 2] }, Pagination: { page: 1, limit: 50 }, Sorting: { by: 'date', direction: 'desc' } })
+      });
+      if (!response.ok) throw Object.assign(new Error('Ricerca Sandbox rifiutata'), { status: response.status });
+      const payload = await response.json(), rows = Array.isArray(payload?.items) ? payload.items : [];
+      cachedListings = { items: rows.map(normalize), total: number(payload?._metadata?.total_count) ?? rows.length, environment: 'sandbox' };
+      listingsExpiresAt = Date.now() + 60 * 60 * 1000;
+      return cachedListings;
+    })().finally(() => { listingsRefresh = null; });
+    const data = await listingsRefresh;
+    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
+    return res.status(200).json({ ...data, items: data.items.slice(0, limit), cache: 'refreshed' });
   } catch (error) { return res.status(error.status || 500).json({ error: error.message || 'Errore Sandbox' }); }
 }
