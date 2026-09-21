@@ -177,17 +177,19 @@
     });
     if (!pillBoundCanvases.has(canvas)) {
       pillBoundCanvases.add(canvas);
-      // Mobile map has one activation path only. A pointerup+click pair used to
-      // make the first touch merely prime the card and the next touch act on it.
+      let lastPointerUp = 0;
       const activatePill = event => {
         const pill = event.target.closest?.('.listing-price-tooltip');
         if (!pill || !canvas.contains(pill)) return;
+        if (event.type === 'click' && performance.now() - lastPointerUp < 500) return;
+        if (event.type === 'pointerup') lastPointerUp = performance.now();
         const entry = [...context.markers.values()].find(({marker}) => marker.getTooltip()?.getElement() === pill);
         if (!entry) return;
         event.preventDefault();
         event.stopPropagation();
         showCard(Number(entry.x.id));
       };
+      canvas.addEventListener('pointerup', activatePill, true);
       canvas.addEventListener('click', activatePill, true);
     }
     document.querySelectorAll('.mapmini').forEach(node => {
