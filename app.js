@@ -696,3 +696,48 @@ selectMapListing=function(mapId,id,pan=true){
   }
   return result;
 };
+
+
+/* Provenance navigation 2026-09-21: previous FUORISEDE page follows the real user path. */
+(function installFuorisedeProvenanceNavigation(){
+  if(window.__fsProvenanceNavigation)return;window.__fsProvenanceNavigation=true;
+  state.fsPreviousPage=null;
+  state.fsCurrentPage=state.compareOpen?'compare':(state.detail?'detail':state.view);
+  const label={list:'Alloggi',map:'Mappa',compare:'Confronto',favs:'Preferiti',alerts:'Alert',detail:'Scheda'};
+  function current(){return state.compareOpen?'compare':(state.detail?'detail':state.view)}
+  function remember(target){
+    const from=current();
+    if(from!==target)state.fsPreviousPage=from;
+    state.fsCurrentPage=target;
+  }
+  const baseSetView=setView;
+  setView=function(view){remember(view);return baseSetView(view)};
+  const baseOpenComparison=openComparison;
+  openComparison=function(){remember('compare');return baseOpenComparison()};
+  const baseOpenDetail=openDetail;
+  openDetail=function(id){remember('detail');return baseOpenDetail(id)};
+  window.fsReturnPrevious=function(){
+    const target=state.fsPreviousPage;if(!target)return;
+    const from=current();state.fsPreviousPage=from;
+    if(target==='compare'){state.detail=null;state.view=state.view||'list';state.compareOpen=true;render()}
+    else if(target==='detail'){state.compareOpen=false;state.view=state.view||'list';render()}
+    else {state.detail=null;state.compareOpen=false;state.view=target;render();if(target==='map')setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),0)}
+  };
+  function installButton(){
+    const root=document.getElementById('v3-root');if(!root)return;
+    root.querySelectorAll('.fs-provenance-back').forEach(x=>x.remove());
+    const here=current(),prev=state.fsPreviousPage;
+    if(!prev||prev===here)return;
+    const nav=root.querySelector('.v3nav');if(!nav)return;
+    const button=document.createElement('button');
+    button.className='fs-provenance-back';
+    button.textContent='← Torna '+(label[prev]||'indietro');
+    button.onclick=fsReturnPrevious;
+    nav.insertAdjacentElement('afterend',button);
+    if(here==='compare')root.querySelectorAll('.designback,.comparehead>.back').forEach(x=>x.style.display='none');
+  }
+  const baseRender=render;
+  render=function(){const out=baseRender();requestAnimationFrame(installButton);return out};
+  document.head.insertAdjacentHTML('beforeend',`<style>.fs-provenance-back{display:block;border:0;background:transparent;color:#171715;font-size:11px;font-weight:400;cursor:pointer;padding:6px 0;margin:0 0 8px;text-align:left}.fs-provenance-back:hover{text-decoration:underline}</style>`);
+  requestAnimationFrame(installButton);
+})();
