@@ -8,7 +8,7 @@
       const marker=entry?.marker,tip=marker?.getTooltip?.(),el=tip?.getElement?.();
       if(!el||el.dataset.priceTapWired)return;
       el.dataset.priceTapWired='1'; el.setAttribute('role','button'); el.tabIndex=0;
-      const open=e=>{e.preventDefault();e.stopPropagation();if(typeof selectMapListing==='function'){selectMapListing(mapId,Number(id));requestAnimationFrame(()=>{const current=activeMapMarkers.get(mapId)?.markers?.get(Number(id));current?.marker?.openPopup?.();});}};
+      const open=e=>{if(window.matchMedia?.('(max-width:760px),(pointer:coarse)')?.matches&&mapId==='demo-map')return;e.preventDefault();e.stopPropagation();if(typeof selectMapListing==='function'){selectMapListing(mapId,Number(id));requestAnimationFrame(()=>{const current=activeMapMarkers.get(mapId)?.markers?.get(Number(id));current?.marker?.openPopup?.();});}};
       el.addEventListener('click',open); el.addEventListener('touchend',open,{passive:false});
       el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){open(e)}});
     }));
