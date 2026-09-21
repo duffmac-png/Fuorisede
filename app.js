@@ -827,3 +827,20 @@ selectMapListing=function(mapId,id,pan=true){
   if(root)observer.observe(root,{childList:true,subtree:true});
   setTimeout(()=>harden(activeMapMarkers.get('demo-map')),250);
 })();
+
+
+/* Desktop popup anchor-only fix 2026-09-21. No map/controller override. */
+(function fixDesktopPopupAnchorOnly(){
+  if(window.__fsDesktopPopupAnchorOnly)return;window.__fsDesktopPopupAnchorOnly=true;
+  const apply=()=>{
+    if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+    const context=activeMapMarkers.get('demo-map');if(!context)return;
+    context.markers.forEach(({marker})=>{
+      const popup=marker.getPopup?.();if(!popup)return;
+      popup.options.offset=L.point(0,-18);
+    });
+  };
+  const root=document.getElementById('v3-root');
+  if(root)new MutationObserver(()=>setTimeout(apply,0)).observe(root,{childList:true,subtree:true});
+  setTimeout(apply,250);
+})();
