@@ -228,7 +228,7 @@
   },
   {
     "id": 305,
-    "title": "Stanza doppia · Via Capuana 13",
+    "title": "Posto letto in stanza doppia · Via Capuana 13",
     "city": "Ferrara",
     "address": "Via Capuana 13, Ferrara",
     "lat": 44.835,
@@ -240,7 +240,7 @@
     "realMonthlyCostStatus": "complete",
     "photos": [],
     "features": [
-      "Stanza doppia 22 m²",
+      "Posto letto in stanza doppia 22 m²",
       "Balcone 10 m²",
       "Fibra internet",
       "Climatizzatore / pompa di calore",
@@ -253,7 +253,7 @@
       "deposit": "Da verificare",
       "bathroom": "1 bagno finestrato con doccia, 7,5 m²",
       "floor": "3° piano senza ascensore",
-      "description": "Grande stanza doppia con due posti letto. In casa sono già affittate ad altre 3 studentesse due camere matrimoniali e una singola. Preferenza per due amiche/amici o conoscenti; la proprietaria prevede un unico contratto studenti per la stanza."
+      "description": "Posto letto in grande stanza doppia con due letti. In casa sono già affittate ad altre 3 studentesse due camere matrimoniali e una singola. Preferenza per due amiche/amici o conoscenti; la proprietaria prevede un unico contratto studenti per la stanza."
     },
     "availability": {
       "availableFrom": null,
@@ -281,6 +281,7 @@
       "minutesBike": null,
       "travelEstimate": true
     },
-    "candidates": 0
+    "candidates": 0,
+    "accommodationType": "bed"
   }
 ]
