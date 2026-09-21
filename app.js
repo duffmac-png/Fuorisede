@@ -837,7 +837,7 @@ selectMapListing=function(mapId,id,pan=true){
     const context=activeMapMarkers.get('demo-map');if(!context)return;
     context.markers.forEach(({marker})=>{
       const popup=marker.getPopup?.();if(!popup)return;
-      popup.options.offset=L.point(-118,-18);
+      popup.options.offset=L.point(0,-18);
     });
   };
   const root=document.getElementById('v3-root');
