@@ -151,7 +151,7 @@ export default async function handler(req, res) {
       const token = await accessToken();
       const response = await fetch(`${API_BASE}/comparables/fullSearchByAttribute`, {
         method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ Filters: { contractTypeID: 2, categoryTypeID: 1, municipalityID: '15146', pubblicationStatusID: [1, 2] }, Pagination: { page: 1, limit: 50 }, Sorting: { by: 'date', direction: 'desc' } })
+        body: JSON.stringify({ Filters: { contractTypeID: 2, categoryTypeID: 1, municipalityID: '15146', pubblicationStatusID: [1, 2] }, Pagination: { page: 1, limit: 10 }, Sorting: { by: 'date', direction: 'desc' } })
       });
       if (!response.ok) throw Object.assign(new Error('Ricerca Sandbox rifiutata'), { status: response.status });
       const payload = await response.json(), rows = Array.isArray(payload?.items) ? payload.items : [];
