@@ -685,17 +685,9 @@ document.addEventListener('click',event=>{
   event.preventDefault();event.stopImmediatePropagation();
   fsPcMapCompare(Number(match[1]));
 },true);
-const fsSelectMapListingBase=selectMapListing;
-selectMapListing=function(mapId,id,pan=true){
-  const result=fsSelectMapListingBase(mapId,id,false);
-  const context=activeMapMarkers.get(mapId),entry=context?.markers.get(Number(id));
-  if(context?.map&&entry?.marker){
-    const ll=entry.marker.getLatLng();
-    context.map.panInside(ll,{paddingTopLeft:[150,115],paddingBottomRight:[150,115],animate:false});
-    setTimeout(()=>entry.marker.openPopup(),0);
-  }
-  return result;
-};
+/* Popup selection uses the established no-pan selector directly.
+   Removed the later panInside + delayed second openPopup wrapper: it caused
+   the second marker click to reposition a popup that was already open. */
 
 
 /* Provenance navigation 2026-09-21: previous FUORISEDE page follows the real user path. */
