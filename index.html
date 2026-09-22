@@ -33,4 +33,21 @@ function city(){return (document.querySelector(".preview")||{}).textContent||""}
 window.addEventListener("load",function(){if(A())A().track("qualified_visit",{city:city(),source:new URLSearchParams(location.search).get("utm_source")||document.referrer||null})},{once:true});
 document.addEventListener("click",function(e){var el=e.target.closest(".title,.detailsbtn,.heart,.comparebox,a,button");if(!el||!A())return;var card=el.closest(".card");var id=card&&(card.dataset.id||card.id)||null;if(el.matches(".title,.detailsbtn"))A().track("listing_open",{city:city(),listingId:id});if(el.matches(".heart"))A().track("favorite_add",{city:city(),listingId:id});var txt=(el.textContent||"").toLowerCase();if((el.matches("a,button")&&/(contatta|annuncio originale|vai all.annuncio|richiedi)/.test(txt)))A().track("listing_contact",{city:city(),listingId:id});setTimeout(function(){var checked=document.querySelectorAll(".comparebox input:checked,input[type=checkbox][data-compare]:checked").length;if(checked>=2)A().track("compare_start",{city:city(),count:checked})},0)});
 })();</script>
+<style id="approved-home-slim">
+body:not(.map-mode) #v3-root>.card .statmark{display:none!important}
+body:not(.map-mode) #v3-root>.card .integrationprompt{display:none!important}
+body:not(.map-mode) #v3-root>.card .features+.features{display:none!important}
+body:not(.map-mode) #v3-root>.card .badge{background:#f3f1ee!important;color:#4f4b47!important;border:1px solid #e2ddd7!important}
+body:not(.map-mode) #v3-root>.card .badge.warn{background:#f3f1ee!important;color:#4f4b47!important;border:1px solid #e2ddd7!important}
+body:not(.map-mode) #v3-root>.card{margin-bottom:24px!important}
+@media(min-width:760px){#v3-root{row-gap:42px!important;column-gap:22px!important}#v3-root>.card{margin-bottom:8px!important}}
+</style>
+<script>(function(){
+function cleanCosmetics(){
+  var backs=[].slice.call(document.querySelectorAll('button,a')).filter(function(el){return /(?:torna agli alloggi|tutti gli alloggi)/i.test((el.textContent||'').trim())});
+  if(backs.length>1){backs.slice(1).forEach(function(el){el.style.display='none'})}
+  document.querySelectorAll('.ddessentials>div').forEach(function(box){var b=box.querySelector(':scope>b'),s=box.querySelector(':scope>span');if(!b||!s)return;var a=(b.textContent||'').replace(/!/g,'').trim().toLowerCase(),c=(s.textContent||'').replace(/!/g,'').trim().toLowerCase();if((/da verificare|da riconfermare/.test(a)&&/da verificare|da riconfermare/.test(c))||(/da completare/.test(a)&&/da completare/.test(c)))s.style.display='none'});
+}
+cleanCosmetics();new MutationObserver(cleanCosmetics).observe(document.body,{childList:true,subtree:true});
+})();</script>
 </body></html>
