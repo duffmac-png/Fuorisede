@@ -3,63 +3,23 @@
 (function installPricePillTap(){function wire(){if(typeof activeMapMarkers==='undefined')return;activeMapMarkers.forEach((context,mapId)=>context?.markers?.forEach((entry,id)=>{const marker=entry?.marker,tip=marker?.getTooltip?.(),el=tip?.getElement?.();if(!el||el.dataset.priceTapWired)return;el.dataset.priceTapWired='1';el.setAttribute('role','button');el.tabIndex=0;const open=e=>{e.preventDefault();e.stopPropagation();if(typeof selectMapListing==='function'){selectMapListing(mapId,Number(id));requestAnimationFrame(()=>{const current=activeMapMarkers.get(mapId)?.markers?.get(Number(id));current?.marker?.openPopup?.();});}};el.addEventListener('click',open);el.addEventListener('touchend',open,{passive:false});el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){open(e)}});}));}wire();new MutationObserver(wire).observe(document.body,{childList:true,subtree:true});})();
 (function(){closeComparison=function(){state.compareOpen=false;state.detail=null;state.view='list';render();window.scrollTo({top:0,behavior:'smooth'})};returnToChoices=function(){state.compareOpen=false;state.detail=null;state.view='list';render();window.scrollTo({top:0,behavior:'smooth'})};})();
 (function preserveMapDetailContext(){let source=null;const baseSelect=selectMapListing;selectMapListing=function(mapId,id,...rest){source={mapId:String(mapId),id:Number(id)};return baseSelect.call(this,mapId,id,...rest)};const baseDetail=detailView;detailView=function(x){let html=baseDetail(x);if(source&&state.detail===Number(x.id)){html=html.replace(/<button class="back" onclick="closeDetail\(\)">← Tutti gli alloggi<\/button>/,'<button class="back" onclick="returnToSourceMap()">← Torna alla mappa</button>')}return html};window.returnToSourceMap=function(){if(!source){state.detail=null;state.view='map';render();return}const wanted={...source};state.detail=null;state.compareOpen=false;state.view=wanted.mapId==='home-map'?'list':'map';render();const targetMapId=state.view==='map'?'demo-map':'home-map';let tries=0;const restore=()=>{const entry=activeMapMarkers.get(targetMapId)?.markers?.get(Number(wanted.id));if(!entry&&tries++<30){setTimeout(restore,100);return}if(entry){selectMapListing(targetMapId,wanted.id);requestAnimationFrame(()=>entry.marker.openPopup())}};setTimeout(restore,80);window.scrollTo({top:0,behavior:'smooth'})};})();
-(function(){const s=document.createElement('script');s.src='/stats-tooltips.js?v=20260922-3';s.async=true;document.head.appendChild(s)})();
+(function(){const s=document.createElement('script');s.src='/stats-tooltips.js?v=20260922-4';s.async=true;document.head.appendChild(s)})();
 // Presentation-only cleanup. Deliberately does not bind or alter listing-card navigation.
 (function(){
  const quality=/^(buono\s*\/\s*abitabile|ottimo\s*\/\s*ristrutturato|buono|abitabile|ottimo|ristrutturato)$/i;
  const uncertain=/^(da verificare|da completare|da riconfermare)$/i;
- function cleanHome(){
-   if(typeof state!=='undefined'&&state.detail!=null)return;
-   document.querySelectorAll('#v3-root>.card .badge').forEach(el=>{if(quality.test((el.textContent||'').replace(/^[^\p{L}]*/u,'').trim()))el.style.display='none'});
- }
- function cleanDetail(){
-   const d=document.querySelector('.detail'); if(!d)return;
-   d.querySelectorAll('.badge,.statmark').forEach(el=>{el.style.background='#f3f1ee';el.style.color='#4f4b47';el.style.border='1px solid #e2ddd7'});
-   const seen=new Set();
-   d.querySelectorAll('*').forEach(el=>{
-     if(el.children.length)return;
-     const t=(el.textContent||'').trim().replace(/^!\s*/,'');
-     if(!uncertain.test(t))return;
-     const key=t.toLowerCase();
-     if(seen.has(key)){el.style.display='none';return}
-     seen.add(key);
-   });
- }
- function clean(){cleanHome();cleanDetail()}
- clean();new MutationObserver(clean).observe(document.body,{childList:true,subtree:true});
+ function cleanHome(){if(typeof state!=='undefined'&&state.detail!=null)return;document.querySelectorAll('#v3-root>.card .badge').forEach(el=>{if(quality.test((el.textContent||'').replace(/^[^\p{L}]*/u,'').trim()))el.style.display='none'});}
+ function cleanDetail(){const d=document.querySelector('.dddetail');if(!d)return;d.querySelectorAll('.ddfeature,.statmark').forEach(el=>{el.style.background='#f3f1ee';el.style.color='#4f4b47';el.style.border='1px solid #e2ddd7'});}
+ function clean(){cleanHome();cleanDetail()}clean();new MutationObserver(clean).observe(document.body,{childList:true,subtree:true});
 })();
-// Exact detail cleanup based on the DOM actually rendered by detailView.
+// Exact cleanup for the actual V3 detail markup.
 (function(){
- const uncertainty=/^(?:!\s*)?(da verificare|da completare|da riconfermare)$/i;
- function leaf(el){return el&&el.children.length===0}
- function exactDetailFix(){
-   const d=document.querySelector('.detail');if(!d)return;
-   // Remove only the standalone uncertainty label in the right action/price card.
-   const original=[...d.querySelectorAll('a,button')].find(el=>/apri\s+l['’]?annuncio\s+originale/i.test(el.textContent||''));
-   if(original){
-     let side=original.parentElement;
-     while(side&&side!==d&&side.parentElement!==d){side=side.parentElement}
-     if(side&&side!==d){
-       [...side.querySelectorAll('*')].filter(leaf).forEach(el=>{
-         const t=(el.textContent||'').trim();
-         if(uncertainty.test(t))el.style.display='none';
-       });
-     }
-   }
-   // Locate the visible "Informazioni, non promesse" heading and its following white completeness card.
-   const heading=[...d.querySelectorAll('h1,h2,h3,h4,b,strong,div')].find(el=>leaf(el)&&/^informazioni,\s*non promesse$/i.test((el.textContent||'').trim()));
-   if(!heading)return;
-   let card=heading.nextElementSibling;
-   if(!card||!/completezza\s+\d+\s*\/\s*\d+/i.test(card.textContent||'')){
-     const parent=heading.parentElement;
-     card=parent&&[...parent.children].find(el=>el!==heading&&/completezza\s+\d+\s*\/\s*\d+/i.test(el.textContent||''));
-   }
-   if(!card)return;
-   const stats=[...d.querySelectorAll('.statmark')].filter(el=>/media\s+fuorisede|media\s+con\s+altri|sotto\s+la\s+media|sopra\s+la\s+media/i.test(el.textContent||''));
-   if(!stats.length)return;
-   let wrap=card.querySelector('.detail-stats-inside');
-   if(!wrap){wrap=document.createElement('div');wrap.className='detail-stats-inside';card.appendChild(wrap)}
-   stats.forEach(el=>wrap.appendChild(el));
+ function fix(){
+   const d=document.querySelector('.dddetail');if(!d)return;
+   const orphan=d.querySelector('.ddaside .ddavailable');
+   if(orphan&&/^(da verificare|da riconfermare)$/i.test((orphan.textContent||'').replace(/^!\s*/,'').trim()))orphan.remove();
+   const trust=d.querySelector('.ddtrust'),signals=d.querySelector('.ddsignals');
+   if(trust&&signals&&signals.parentElement!==trust)trust.appendChild(signals);
  }
- exactDetailFix();new MutationObserver(exactDetailFix).observe(document.body,{childList:true,subtree:true});
+ fix();new MutationObserver(fix).observe(document.body,{childList:true,subtree:true});
 })();
