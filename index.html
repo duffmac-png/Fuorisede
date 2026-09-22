@@ -42,12 +42,25 @@ body:not(.map-mode) #v3-root>.card .badge.warn{background:#f3f1ee!important;colo
 body:not(.map-mode) #v3-root>.card{margin-bottom:24px!important}
 @media(min-width:760px){#v3-root{row-gap:42px!important;column-gap:22px!important}#v3-root>.card{margin-bottom:8px!important}}
 </style>
+<style id="detail-cleanup-final">
+body.detail-mode .detailstatwrap{display:flex!important;gap:8px!important;flex-wrap:wrap!important;margin-top:10px!important;padding-top:10px!important;border-top:1px solid #e9e6df!important}
+body.detail-mode .detailstatwrap .statmark{background:#f3f1ee!important;color:#4f4b47!important;border:1px solid #e2ddd7!important}
+</style>
 <script>(function(){
-function cleanCosmetics(){
+function norm(s){return (s||'').replace(/!/g,'').replace(/\s+/g,' ').trim().toLowerCase()}
+function cleanDetail(){
   var backs=[].slice.call(document.querySelectorAll('button,a')).filter(function(el){return /(?:torna agli alloggi|tutti gli alloggi)/i.test((el.textContent||'').trim())});
   if(backs.length>1){backs.slice(1).forEach(function(el){el.style.display='none'})}
-  document.querySelectorAll('.ddessentials>div').forEach(function(box){var b=box.querySelector(':scope>b'),s=box.querySelector(':scope>span');if(!b||!s)return;var a=(b.textContent||'').replace(/!/g,'').trim().toLowerCase(),c=(s.textContent||'').replace(/!/g,'').trim().toLowerCase();if((/da verificare|da riconfermare/.test(a)&&/da verificare|da riconfermare/.test(c))||(/da completare/.test(a)&&/da completare/.test(c)))s.style.display='none'});
+  document.querySelectorAll('.ddessentials>div').forEach(function(box){var b=box.querySelector(':scope>b'),s=box.querySelector(':scope>span');if(!b||!s)return;var a=norm(b.textContent),c=norm(s.textContent);if((/da verificare|da riconfermare/.test(a)&&/da verificare|da riconfermare/.test(c))||(/da completare/.test(a)&&/da completare/.test(c)))s.style.display='none'});
+  if(!document.body.classList.contains('detail-mode'))return;
+  /* Remove the generic warning in the right price card: missing data are already shown in their specific rows. */
+  document.querySelectorAll('.detailside,.detailaside,.detailprice,.pricebox,.sidecard').forEach(function(card){
+    [].slice.call(card.querySelectorAll('*')).forEach(function(el){var t=norm(el.textContent);if((t==='da verificare'||t==='da completare'||t==='da riconfermare')&&el.children.length===0){var p=el.parentElement;if(p&&norm(p.textContent)===t)p.style.display='none';else el.style.display='none'}})
+  });
+  /* Put the statistical pills physically inside the information/completeness card. */
+  var info=[].slice.call(document.querySelectorAll('section,div')).find(function(el){return /informazioni, non promesse/i.test(el.textContent||'')&&el.querySelector('.ddessentials')});
+  if(info){var card=info.querySelector('.ddessentials')&&info.querySelector('.ddessentials').parentElement;var stats=[].slice.call(document.querySelectorAll('.statmark')).filter(function(el){return /media fuorisede|media con altri|sotto la media|sopra la media/i.test(el.textContent||'')});if(card&&stats.length){var wrap=card.querySelector('.detailstatwrap');if(!wrap){wrap=document.createElement('div');wrap.className='detailstatwrap';card.appendChild(wrap)}stats.forEach(function(el){wrap.appendChild(el)})}}
 }
-cleanCosmetics();new MutationObserver(cleanCosmetics).observe(document.body,{childList:true,subtree:true});
+cleanDetail();new MutationObserver(cleanDetail).observe(document.body,{childList:true,subtree:true});
 })();</script>
 </body></html>
