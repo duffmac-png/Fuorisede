@@ -1,3 +1,9 @@
 {
-  "rewrites": []
+  "rewrites": [],
+  "crons": [
+    {
+      "path": "/api/phosphoro-daily",
+      "schedule": "15 4 * * *"
+    }
+  ]
 }
