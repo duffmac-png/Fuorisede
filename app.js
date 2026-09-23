@@ -605,3 +605,21 @@ openComparison=function(){
   openComparisonBeforeDockVisibilityFix();
   document.querySelectorAll('.comparedock').forEach(node=>node.remove());
 };
+
+
+/* iOS polish 2026-09-23: favorite, card map action and responsive map */
+document.head.insertAdjacentHTML('beforeend',`<style>
+.heart{color:#171715!important}
+.cardmaplink{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;text-align:center}
+@media(max-width:700px){
+.cardactions{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;gap:8px!important;align-items:center!important}
+.cardmaplink{min-width:0!important;padding:8px 6px!important;font-size:10px!important;line-height:1!important}
+.comparebox{white-space:nowrap!important}
+.mapview{min-width:0!important;width:100%!important;overflow:hidden!important}
+.mapworkspace{display:flex!important;flex-direction:column!important;width:100%!important;min-width:0!important;height:auto!important;gap:10px!important}
+.mapminilist{order:1!important;display:flex!important;flex-direction:row!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;padding:2px 2px 8px!important}
+.mapmini{flex:0 0 min(82vw,330px)!important;width:auto!important}
+.mapcanvas{order:0!important;display:block!important;width:100%!important;min-width:0!important;height:430px!important;flex:none!important}
+#demo-map,#home-map{display:block!important;width:100%!important;min-width:0!important;height:430px!important}
+}
+</style>`);
