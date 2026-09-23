@@ -65,7 +65,7 @@ export default async function handler(req, res) {
           Authorization: 'Bearer ' + token,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ records: [{ fields }], typecast: false })
+        body: JSON.stringify({ records: [{ fields }], typecast: true })
       }
     );
 
