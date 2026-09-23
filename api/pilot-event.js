@@ -43,7 +43,6 @@ export default async function handler(req, res) {
     : new Date().toISOString();
 
   const fields = {
-    'Event Name/ID': event + '-' + Date.now().toString(36),
     'Event Type': event,
     'Visitor ID': visitorId,
     'Session ID': sessionId,
