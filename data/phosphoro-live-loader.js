@@ -8,7 +8,7 @@ function n(v){const x=Number(v);return Number.isFinite(x)?x:null}
 function features(p,room){const out=[];if(p.wifi)out.push('Wi-Fi');if(p.washingMachine)out.push('Lavatrice');if(p.dishwasher)out.push('Lavastoviglie');if(p.elevator)out.push('Ascensore');if(room?.balcony||p.balcony)out.push('Balcone');if(p.furnished)out.push('Arredato');if(p.dryer)out.push('Asciugatrice');return out}
 function campus(p){const z=Array.isArray(p.nearbyZones)?p.nearbyZones[0]:null;return z?{campusId:'centro',campusName:it(z.title)||'Polo universitario',distanceKm:null,minutesBike:n(z.bikeMinutes),travelEstimate:false}:{campusId:'centro',campusName:'Polo universitario',distanceKm:null,minutesBike:null,travelEstimate:true}}
 function normalize(x){
- const p=x.property||{}, room=x.room||{}, price=n(x.monthlyPrice), dep=n(x.depositPrice), min=n(x.minimumStay);
+ const p=x.property||{}, room=x.room||{}, rawPrice=n(x.monthlyPrice), price=rawPrice>0?rawPrice:null, dep=n(x.depositPrice), min=n(x.minimumStay);
  const date=(x.availableFrom||'').trim(); const today=new Date().toISOString().slice(0,10);
  return {
   id:10000+n(x.id),externalId:String(x.id),title:it(x.title)||x.code||'Alloggio Phosphoro',city:p.city||'Ferrara',
