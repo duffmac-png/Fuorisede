@@ -402,3 +402,19 @@ initMap=function(id='demo-map',items=state.items,attempt=0){const el=document.ge
 // Launch blocker: in desktop grid mode the map section must span the full root grid.
 // Without this, .mapview occupies a single card column and the Leaflet canvas becomes "slim".
 document.head.insertAdjacentHTML('beforeend',`<style>@media(min-width:701px){body.map-mode #v3-root>.mapview{grid-column:1/-1!important;width:100%!important;min-width:0!important}body.map-mode #v3-root>.filterpanel{grid-column:1/-1!important;width:100%!important;min-width:0!important}body.map-mode #v3-root>.mapview .mapworkspace{width:100%!important;min-width:0!important}body.map-mode #v3-root>.mapview .mapcanvas{width:100%!important;min-width:0!important}}</style>`);
+
+
+// Launch blocker: public Ferrara pilot is hard-locked to Ferrara.
+// Milano remains available only in separate internal development branches.
+const publicPilotCity='Ferrara';
+loadMilanoSandbox=async function(){return};
+setCity=function(){state.city=publicPilotCity;state.zone='';state.campus='';syncDiscoveryUrl();resetComparisonState();render()};
+setCampus=function(){state.city=publicPilotCity;state.campus='';resetComparisonState();render()};
+const applyInboundDiscoveryPublic=applyInboundDiscovery;
+applyInboundDiscovery=function(){applyInboundDiscoveryPublic();state.city=publicPilotCity;state.campus=''};
+const filtersFerraraOnly=filters;
+filters=function(){let html=filtersFerraraOnly();html=html.replace(/<label class="note">Città<select[\\s\\S]*?<\\/select><\\/label>/,\`<label class="note">Città<select disabled aria-label="Città del pilota pubblico"><option selected>Ferrara</option></select></label>\`);return html};
+const initFerraraPublic=init;
+// Any asynchronous legacy source must never leak another city into the public state.
+const renderFerraraPublic=render;
+render=function(){state.city=publicPilotCity;state.campus='';state.items=state.items.filter(x=>x.city===publicPilotCity);renderFerraraPublic()};
