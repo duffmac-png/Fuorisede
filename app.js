@@ -642,3 +642,31 @@ document.head.insertAdjacentHTML('beforeend',`<style>
   color:#171715!important;
 }
 </style>`);
+
+
+/* Public build hardening: Ferrara only. Milano remains in internal/test branches. */
+const FUORISEDE_PUBLIC_HOST='fuorisede-evoluzione-universale.vercel.app';
+const isFuorisedePublicBuild=()=>location.hostname===FUORISEDE_PUBLIC_HOST;
+function enforcePublicFerraraOnly(){
+  if(!isFuorisedePublicBuild())return;
+  state.items=state.items.filter(x=>x.city==='Ferrara'&&x.publication?.authorized===true);
+  state.city='Ferrara';
+  state.campus='';
+  if(location.pathname.startsWith('/milano/'))history.replaceState(null,'','/');
+}
+const matchesBeforePublicCityGuard=matches;
+matches=function(x){if(isFuorisedePublicBuild()&&x.city!=='Ferrara')return false;return matchesBeforePublicCityGuard(x)};
+const filtersBeforePublicCityGuard=filters;
+filters=function(){
+  let html=filtersBeforePublicCityGuard();
+  if(!isFuorisedePublicBuild())return html;
+  html=html.replace(/<option value=""[^>]*>Scegli città<\/option>/,'<option value="">Tutte le città</option>');
+  html=html.replace(/<option value="Milano"[^>]*>Milano<\/option>/g,'');
+  return html;
+};
+const setCityBeforePublicCityGuard=setCity;
+setCity=function(v){if(isFuorisedePublicBuild()){state.city='Ferrara';state.zone='';state.campus='';resetComparisonState();render();return}setCityBeforePublicCityGuard(v)};
+const openDetailBeforePublicCityGuard=openDetail;
+openDetail=function(id){const x=state.items.find(item=>Number(item.id)===Number(id));if(isFuorisedePublicBuild()&&x?.city!=='Ferrara'){goHome();return}openDetailBeforePublicCityGuard(id)};
+const renderBeforePublicCityGuard=render;
+render=function(){enforcePublicFerraraOnly();renderBeforePublicCityGuard()};
