@@ -429,3 +429,17 @@ detailView=function(x){
   }
   return html;
 };
+
+
+/* Final detail cleanup: keep one back-to-top control and one integration action. */
+const renderBeforeDetailDuplicateCleanup=render;
+render=function(){
+  renderBeforeDetailDuplicateCleanup();
+  if(!state.detail)return;
+  const root=document.getElementById('v3-root');
+  if(!root)return;
+  const topControls=[...root.querySelectorAll('.ddbacktotop,.globalbacktotop')];
+  topControls.slice(1).forEach(node=>node.remove());
+  const integration=[...root.querySelectorAll('.ddaside button.ddsecondary')].filter(node=>/richiedi integrazione/i.test(node.textContent));
+  integration.slice(1).forEach(node=>node.remove());
+};
