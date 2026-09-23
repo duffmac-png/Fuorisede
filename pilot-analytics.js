@@ -8,6 +8,7 @@
 
   var STORAGE_KEY = 'fuorisede_analytics_v1';
   var SESSION_KEY = 'fuorisede_session_v1';
+  var VISITOR_KEY = 'fuorisede_visitor_v1';
   var dedupe = {};
   var allowed = {
     qualified_visit: true,
@@ -29,6 +30,46 @@
     } catch (_) {
       return 'session-unavailable';
     }
+  }
+
+  function visitorId() {
+    try {
+      var id = localStorage.getItem(VISITOR_KEY);
+      if (!id) {
+        id = 'v-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+        localStorage.setItem(VISITOR_KEY, id);
+      }
+      return id;
+    } catch (_) {
+      return 'visitor-unavailable';
+    }
+  }
+
+  function deviceType() {
+    var ua = navigator.userAgent || '';
+    if (/ipad|tablet/i.test(ua)) return 'tablet';
+    if (/mobi|iphone|android/i.test(ua)) return 'mobile';
+    return 'desktop';
+  }
+
+  function sendRemote(event) {
+    try {
+      fetch('/api/pilot-event', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          event: event.event,
+          ts: event.ts,
+          visitorId: visitorId(),
+          session: event.session,
+          listingId: event.listingId,
+          source: event.source,
+          campaign: event.campaign,
+          device: deviceType()
+        })
+      }).catch(function () {});
+    } catch (_) {}
   }
 
   function read() {
@@ -62,6 +103,7 @@
       campaign: data.campaign || null
     });
     write(events);
+    sendRemote(events[events.length - 1]);
     return true;
   }
 
