@@ -51,7 +51,7 @@ function sorted(){return [...state.items].filter(matches).sort((a,b)=>state.sort
 function resetComparisonState(){state.selected.clear();state.compareOpen=false;state.compareSeen=false}
 function setNeededFrom(v){state.neededFrom=v;resetComparisonState();render()}function setSort(v){state.sort=v;resetComparisonState();render()}function setMaxPrice(v){state.maxPrice=v;resetComparisonState();render()}function setZone(v){state.zone=v;resetComparisonState();render()}function setCampus(v){state.campus='';state.city='Ferrara';resetComparisonState();render()}function setCity(v){state.city='Ferrara';state.zone='';state.campus='';syncDiscoveryUrl();resetComparisonState();render()}function setSource(v){state.source=v;resetComparisonState();render()}function setMaxDistance(v){state.maxDistance=v;resetComparisonState();render()}function toggleQuick(v){state.quick.has(v)?state.quick.delete(v):state.quick.add(v);resetComparisonState();render()}function toggleMore(){state.moreFilters=!state.moreFilters;render()}function clearFilters(){state.neededFrom='';state.maxPrice='';state.maxDistance='';state.zone='';state.campus='';state.city='Ferrara';state.source='';state.quick.clear();state.sort='date';resetComparisonState();render()}let navigationOrigin='list';
 function currentSurface(){return state.compareOpen?'compare':state.detail?'detail':state.view}
-function setView(v){navigationOrigin=currentSurface();state.view=v;state.detail=null;state.compareOpen=false;render();window.scrollTo({top:0,behavior:"smooth"})}function toggleFav(id){state.favs.has(id)?state.favs.delete(id):state.favs.add(id);render()}function toggleCompare(id,on){const k=Number(id);on?state.selected.add(k):state.selected.delete(k);if(state.selected.size>3){state.selected.delete(k);alert("Puoi confrontare fino a 3 alloggi.")}if(state.selected.size<2)state.compareOpen=false;render()}function openComparison(){if(state.selected.size<2)return;state.compareOpen=true;state.detail=null;render();window.scrollTo({top:0,behavior:"smooth"})}function closeComparison(){state.compareOpen=false;if(['list','map','favs'].includes(navigationOrigin))state.view=navigationOrigin;render()}function clearComparison(){state.selected.clear();state.compareOpen=false;render()}function openDetail(id){navigationOrigin=currentSurface();state.detail=Number(id);state.compareOpen=false;render();window.scrollTo({top:0,behavior:"smooth"})}function closeDetail(){state.detail=null;if(['list','map','favs'].includes(navigationOrigin))state.view=navigationOrigin;render()}function unavailableAction(msg){alert(msg)}
+function setView(v){navigationOrigin=currentSurface();state.view=v;state.detail=null;state.compareOpen=false;render();window.scrollTo({top:0,behavior:"auto"})}function toggleFav(id){state.favs.has(id)?state.favs.delete(id):state.favs.add(id);render()}function toggleCompare(id,on){const k=Number(id);on?state.selected.add(k):state.selected.delete(k);if(state.selected.size>3){state.selected.delete(k);alert("Puoi confrontare fino a 3 alloggi.")}if(state.selected.size<2)state.compareOpen=false;render()}function openComparison(){if(state.selected.size<2)return;state.compareOpen=true;state.detail=null;render();window.scrollTo({top:0,behavior:"smooth"})}function closeComparison(){state.compareOpen=false;if(['list','map','favs'].includes(navigationOrigin))state.view=navigationOrigin;render()}function clearComparison(){state.selected.clear();state.compareOpen=false;render()}function openDetail(id){navigationOrigin=currentSurface();state.detail=Number(id);state.compareOpen=false;render();window.scrollTo(0,0);requestAnimationFrame(()=>window.scrollTo(0,0))}function closeDetail(){state.detail=null;if(['list','map','favs'].includes(navigationOrigin))state.view=navigationOrigin;render()}function unavailableAction(msg){alert(msg)}
 function openComparison(){if(state.selected.size<2)return;navigationOrigin=currentSurface();state.compareOpen=true;state.compareSeen=true;state.detail=null;render();window.scrollTo({top:0,behavior:"smooth"})}
 function clearComparison(){state.selected.clear();state.compareOpen=false;state.compareSeen=false;render()}
 function quickApply(id){const k=Number(id);if(state.applied.has(k))return;state.applied.add(k);alert('La candidatura online non è ancora attiva. Nessun dato è stato inviato.');render()}
@@ -341,5 +341,49 @@ document.head.insertAdjacentHTML('beforeend',`<style id="comparison-desktop-full
   #v3-root>.compareview{grid-column:1/-1!important;width:100%!important;min-width:0!important}
   #v3-root>.compareview .comparecards.count-2{grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important}
   #v3-root>.compareview .comparetable{width:100%!important;min-width:0!important}
+}
+</style>`);
+
+
+/* Stabilization pass 2026-09-23: iOS launch candidate. Keep fixes scoped and non-destructive. */
+function showListingOnMap(id){
+  const key=Number(id);
+  navigationOrigin=currentSurface();
+  state.detail=null;
+  state.compareOpen=false;
+  state.view='map';
+  state.mapActiveListingId=key;
+  render();
+  window.scrollTo(0,0);
+  setTimeout(()=>{
+    const context=activeMapMarkers.get('demo-map');
+    if(context?.markers?.has(key)){
+      selectMapListing('demo-map',key);
+      const entry=context.markers.get(key);
+      entry?.marker?.openPopup();
+    }
+  },220);
+}
+
+document.head.insertAdjacentHTML('beforeend',`<style id="ios-launch-stabilization">
+/* one visual separator around the trust/statistics block */
+.ddsection:has(.ddtrust){border-bottom:0!important}
+.ddsignals{border:0!important;border-top:0!important;margin-top:14px!important;padding-top:0!important}
+.ddsignals::before,.ddsignals::after{display:none!important;content:none!important}
+/* neutral information chips; statistical result keeps its semantic outline */
+.card .badge,.ddfeature{background:transparent!important;color:#171715!important;border-color:var(--design-line)!important}
+/* favorite is red but deliberately smaller on iOS */
+.heart,.ddphotoheart{color:#a33a2f!important}
+@media(max-width:700px){
+  .heart{width:34px!important;height:34px!important;font-size:17px!important}
+  .ddphotoheart{width:36px!important;height:36px!important;flex-basis:36px!important;font-size:18px!important}
+  .cardactions{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;gap:7px!important;align-items:center!important}
+  .cardmaplink{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;white-space:nowrap!important;padding:8px 6px!important;font-size:10px!important}
+  .mapview{width:100%!important;min-width:0!important;overflow:hidden!important}
+  .mapworkspace{display:flex!important;flex-direction:column!important;width:100%!important;min-width:0!important;height:auto!important;gap:10px!important}
+  .mapcanvas{order:0!important;width:100%!important;min-width:0!important;height:430px!important;flex:none!important}
+  #demo-map,#home-map{display:block!important;width:100%!important;min-width:0!important;height:430px!important}
+  .mapminilist{order:1!important;display:flex!important;flex-direction:row!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;padding:2px 2px 8px!important}
+  .mapmini{flex:0 0 min(82vw,330px)!important;width:auto!important}
 }
 </style>`);
