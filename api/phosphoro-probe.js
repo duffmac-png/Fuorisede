@@ -1,13 +1,8 @@
 export default async function handler(req,res){
-  if(req.method!=='GET') return res.status(405).json({ok:false,error:'method_not_allowed'});
-  const url='https://roomanager.phosphoro.com/public/tmp/fuorisede.json';
-  try{
-    const r=await fetch(url,{headers:{'accept':'application/json','user-agent':'FUORISEDE/1.0'}});
-    const textBody=await r.text();
-    let raw; try{raw=JSON.parse(textBody)}catch(e){throw new Error('invalid_json:'+textBody.slice(0,120))}
-    const arr=Array.isArray(raw)?raw:(raw?.items||raw?.listings||raw?.annunci||raw?.data||[]);
-    const first=Array.isArray(arr)&&arr.length?arr[0]:null;
-    console.log('PHOSPHORO_PROBE',JSON.stringify({status:r.status,count:Array.isArray(arr)?arr.length:null,root:Array.isArray(raw)?'array':Object.keys(raw||{}),firstKeys:first?Object.keys(first):[],first}));
-    return res.status(200).json({ok:r.ok,status:r.status,count:Array.isArray(arr)?arr.length:null,root:Array.isArray(raw)?'array':Object.keys(raw||{}),firstKeys:first?Object.keys(first):[],first});
-  }catch(e){console.error('PHOSPHORO_PROBE_ERROR',e);return res.status(502).json({ok:false,error:String(e?.message||e)})}
+ try{
+  const r=await fetch('https://roomanager.phosphoro.com/public/tmp/fuorisede.json',{headers:{accept:'application/json','user-agent':'FUORISEDE/1.0'}});
+  const raw=await r.json(); const arr=Array.isArray(raw)?raw:(raw.items||raw.listings||raw.annunci||raw.data||[]);
+  const out=arr.filter(x=>(x.property?.city||'')==='Ferrara').map(x=>({id:String(x.id),price:Number(x.monthlyPrice),title:(x.title&&((typeof x.title==='string'&&x.title)||x.title.it||x.title.en))||x.code,photos:(x.room?.photos?.length?x.room.photos:x.property?.photos||[]).length,address:[x.property?.address,x.property?.houseNumber].filter(Boolean).join(' '),url:x.url,availableFrom:x.availableFrom||null}));
+  res.status(200).json({count:out.length,unique:new Set(out.map(x=>x.id)).size,missingPrice:out.filter(x=>!Number.isFinite(x.price)).length,missingPhotos:out.filter(x=>!x.photos).length,missingUrl:out.filter(x=>!x.url).length,items:out});
+ }catch(e){res.status(502).json({error:String(e?.message||e)})}
 }
