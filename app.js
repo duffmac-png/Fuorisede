@@ -326,7 +326,7 @@ initMap=function(id='demo-map',items=state.items,attempt=0){const el=document.ge
 
 
 // Launch map mini-card cosmetic fix only; no rendering or map logic is overridden.
-document.head.insertAdjacentHTML('beforeend',\`<style>.mapmini{overflow:hidden!important}.mapmini::before,.mapmini::after,.mapmini>.mapminiphoto::after{display:none!important}.leaflet-popup-content .pincompare{display:inline-block!important}</style>\`);
+document.head.insertAdjacentHTML('beforeend',`<style>.mapmini{overflow:hidden!important}.mapmini::before,.mapmini::after,.mapmini>.mapminiphoto::after{display:none!important}.leaflet-popup-content .pincompare{display:inline-block!important}</style>`);
 
 // Launch blocker: in desktop grid mode the map section must span the full root grid.
 // Without this, .mapview occupies a single card column and the Leaflet canvas becomes "slim".
