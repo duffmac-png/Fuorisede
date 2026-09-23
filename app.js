@@ -623,3 +623,22 @@ document.head.insertAdjacentHTML('beforeend',`<style>
 #demo-map,#home-map{display:block!important;width:100%!important;min-width:0!important;height:430px!important}
 }
 </style>`);
+
+/* Scheda annuncio: navigazione singola e pillole statistiche neutre 2026-09-23. */
+const detailWithSingleBackLink=detailView;
+detailView=function(x){
+  let html=detailWithSingleBackLink(x);
+  const backButtons=[...html.matchAll(/<button class="(?:designback ddback|back)"[^>]*>[\s\S]*?<\/button>/g)];
+  if(backButtons.length>1){
+    for(let i=1;i<backButtons.length;i++)html=html.replace(backButtons[i][0],'');
+  }
+  return html;
+};
+document.head.insertAdjacentHTML('beforeend',`<style>
+.dddetail .ddsignals .statmark,
+.dddetail .ddsignals .statmark.warn{
+  border:1px solid var(--design-line)!important;
+  background:transparent!important;
+  color:#171715!important;
+}
+</style>`);
