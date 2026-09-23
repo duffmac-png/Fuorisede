@@ -443,3 +443,20 @@ render=function(){
   const integration=[...root.querySelectorAll('.ddaside button.ddsecondary')].filter(node=>/richiedi integrazione/i.test(node.textContent));
   integration.slice(1).forEach(node=>node.remove());
 };
+
+
+/* iOS QA fixes: favorite color, duplicate verification labels, map compare dock. */
+document.head.insertAdjacentHTML('beforeend',`<style id="ios-qa-20260923b">
+.heart,.heart.active,.ddphotoheart,.ddphotoheart.active{color:#a33a2f!important}
+@media(max-width:700px){.comparedock.designdock{display:flex!important;position:fixed!important;left:50%!important;bottom:max(76px,calc(env(safe-area-inset-bottom) + 52px))!important;z-index:99999!important}}
+</style>`);
+const renderBeforeIosQaFixes=render;
+render=function(){
+  renderBeforeIosQaFixes();
+  const root=document.getElementById('v3-root'); if(!root)return;
+  root.querySelectorAll('.ddessentials>div').forEach(box=>{
+    const values=[...box.querySelectorAll('b,span')].map(n=>n.textContent.trim().toLowerCase());
+    if(values.filter(v=>v==='da verificare').length>1){let seen=false;box.querySelectorAll('b,span').forEach(n=>{if(n.textContent.trim().toLowerCase()==='da verificare'){if(seen)n.remove();else seen=true}})}
+  });
+  if(state.view==='map'&&!state.detail&&!state.compareOpen&&state.selected.size>=2&&!root.querySelector('.comparedock'))root.insertAdjacentHTML('beforeend',compareDock());
+};
