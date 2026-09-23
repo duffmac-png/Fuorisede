@@ -387,3 +387,33 @@ document.head.insertAdjacentHTML('beforeend',`<style id="ios-launch-stabilizatio
   .mapmini{flex:0 0 min(82vw,330px)!important;width:auto!important}
 }
 </style>`);
+
+/* Navigation stabilization 2026-09-23: one coherent back action, no duplicate navigation controls. */
+function navigationBackLabel(){
+  if(navigationOrigin==='map')return '← Torna alla mappa';
+  if(navigationOrigin==='favs')return '← Torna ai preferiti';
+  if(navigationOrigin==='compare')return '← Torna al confronto';
+  return '← Torna agli alloggi';
+}
+function goBackFromDetail(){
+  const origin=navigationOrigin;
+  state.detail=null;
+  if(origin==='compare' && state.selected.size>=2){state.compareOpen=true;}
+  else {state.compareOpen=false;state.view=['list','map','favs'].includes(origin)?origin:'list';}
+  render();window.scrollTo(0,0);
+}
+const detailViewBeforeNavigationCleanup=detailView;
+detailView=function(x){
+  let html=detailViewBeforeNavigationCleanup(x);
+  html=html.replace(/<button class="designback ddback" onclick="closeDetail\(\)">[\s\S]*?<\/button>/, '<button class="designback ddback" onclick="goBackFromDetail()">'+navigationBackLabel()+'</button>');
+  html=html.replace(/<button class="back" onclick="closeDetail\(\)">[\s\S]*?<\/button>/, '<button class="back" onclick="goBackFromDetail()">'+navigationBackLabel()+'</button>');
+  return html;
+};
+const comparisonBeforeNavigationCleanup=comparison;
+comparison=function(){
+  let html=comparisonBeforeNavigationCleanup();
+  html=html.replace(/<div class="comparetopnav"[\s\S]*?<\/div>/g,'');
+  const label=navigationOrigin==='map'?'← Torna alla mappa':navigationOrigin==='favs'?'← Torna ai preferiti':'← Torna agli alloggi';
+  html=html.replace(/<button class="designback" onclick="closeComparison\(\)">[\s\S]*?<\/button>/, '<button class="designback" onclick="closeComparison()">'+label+'</button>');
+  return html;
+};
