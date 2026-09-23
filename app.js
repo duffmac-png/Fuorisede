@@ -332,3 +332,12 @@ initMap=function(id='demo-map',items=state.items,attempt=0){const el=document.ge
 // Without this, .mapview occupies a single card column and the Leaflet canvas becomes "slim".
 document.head.insertAdjacentHTML('beforeend',`<style>@media(min-width:701px){body.map-mode #v3-root>.mapview{grid-column:1/-1!important;width:100%!important;min-width:0!important}body.map-mode #v3-root>.filterpanel{grid-column:1/-1!important;width:100%!important;min-width:0!important}body.map-mode #v3-root>.mapview .mapworkspace{width:100%!important;min-width:0!important}body.map-mode #v3-root>.mapview .mapcanvas{width:100%!important;min-width:0!important}}</style>`);
 
+
+/* Desktop comparison layout: comparison is a full-width view inside the root grid. */
+document.head.insertAdjacentHTML('beforeend',`<style id="comparison-desktop-fullwidth">
+@media(min-width:701px){
+  #v3-root>.compareview{grid-column:1/-1!important;width:100%!important;min-width:0!important}
+  #v3-root>.compareview .comparecards.count-2{grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important}
+  #v3-root>.compareview .comparetable{width:100%!important;min-width:0!important}
+}
+</style>`);
