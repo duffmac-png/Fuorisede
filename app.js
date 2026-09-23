@@ -460,3 +460,25 @@ render=function(){
   });
   if(state.view==='map'&&!state.detail&&!state.compareOpen&&state.selected.size>=2&&!root.querySelector('.comparedock'))root.insertAdjacentHTML('beforeend',compareDock());
 };
+
+
+/* Emergency iOS stabilization: visible favorite fill, single detail back control, no duplicate verification text. */
+document.head.insertAdjacentHTML('beforeend',`<style id="ios-emergency-20260923">
+.heart,.ddphotoheart{color:#a33a2f!important;-webkit-text-fill-color:#a33a2f!important}
+.detail .back,.dddetail .ddback{display:inline-flex!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:10!important}
+</style>`);
+function normalizeIosDetail(){
+ const root=document.getElementById('v3-root'); if(!root||!state.detail)return;
+ const fav=root.querySelector('.ddphotoheart,.detail .heart');
+ if(fav){fav.textContent=state.favs.has(Number(state.detail))?'♥':'♡';fav.style.color='#a33a2f';fav.style.webkitTextFillColor='#a33a2f'}
+ const backs=[...root.querySelectorAll('.dddetail .ddback,.detail .back')];
+ backs.forEach((b,i)=>{if(i){b.remove();return} b.textContent=navigationBackLabel();b.onclick=goBackFromDetail;b.style.display='inline-flex'});
+ const nodes=[...root.querySelectorAll('.dddetail b,.dddetail span,.detail b,.detail strong,.detail span')];
+ for(let i=0;i<nodes.length-1;i++){
+   const a=nodes[i],b=nodes[i+1]; if(!a.isConnected||!b.isConnected)continue;
+   const ta=a.textContent.trim().toLowerCase(),tb=b.textContent.trim().toLowerCase();
+   if(ta==='da verificare'&&tb==='da verificare')b.remove();
+ }
+}
+const renderBeforeEmergencyIos=render;
+render=function(){renderBeforeEmergencyIos();normalizeIosDetail()};
