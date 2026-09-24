@@ -348,3 +348,22 @@ document.head.insertAdjacentHTML('beforeend',`<style id="comparison-desktop-full
 </style>`);
 
 document.head.insertAdjacentHTML('beforeend',`<style id="verify-info-style">.verifyinfo{position:relative;display:inline-grid;place-items:center;width:15px;height:15px;border:1px solid currentColor;border-radius:50%;font:700 10px/1 sans-serif;color:#666;vertical-align:middle;margin-left:3px;cursor:help}.verifyinfo:hover:after,.verifyinfo:focus:after{content:attr(data-tip);position:absolute;z-index:5000;left:50%;bottom:calc(100% + 7px);transform:translateX(-50%);width:220px;padding:7px 9px;border-radius:8px;background:#222;color:#fff;font:500 11px/1.35 sans-serif;white-space:normal;box-shadow:0 4px 15px #0003}</style>`);
+
+const baseInitMapForClusters=initMap;
+function styleCluster(count){return L.divIcon({className:'fscluster-wrap',html:`<button type="button" class="fscluster">${count} alloggi</button>`,iconSize:[86,34],iconAnchor:[43,17]})}
+function applyCollisionClusters(id){
+ const ctx=activeMapMarkers.get(id); if(!ctx?.map)return; const map=ctx.map;
+ if(ctx.clusterLayers){ctx.clusterLayers.forEach(l=>map.removeLayer(l));ctx.clusterLayers=[]}
+ ctx.markers.forEach(({marker})=>{if(!map.hasLayer(marker))marker.addTo(map)});
+ const entries=[...ctx.markers.values()],used=new Set(),groups=[];
+ for(let i=0;i<entries.length;i++){if(used.has(i))continue;const a=entries[i],pa=map.latLngToLayerPoint(a.marker.getLatLng()),g=[a];used.add(i);
+  for(let j=i+1;j<entries.length;j++){if(used.has(j))continue;const b=entries[j],pb=map.latLngToLayerPoint(b.marker.getLatLng());if(pa.distanceTo(pb)<72){g.push(b);used.add(j)}}
+  if(g.length>1)groups.push(g)
+ }
+ ctx.clusterLayers=[];
+ groups.forEach(g=>{g.forEach(e=>map.removeLayer(e.marker));const lat=g.reduce((s,e)=>s+e.marker.getLatLng().lat,0)/g.length,lng=g.reduce((s,e)=>s+e.marker.getLatLng().lng,0)/g.length;
+  const cl=L.marker([lat,lng],{icon:styleCluster(g.length),keyboard:true}).addTo(map);cl.on('click',()=>{const b=L.latLngBounds(g.map(e=>e.marker.getLatLng()));map.fitBounds(b,{padding:[70,70],maxZoom:18})});ctx.clusterLayers.push(cl)
+ })
+}
+initMap=function(id='demo-map',items=state.items,attempt=0){baseInitMapForClusters(id,items,attempt);setTimeout(()=>{const ctx=activeMapMarkers.get(id);if(!ctx?.map)return;applyCollisionClusters(id);if(!ctx.clusterBound){ctx.clusterBound=true;ctx.map.on('zoomend moveend',()=>applyCollisionClusters(id))}},420)}
+document.head.insertAdjacentHTML('beforeend',`<style id="cluster-style">.fscluster-wrap{background:transparent!important;border:0!important}.fscluster{white-space:nowrap;border:1px solid #fff;background:#171717;color:#fff;border-radius:999px;padding:8px 12px;font:800 11px/1 sans-serif;box-shadow:0 4px 12px #0003;cursor:pointer}.listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important}</style>`);
