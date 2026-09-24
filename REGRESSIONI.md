@@ -17,6 +17,7 @@ Prima di pubblicare una Preview, controlla tutte le voci.
 | 11 | Nel Confronto si sceglie la sede direttamente in pagina; senza sede, Distanza e Tempo dicono "Scegli la sede ↑" per tutti. | `app.js` (`compareZonePicker`) | aprire il Confronto senza sede, poi sceglierla |
 | 12 | "🏅 più basso" solo tra gli alloggi con prezzo: un alloggio senza prezzo non vale 0 €. | `app.js` (`designComparisonRow`) | Confronto con un alloggio "— €" |
 | 13 | Confronto → Condividi → Email apre una finestra interna (stile "Avvisami sugli aggiornamenti") con destinatario e messaggio modificabile; "Invia" apre il programma di posta, "Copia messaggio" copia il testo. | `app.js` (`openShareEmailModal`) | Confronto → Condividi → Email |
+| 14 | La pagina `/ferrara/` (link in fondo alla home, indicizzata da Google) usa gli stessi stili e script della home: cambia solo titolo e testo per Google. Se si aggiunge uno script o uno stile a `index.html`, va aggiunto anche a `ferrara/index.html`. | `ferrara/index.html` | cliccare l'ultima riga in fondo alla pagina |
 | 9 | Nella Scheda, sopra "… sopra/sotto la media FUORISEDE" c'è una sola riga. | `app.js` (`launch-stability-fixes`) | aprire una Scheda con prezzo |
 
 ## Regole di lavoro
