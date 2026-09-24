@@ -32,3 +32,5 @@ details[open] summary:after{content:'–'}
 details p{padding-bottom:16px;margin:0;color:#3c3a37}
 .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
 @media(max-width:600px){main{padding-top:24px}.lead{font-size:16px}.box{padding:18px}.nav a{padding:7px 9px;font-size:12px}}
+.fbicon{width:18px;height:18px;flex:0 0 18px;vertical-align:-4px;margin-right:6px}
+.foot a{display:inline-flex;align-items:center}
