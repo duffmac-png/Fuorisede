@@ -22,7 +22,7 @@
       .listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;z-index:900!important;font-size:10px!important;padding:4px 7px!important}
       .listing-price-tooltip.mobile-price-hidden{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
       .leaflet-control-attribution{max-width:72vw!important;font-size:7px!important}
-      .fs-mobile-map-card{position:fixed;z-index:2100;left:12px;right:12px;bottom:max(96px,calc(env(safe-area-inset-bottom) + 88px));display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003;pointer-events:auto!important}
+      .fs-mobile-map-card{position:fixed;z-index:2100;left:12px;right:12px;bottom:max(136px,calc(env(safe-area-inset-bottom) + 128px));display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003;pointer-events:auto!important}
       .fs-mobile-map-card.visible{display:grid}
       .fs-mobile-map-card-copy{min-width:0}
       .fs-mobile-map-card-copy small,.fs-mobile-map-card-copy strong,.fs-mobile-map-card-copy b{display:block}
@@ -35,15 +35,15 @@
       .fs-mobile-map-actions .active{background:#f1f1ee}
       body.fs-map-mobile .leaflet-popup{display:none!important}
       body.fs-map-mobile .comparedock{z-index:2000!important}
-      .fs-mobile-map-card.has-dock{bottom:max(166px,calc(env(safe-area-inset-bottom) + 158px))!important}
+      .fs-mobile-map-card.has-dock{bottom:max(200px,calc(env(safe-area-inset-bottom) + 192px))!important}
       .photoviewer{left:0!important;right:auto!important;width:100vw!important;max-width:100vw!important;overflow:hidden!important;grid-template-columns:34px minmax(0,calc(100vw - 80px)) 34px!important;padding-left:6px!important;padding-right:6px!important}
       .photoviewer figure{width:100%!important;max-width:100%!important;overflow:hidden!important}
       .photoviewer figure>img{width:100%!important;max-width:100%!important;height:auto!important;object-fit:contain!important}
       .photothumbs{max-width:100%!important}
     }
     html.fs-android-test .v3nav{position:relative!important;top:auto!important}
-    html.fs-android-test .fs-mobile-map-card{position:fixed;z-index:2100;left:12px;right:12px;bottom:96px;display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003;pointer-events:auto!important}
-    html.fs-android-test .fs-mobile-map-card.has-dock{bottom:166px!important}
+    html.fs-android-test .fs-mobile-map-card{position:fixed;z-index:2100;left:12px;right:12px;bottom:136px;display:none;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid #d9d7d1;border-radius:16px;background:#fff;color:#171715;box-shadow:0 12px 34px #0003;pointer-events:auto!important}
+    html.fs-android-test .fs-mobile-map-card.has-dock{bottom:200px!important}
     html.fs-android-test .fs-mobile-map-card.visible{display:grid}
     html.fs-android-test body.fs-map-mobile .leaflet-popup{display:none!important}
   </style>`);
@@ -68,11 +68,20 @@
     if (!node || !node.classList.contains('visible')) return;
     const comparisonDock = dock();
     node.classList.toggle('has-dock', Boolean(comparisonDock));
+    // Su Android la barra del browser può coprire il fondo dello schermo: si aggiunge lo spazio
+    // realmente nascosto (differenza tra finestra e area visibile) e si alza la schedina.
+    const vv = window.visualViewport;
+    const hidden = vv ? Math.max(0, Math.round(innerHeight - vv.height - vv.offsetTop)) : 0;
     const bottom = comparisonDock
-      ? Math.max(166, Math.ceil(innerHeight - comparisonDock.getBoundingClientRect().top + 18))
-      : Math.max(96, 88 + (Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom')) || 0));
+      ? Math.max(200, Math.ceil(innerHeight - comparisonDock.getBoundingClientRect().top + 18))
+      : Math.max(136, 128 + (Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom')) || 0)) + hidden;
     node.style.bottom = `${bottom}px`;
     node.style.maxHeight = `${Math.max(110, innerHeight - bottom - 76)}px`;
+  }
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => positionCard());
+    window.visualViewport.addEventListener('scroll', () => positionCard());
   }
 
   function rebuildDock() {

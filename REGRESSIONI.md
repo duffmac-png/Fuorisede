@@ -24,6 +24,9 @@ Prima di pubblicare una Preview, controlla tutte le voci.
 | 18 | Privacy e Cookie descrivono esattamente ciò che il sito salva e invia: se si aggiunge uno strumento (es. Meta Pixel) o una chiave nella memoria del browser, vanno aggiornate prima di pubblicare. | `privacy.html`, `cookie.html` | tabella nella Cookie Policy |
 | 21 | Nessuna risorsa del sito viene caricata da `fuorisede-demo.vercel.app` (su iPhone non risponde): il logo è `img/logo-fuorisede.png` (trasparente, leggero). | tutte le pagine, `app.js` | aprire Contatti da iPhone: il logo si vede |
 | 22 | Si possono confrontare tipologie diverse (camera, posto letto, appartamento) anche da telefono: nessun avviso "Puoi confrontare solo…". | `android-map-pill-fix.js` (`compatible`) | da telefono, mappa: aggiungere al confronto una camera e un posto letto |
+| 23 | La Scheda si apre sempre dall'inizio della pagina (anche su iPhone, anche se si arriva da metà lista). | `app.js` (`openDetail`) | da telefono, scorrere la lista e aprire una scheda |
+| 24 | Nel Confronto le dotazioni sono una per riga. | `app.js` (riga "Dotazioni") | aprire un Confronto |
+| 25 | Da telefono la schedina del pin sulla mappa sta ben sopra il fondo dello schermo (anche con la barra di Chrome su Android). | `android-map-pill-fix.js` (`positionCard`) | Android, mappa: toccare un pin |
 | 9 | Nella Scheda, sopra "… sopra/sotto la media FUORISEDE" c'è una sola riga. | `app.js` (`launch-stability-fixes`) | aprire una Scheda con prezzo |
 
 ## Regole di lavoro
