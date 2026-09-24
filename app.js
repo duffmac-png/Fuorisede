@@ -400,3 +400,6 @@ document.head.insertAdjacentHTML('beforeend',`<style id="context-nav-light">.con
 
 function syncMapPriceInfo(){document.querySelectorAll('.listing-price-tooltip').forEach(t=>{if(!/Da verificare|—\s*€/.test(t.textContent||''))return;if(t.querySelector('.verifyinfo'))return;t.innerHTML=(t.innerHTML||'').replace(/Da verificare|—\s*€/,'— €')+infoIcon()})}
 const priceInfoObserver=new MutationObserver(()=>syncMapPriceInfo());priceInfoObserver.observe(document.body,{childList:true,subtree:true});
+
+function syncCompareDockInPlace(){document.querySelector('.comparedock')?.remove();const html=compareDock();if(html)document.body.insertAdjacentHTML('beforeend',html);syncComparisonCheckboxes?.()}
+mapCompareAction=function(id){const key=Number(id),adding=!state.selected.has(key);if(adding&&state.selected.size>=3){alert("Puoi confrontare fino a 3 alloggi.");return}adding?state.selected.add(key):state.selected.delete(key);if(state.selected.size<2)state.compareOpen=false;state.mapActiveListingId=key;const btn=document.querySelector('.leaflet-popup .pincompare');if(btn)btn.textContent=adding?'✓ Nel confronto':'⇄ Confronta';syncCompareDockInPlace()}
