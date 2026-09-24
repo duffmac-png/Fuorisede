@@ -23,6 +23,7 @@ Prima di pubblicare una Preview, controlla tutte le voci.
 | 17 | Le statistiche arrivano in Airtable: visita, scheda aperta, preferito, confronto, annuncio originale, richieste; ciascuna con la provenienza (es. "meta / nome-campagna"). Il tracciamento si aggancia alle funzioni del sito (`openDetail`, `toggleFav`, `openComparison`), non ai nomi delle classi. | `pilot-tracking.js`, `pilot-analytics.js`, `api/pilot-event.js` | aprire `/api/pilot-event`: token e base `true`; poi un giro sul sito e controllare Airtable |
 | 18 | Privacy e Cookie descrivono esattamente ciò che il sito salva e invia: se si aggiunge uno strumento (es. Meta Pixel) o una chiave nella memoria del browser, vanno aggiornate prima di pubblicare. | `privacy.html`, `cookie.html` | tabella nella Cookie Policy |
 | 21 | Nessuna risorsa del sito viene caricata da `fuorisede-demo.vercel.app` (su iPhone non risponde): il logo è `img/logo-fuorisede.png` (trasparente, leggero). | tutte le pagine, `app.js` | aprire Contatti da iPhone: il logo si vede |
+| 22 | Si possono confrontare tipologie diverse (camera, posto letto, appartamento) anche da telefono: nessun avviso "Puoi confrontare solo…". | `android-map-pill-fix.js` (`compatible`) | da telefono, mappa: aggiungere al confronto una camera e un posto letto |
 | 9 | Nella Scheda, sopra "… sopra/sotto la media FUORISEDE" c'è una sola riga. | `app.js` (`launch-stability-fixes`) | aprire una Scheda con prezzo |
 
 ## Regole di lavoro

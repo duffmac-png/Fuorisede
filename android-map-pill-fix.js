@@ -115,13 +115,10 @@
     positionCard();
   }
 
-  function compatible(candidate) {
-    if (!state.selected.size) return true;
-    const first = state.items.find(item => state.selected.has(Number(item.id)));
-    const required = accommodationType(first);
-    if (required && accommodationType(candidate) === required) return true;
-    alert(`Puoi confrontare solo ${accommodationLabel(required)} con ${accommodationLabel(required)}.`);
-    return false;
+  // Si possono confrontare tipologie diverse (camera, posto letto, appartamento): nessun blocco,
+  // come su computer. Il vincolo era stato tolto da app.js ma era rimasto qui (solo telefono).
+  function compatible() {
+    return true;
   }
 
   function toggleMapComparison(id) {
