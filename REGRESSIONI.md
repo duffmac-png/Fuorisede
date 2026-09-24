@@ -13,6 +13,9 @@ Prima di pubblicare una Preview, controlla tutte le voci.
 | 6 | Cuore dei preferiti: vuoto = contorno nero e cerchio nero; salvato = pieno nero. Mai rosso. | `app.js` (`favorite-heart-style`, `favorite-heart-black`) | Home: salva un alloggio |
 | 7 | Navigazione (← pagina di provenienza a sinistra, pagina successiva → a destra) subito sotto la barra dei menu in Mappa, Scheda e Confronto. | `app.js` (`render`, `contextNavHtml`) | Alloggi → Mappa → Scheda → indietro → avanti |
 | 8 | Nel Confronto nella barra dei menu è acceso solo "Confronta" (non anche "Mappa"). | `app.js` (`nav`) | aprire il Confronto dalla Mappa |
+| 10 | "La tua sede" (Centro/Mammut/Darsena) NON filtra gli annunci: serve solo a calcolare distanze e tempi. Sempre 35 alloggi a Ferrara, qualunque sede. | `app.js` (`matches`, `setZone`) | cambiare sede: il contatore resta 35 |
+| 11 | Nel Confronto si sceglie la sede direttamente in pagina; senza sede, Distanza e Tempo dicono "Scegli la sede ↑" per tutti. | `app.js` (`compareZonePicker`) | aprire il Confronto senza sede, poi sceglierla |
+| 12 | "🏅 più basso" solo tra gli alloggi con prezzo: un alloggio senza prezzo non vale 0 €. | `app.js` (`designComparisonRow`) | Confronto con un alloggio "— €" |
 | 9 | Nella Scheda, sopra "… sopra/sotto la media FUORISEDE" c'è una sola riga. | `app.js` (`launch-stability-fixes`) | aprire una Scheda con prezzo |
 
 ## Regole di lavoro
