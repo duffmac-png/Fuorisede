@@ -20,6 +20,8 @@ Prima di pubblicare una Preview, controlla tutte le voci.
 | 14 | La pagina `/ferrara/` (link in fondo alla home, indicizzata da Google) usa gli stessi stili e script della home: cambia solo titolo e testo per Google. Se si aggiunge uno script o uno stile a `index.html`, va aggiunto anche a `ferrara/index.html`. | `ferrara/index.html` | cliccare l'ultima riga in fondo alla pagina |
 | 15 | L'icona "i" sta sempre sulla stessa riga del testo e mostra la "i" (anche nel riepilogo della Scheda accanto a "Da completare"). | `app.js` (regola `.verifyinfo`) | aprire una Scheda con costo reale da completare |
 | 16 | Nella Scheda il link del percorso dice "Apri il percorso su Google Maps®" e apre Google Maps. | `app.js` (`ddmaplink`) | Scheda con sede scelta |
+| 17 | Le statistiche arrivano in Airtable: visita, scheda aperta, preferito, confronto, annuncio originale, richieste; ciascuna con la provenienza (es. "meta / nome-campagna"). Il tracciamento si aggancia alle funzioni del sito (`openDetail`, `toggleFav`, `openComparison`), non ai nomi delle classi. | `pilot-tracking.js`, `pilot-analytics.js`, `api/pilot-event.js` | aprire `/api/pilot-event`: token e base `true`; poi un giro sul sito e controllare Airtable |
+| 18 | Privacy e Cookie descrivono esattamente ciò che il sito salva e invia: se si aggiunge uno strumento (es. Meta Pixel) o una chiave nella memoria del browser, vanno aggiornate prima di pubblicare. | `privacy.html`, `cookie.html` | tabella nella Cookie Policy |
 | 9 | Nella Scheda, sopra "… sopra/sotto la media FUORISEDE" c'è una sola riga. | `app.js` (`launch-stability-fixes`) | aprire una Scheda con prezzo |
 
 ## Regole di lavoro
