@@ -77,7 +77,9 @@
       const others = dots.filter(o => o !== d).map(o => o.box);
       const inView = d.p.x >= 0 && d.p.y >= 0 && d.p.x <= size.x && d.p.y <= size.y;
       let best = null, bestScore = Infinity;
-      for (const [dx, dy] of CANDIDATES) {
+      const prev = tip._fsDelta;
+      const order = prev ? [prev].concat(CANDIDATES) : CANDIDATES;
+      for (const [dx, dy] of order) {
         const box = boxAt(dx, dy);
         const hits = placed.concat(others);
         const out = inView && outside(box);
@@ -86,6 +88,7 @@
         if (score < bestScore) { bestScore = score; best = [dx, dy, box]; }
       }
       const [dx, dy, box] = best;
+      tip._fsDelta = [dx, dy];
       placed.push(box);
       tip.options.offset = L.point(base.x + dx, base.y + dy);
       // Solo riposizionamento: update() riscriverebbe il contenuto (e toglierebbe l'icona "i").
@@ -126,7 +129,7 @@
       }
       if (!ctx.fsPillsBound) {
         ctx.fsPillsBound = true;
-        ctx.map.on('zoomend resize', () => scheduleLayout(id));
+        ctx.map.on('zoomend resize', () => { ctx.markers.forEach(e => { const t = e.marker.getTooltip && e.marker.getTooltip(); if (t) t._fsDelta = null; }); scheduleLayout(id); });
         // Se il testo di una pillola cambia (confronto, preferiti, icona "i"), la sua larghezza cambia: ricalcola.
         const pane = ctx.map.getPane('tooltipPane');
         if (pane) new MutationObserver(() => scheduleLayout(id)).observe(pane, { childList: true, subtree: true, characterData: true });

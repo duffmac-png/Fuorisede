@@ -27,6 +27,8 @@ Prima di pubblicare una Preview, controlla tutte le voci.
 | 23 | La Scheda si apre sempre dall'inizio della pagina (anche su iPhone, anche se si arriva da metà lista). | `app.js` (`openDetail`) | da telefono, scorrere la lista e aprire una scheda |
 | 24 | Nel Confronto le dotazioni sono una per riga. | `app.js` (riga "Dotazioni") | aprire un Confronto |
 | 25 | Da telefono la schedina del pin sulla mappa sta ben sopra il fondo dello schermo (anche con la barra di Chrome su Android). | `android-map-pill-fix.js` (`positionCard`) | Android, mappa: toccare un pin |
+| 26 | I tooltip nascosti ("!" e "i") non occupano spazio: la pagina Confronto su telefono resta larga quanto lo schermo e la barra in basso è centrata. | `app.js` (regole `.missingwarning::after`, `.fs-tip::after`) | telefono, Confronto: nessuno scorrimento laterale |
+| 27 | "Vedi sulla mappa" porta la pagina sulla mappa; la mini-scheda evidenziata scorre solo dentro la sua lista, senza spostare la pagina. | `app.js` (`showListingOnMap`, `highlightMapMini`) | iPhone: home → Vedi sulla mappa |
 | 9 | Nella Scheda, sopra "… sopra/sotto la media FUORISEDE" c'è una sola riga. | `app.js` (`launch-stability-fixes`) | aprire una Scheda con prezzo |
 
 ## Regole di lavoro
