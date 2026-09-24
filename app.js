@@ -407,3 +407,9 @@ mapCompareAction=function(id){const key=Number(id),adding=!state.selected.has(ke
 const mapCompareActionKeepPopup=mapCompareAction;
 mapCompareAction=function(id){const key=Number(id);mapCompareActionKeepPopup(key);const selected=state.selected.has(key);activeMapMarkers.forEach(ctx=>{const entry=ctx?.markers?.get(key);if(!entry)return;const tip=entry.marker.getTooltip?.();if(tip)tip.setContent(`${selected?'✓ ':''}${priceDisplay(entry.x)}`);const el=tip?.getElement?.();if(el)el.classList.toggle('selected-map-label',selected)})}
 document.head.insertAdjacentHTML('beforeend',`<style id="selected-map-pill">.listing-price-tooltip.selected-map-label{background:#fff!important;color:#171717!important;border:3px solid #171717!important;box-shadow:0 3px 10px #0002!important;font-weight:900!important}.listing-price-tooltip.selected-map-label:before{border-top-color:#171717!important}</style>`);
+
+state.listingAlerts=state.listingAlerts||new Set();
+function toggleListingAlert(id){const key=Number(id);state.listingAlerts.has(key)?state.listingAlerts.delete(key):state.listingAlerts.add(key);render()}
+const detailBeforeRestoredAlert=detailView;
+detailView=function(x){const id=Number(x.id);let html=detailBeforeRestoredAlert(x);if(html.includes('onclick="toggleListingAlert('))return html;const alertControl=`<button class="ddsecondary ddalert" onclick="toggleListingAlert(${id})" title="Richiedi aggiornamenti su questa scheda">Avvisami sugli aggiornamenti</button><p class="ddalerthelp">Ricevi una notifica se questa scheda viene modificata, aggiornata o integrata.</p>`;return html.replace('<p>Prima di pagare',alertControl+'<p>Prima di pagare')}
+document.head.insertAdjacentHTML('beforeend',`<style id="restored-listing-alert">.ddalerthelp{margin:5px 0 12px!important;color:var(--design-muted);font-size:9px;line-height:1.35}</style>`);
