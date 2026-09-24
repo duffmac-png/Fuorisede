@@ -10,6 +10,10 @@ Prima di pubblicare una Preview, controlla tutte le voci.
 | 3 | Ogni pillola è cliccabile: su desktop apre il popup, su telefono la scheda in basso. | `map-pills.js` (desktop), `android-map-pill-fix.js` (mobile) | clic su una pillola |
 | 4 | Su telefono la mappa occupa tutta la larghezza e le mini-schede scorrono sotto. | `map-pills.js` (CSS mobile) | aprire Mappa da telefono |
 | 5 | Dal popup, "Confronta" non chiude il popup, la pillola diventa invertita con ✓ e con 2 alloggi compare la barra in basso. | `app.js` (`mapCompareAction`) | 2 clic su "Confronta" da due popup |
+| 6 | Cuore dei preferiti: vuoto = contorno nero e cerchio nero; salvato = pieno nero. Mai rosso. | `app.js` (`favorite-heart-style`, `favorite-heart-black`) | Home: salva un alloggio |
+| 7 | Navigazione (← pagina di provenienza a sinistra, pagina successiva → a destra) subito sotto la barra dei menu in Mappa, Scheda e Confronto. | `app.js` (`render`, `contextNavHtml`) | Alloggi → Mappa → Scheda → indietro → avanti |
+| 8 | Nel Confronto nella barra dei menu è acceso solo "Confronta" (non anche "Mappa"). | `app.js` (`nav`) | aprire il Confronto dalla Mappa |
+| 9 | Nella Scheda, sopra "… sopra/sotto la media FUORISEDE" c'è una sola riga. | `app.js` (`launch-stability-fixes`) | aprire una Scheda con prezzo |
 
 ## Regole di lavoro
 

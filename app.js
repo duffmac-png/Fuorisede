@@ -159,7 +159,7 @@ comparison=function(){const xs=state.items.filter(x=>state.selected.has(Number(x
 
 document.head.insertAdjacentHTML('beforeend',`<style>.v3nav.designnav{gap:5px;align-items:center;justify-content:flex-end;margin:-52px 0 30px;position:relative;z-index:6}.v3nav.designnav button{position:relative;flex:0 0 auto;border:0;background:transparent!important;color:var(--design-ink)!important;border-radius:0;padding:8px 10px;font-size:10px;font-weight:600}.v3nav.designnav button:hover,.v3nav.designnav button.active{color:var(--brick)!important}.v3nav.designnav b{display:inline-grid;place-items:center;min-width:14px;height:14px;margin-left:3px;padding:0 3px;border-radius:50%;background:var(--brick)!important;color:#fff!important;font-size:7px;vertical-align:middle}@media(max-width:700px){.v3nav.designnav{margin:0 0 8px;justify-content:flex-start;overflow:auto}.v3nav.designnav button{padding:7px 8px;white-space:nowrap}}</style>`);
 function openNavComparison(){if(state.selected.size>=2)openComparison();else alert('Seleziona almeno 2 alloggi da confrontare.')}
-nav=function(){return `<nav class="v3nav designnav"><button class="${state.view==='list'&&!state.compareOpen?'active':''}" onclick="setView('list')">Alloggi</button><button class="${state.view==='map'?'active':''}" onclick="setView('map')">Mappa</button><button class="${state.compareOpen?'active':''}" onclick="openNavComparison()">Confronta${state.selected.size?` <b>${state.selected.size}</b>`:''}</button><button class="${state.view==='alerts'?'active':''}" onclick="setView('alerts')">Alert</button><button class="${state.view==='favs'?'active':''}" onclick="setView('favs')">Preferiti${state.favs.size?` <b>${state.favs.size}</b>`:''}</button></nav>`};
+nav=function(){return `<nav class="v3nav designnav"><button class="${state.view==='list'&&!state.compareOpen?'active':''}" onclick="setView('list')">Alloggi</button><button class="${state.view==='map'&&!state.compareOpen?'active':''}" onclick="setView('map')">Mappa</button><button class="${state.compareOpen?'active':''}" onclick="openNavComparison()">Confronta${state.selected.size?` <b>${state.selected.size}</b>`:''}</button><button class="${state.view==='alerts'?'active':''}" onclick="setView('alerts')">Alert</button><button class="${state.view==='favs'?'active':''}" onclick="setView('favs')">Preferiti${state.favs.size?` <b>${state.favs.size}</b>`:''}</button></nav>`};
 
 // Barra di confronto compatta, come nella proposta Design.
 document.head.insertAdjacentHTML('beforeend',`<style>.comparedock.designdock{width:auto!important;min-width:210px;max-width:calc(100% - 24px);padding:5px 6px 5px 11px!important;border-radius:999px!important;gap:12px!important;background:#171717!important;box-shadow:0 8px 24px #0003!important}.comparedock.designdock span{font-size:9px!important;white-space:nowrap}.comparedock.designdock span b{font-size:10px!important}.comparedock.designdock button{padding:8px 12px!important;background:#fff!important;color:#171717!important;font-size:10px!important;border-radius:999px!important}@media(max-width:600px){.comparedock.designdock{min-width:195px}}</style>`);
@@ -355,8 +355,9 @@ const mapViewportMemory={};
 function rememberMapViewport(){const ctx=activeMapMarkers.get('demo-map');if(ctx?.map)mapViewportMemory.demo={center:ctx.map.getCenter(),zoom:ctx.map.getZoom()}}
 function restoreMapViewport(){const m=mapViewportMemory.demo;if(!m)return;setTimeout(()=>{const ctx=activeMapMarkers.get('demo-map');ctx?.map?.setView(m.center,m.zoom,{animate:false})},500)}
 function contextNavHtml(){const here=currentSurface(),back=navigationOrigin&&navigationOrigin!==here?navigationOrigin:null;return `<div class="contextnav">${back?`<button onclick="contextBack()">← ${navSurfaceLabel(back)}</button>`:'<span></span>'}${navForwardSurface?`<button onclick="contextForward()">${navSurfaceLabel(navForwardSurface)} →</button>`:'<span></span>'}</div>`}
-function contextBack(){const here=currentSurface(),target=navigationOrigin||'list';navForwardSurface=here;state.detail=null;state.compareOpen=false;if(['list','map','favs','alerts'].includes(target))state.view=target;render();if(target==='map')restoreMapViewport();window.scrollTo({top:0,behavior:'smooth'})}
-function contextForward(){const target=navForwardSurface;navForwardSurface=null;if(target==='compare'){openComparison();return}if(target==='detail')return;if(['list','map','favs','alerts'].includes(target))setView(target)}
+let navForwardDetailId=null;
+function contextBack(){const here=currentSurface(),target=navigationOrigin||'list';navForwardSurface=here;if(here==='detail')navForwardDetailId=state.detail;state.detail=null;state.compareOpen=false;if(['list','map','favs','alerts'].includes(target))state.view=target;render();if(target==='map')restoreMapViewport();window.scrollTo({top:0,behavior:'smooth'})}
+function contextForward(){const target=navForwardSurface;navForwardSurface=null;if(target==='compare'){openComparison();return}if(target==='detail'){if(navForwardDetailId!=null)openDetail(navForwardDetailId);return}if(['list','map','favs','alerts'].includes(target))setView(target)}
 const navBaseSetView=setView;
 setView=function(v){if(state.view==='map')rememberMapViewport();navForwardSurface=null;navBaseSetView(v)}
 const navBaseOpenDetail=openDetail;
@@ -366,12 +367,12 @@ openComparison=function(){if(state.view==='map')rememberMapViewport();navForward
 closeDetail=function(){contextBack()}
 closeComparison=function(){contextBack()}
 const navBaseRender=render;
-render=function(){navBaseRender();requestAnimationFrame(()=>{const host=document.querySelector('.compareview,.detail,.mapview');if(!host)return;host.querySelector(':scope > .contextnav')?.remove();host.querySelector(':scope > .designback')?.remove();if(host.classList.contains('detail'))host.querySelector(':scope > .back')?.remove();host.insertAdjacentHTML('afterbegin',contextNavHtml())})}
-document.head.insertAdjacentHTML('beforeend',`<style id="context-nav-style">.contextnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 16px}.contextnav button{border:1px solid var(--design-line);background:#fff;color:#171717;border-radius:999px;padding:9px 13px;font-weight:750;cursor:pointer}</style>`);
+render=function(){navBaseRender();requestAnimationFrame(()=>{document.querySelectorAll('#v3-root .contextnav').forEach(n=>n.remove());const host=document.querySelector('.compareview,.dddetail,.detail,.mapview');if(!host)return;host.querySelector(':scope > .designback')?.remove();if(host.matches('.detail,.dddetail'))host.querySelector(':scope > .back')?.remove();const menu=document.querySelector('#v3-root > .v3nav');if(menu)menu.insertAdjacentHTML('afterend',contextNavHtml());else host.insertAdjacentHTML('afterbegin',contextNavHtml())})}
+document.head.insertAdjacentHTML('beforeend',`<style id="context-nav-style">.contextnav{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;margin:-6px 0 10px}#v3-root>.contextnav{min-height:0!important;height:20px!important;padding:0!important}@media(min-width:760px){#v3-root>.contextnav{margin:-28px 0 0!important}#v3-root>.contextnav+*{margin-top:-26px!important}}.contextnav button{border:1px solid var(--design-line);background:#fff;color:#171717;border-radius:999px;padding:9px 13px;font-weight:750;cursor:pointer}</style>`);
 
 document.head.insertAdjacentHTML('beforeend',`<style id="compare-photo-placeholder">.designphoto.emptyphoto{display:grid;place-items:center;background:#f0ede7!important;color:#8a8178;font-size:10px;font-weight:850;letter-spacing:.05em;text-align:center}</style>`);
 
-document.head.insertAdjacentHTML('beforeend',`<style id="favorite-heart-style">.heart{color:#fff!important;border:1px solid #b8b2aa!important;text-shadow:0 1px 2px #0005}.heart.is-fav{color:#c92f36!important;border-color:#c92f36!important;text-shadow:none}</style>`);
+document.head.insertAdjacentHTML('beforeend',`<style id="favorite-heart-style">.heart,.ddphotoheart{color:#171717!important;border:1px solid #171717!important;text-shadow:none}.heart.is-fav{color:#c92f36!important;border-color:#c92f36!important;text-shadow:none}</style>`);
 
 document.head.insertAdjacentHTML('beforeend',`<style id="card-map-action-style">.cardactions .cardmaplink{display:inline-flex!important;align-items:center;justify-content:center;gap:5px;border:1px solid var(--design-line)!important;background:#fff!important;color:var(--design-ink)!important;border-radius:999px!important;padding:8px 11px!important;font:750 10px/1 sans-serif!important;white-space:nowrap}.map-pin-icon{font-size:11px;line-height:1}</style>`);
 
@@ -430,12 +431,13 @@ const stableContextNavHtml=contextNavHtml;
 contextNavHtml=function(){
   const here=currentSurface();
   if(here==='map'){
-    return '<div class="contextnav"><button onclick="state.detail=null;state.compareOpen=false;state.view=\'list\';navigationOrigin=\'list\';render();window.scrollTo({top:0,behavior:\'smooth\'})">← Alloggi</button><span></span></div>';
+    return '<div class="contextnav"><button onclick="state.detail=null;state.compareOpen=false;state.view=\'list\';navigationOrigin=\'list\';render();window.scrollTo({top:0,behavior:\'smooth\'})">← Alloggi</button>'+(navForwardSurface?`<button onclick="contextForward()">${navSurfaceLabel(navForwardSurface)} →</button>`:'<span></span>')+'</div>';
   }
   return stableContextNavHtml();
 };
 
 document.head.insertAdjacentHTML('beforeend',`<style id="launch-stability-fixes">
 .ddessentials>div:nth-child(3)>span:empty{display:none!important}
-.mapview>.contextnav{margin-bottom:10px!important}
+.detail-stats-inside .ddsignals{border-top:0!important;margin-top:0!important;padding-top:0!important}
+
 </style>`);
