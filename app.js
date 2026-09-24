@@ -367,3 +367,23 @@ function applyCollisionClusters(id){
 }
 initMap=function(id='demo-map',items=state.items,attempt=0){baseInitMapForClusters(id,items,attempt);setTimeout(()=>{const ctx=activeMapMarkers.get(id);if(!ctx?.map)return;applyCollisionClusters(id);if(!ctx.clusterBound){ctx.clusterBound=true;ctx.map.on('zoomend moveend',()=>applyCollisionClusters(id))}},420)}
 document.head.insertAdjacentHTML('beforeend',`<style id="cluster-style">.fscluster-wrap{background:transparent!important;border:0!important}.fscluster{white-space:nowrap;border:1px solid #fff;background:#171717;color:#fff;border-radius:999px;padding:8px 12px;font:800 11px/1 sans-serif;box-shadow:0 4px 12px #0003;cursor:pointer}.listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important}</style>`);
+
+let navForwardSurface=null;
+const navSurfaceLabel=s=>({list:'Alloggi',map:'Mappa',detail:'Scheda',compare:'Le mie scelte',favs:'Preferiti',alerts:'Alert'})[s]||'Alloggi';
+const mapViewportMemory={};
+function rememberMapViewport(){const ctx=activeMapMarkers.get('demo-map');if(ctx?.map)mapViewportMemory.demo={center:ctx.map.getCenter(),zoom:ctx.map.getZoom()}}
+function restoreMapViewport(){const m=mapViewportMemory.demo;if(!m)return;setTimeout(()=>{const ctx=activeMapMarkers.get('demo-map');ctx?.map?.setView(m.center,m.zoom,{animate:false})},500)}
+function contextNavHtml(){const here=currentSurface(),back=navigationOrigin&&navigationOrigin!==here?navigationOrigin:null;return `<div class="contextnav">${back?`<button onclick="contextBack()">← ${navSurfaceLabel(back)}</button>`:'<span></span>'}${navForwardSurface?`<button onclick="contextForward()">${navSurfaceLabel(navForwardSurface)} →</button>`:'<span></span>'}</div>`}
+function contextBack(){const here=currentSurface(),target=navigationOrigin||'list';navForwardSurface=here;state.detail=null;state.compareOpen=false;if(['list','map','favs','alerts'].includes(target))state.view=target;render();if(target==='map')restoreMapViewport();window.scrollTo({top:0,behavior:'smooth'})}
+function contextForward(){const target=navForwardSurface;navForwardSurface=null;if(target==='compare'){openComparison();return}if(target==='detail')return;if(['list','map','favs','alerts'].includes(target))setView(target)}
+const navBaseSetView=setView;
+setView=function(v){if(state.view==='map')rememberMapViewport();navForwardSurface=null;navBaseSetView(v)}
+const navBaseOpenDetail=openDetail;
+openDetail=function(id){if(state.view==='map')rememberMapViewport();navForwardSurface=null;navBaseOpenDetail(id)}
+const navBaseOpenComparison=openComparison;
+openComparison=function(){if(state.view==='map')rememberMapViewport();navForwardSurface=null;navBaseOpenComparison()}
+closeDetail=function(){contextBack()}
+closeComparison=function(){contextBack()}
+const navBaseRender=render;
+render=function(){navBaseRender();requestAnimationFrame(()=>{const host=document.querySelector('.compareview,.detail,.mapview');if(!host)return;host.querySelector(':scope > .contextnav')?.remove();host.querySelector(':scope > .designback')?.remove();if(host.classList.contains('detail'))host.querySelector(':scope > .back')?.remove();host.insertAdjacentHTML('afterbegin',contextNavHtml())})}
+document.head.insertAdjacentHTML('beforeend',`<style id="context-nav-style">.contextnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 16px}.contextnav button{border:1px solid var(--design-line);background:#fff;color:#171717;border-radius:999px;padding:9px 13px;font-weight:750;cursor:pointer}</style>`);
