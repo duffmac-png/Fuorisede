@@ -397,3 +397,6 @@ document.head.insertAdjacentHTML('beforeend',`<style id="card-map-action-style">
 document.head.insertAdjacentHTML('beforeend',`<style id="favorite-heart-black">.heart.is-fav,.ddphotoheart.active{color:#171717!important;border-color:#171717!important;text-shadow:none!important}.v3nav button:last-child b{background:#171717!important}</style>`);
 
 document.head.insertAdjacentHTML('beforeend',`<style id="context-nav-light">.contextnav button{border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;padding:3px 0!important;color:var(--design-muted)!important;font:650 10px/1.2 sans-serif!important}.contextnav button:hover,.contextnav button:focus{color:var(--brick)!important;text-decoration:underline;text-underline-offset:3px}</style>`);
+
+function syncMapPriceInfo(){document.querySelectorAll('.listing-price-tooltip').forEach(t=>{if(!/Da verificare|—\s*€/.test(t.textContent||''))return;if(t.querySelector('.verifyinfo'))return;t.innerHTML=(t.innerHTML||'').replace(/Da verificare|—\s*€/,'— €')+infoIcon()})}
+const priceInfoObserver=new MutationObserver(()=>syncMapPriceInfo());priceInfoObserver.observe(document.body,{childList:true,subtree:true});
