@@ -343,3 +343,51 @@ document.head.insertAdjacentHTML('beforeend',`<style id="comparison-desktop-full
   #v3-root>.compareview .comparetable{width:100%!important;min-width:0!important}
 }
 </style>`);
+
+
+/* === Launch fixes 2026-09-24: verification, map collision, navigation, sharing, compare photos === */
+const verifyInfoText='Prezzo non indicato nell’annuncio: da verificare con chi affitta';
+function infoMark(text=verifyInfoText){const safe=String(text).replace(/"/g,'&quot;');return `<span class="verify-info" tabindex="0" aria-label="${safe}" data-tip="${safe}">i</span>`}
+function verifiedEuro(x){return Number.isFinite(Number(x?.price))&&Number(x.price)>0?euro(x.price):`— € ${infoMark()}`}
+function surfaceLabel(s){return ({list:'Alloggi',map:'Mappa',favs:'Preferiti',detail:'Scheda',compare:'Confronto',alerts:'Alert'})[s]||'Alloggi'}
+let forwardSurface=null;
+const _launchSetView=setView;
+setView=function(v){forwardSurface=null;_launchSetView(v)}
+function launchBack(){const target=navigationOrigin||'list';forwardSurface=currentSurface();if(target==='detail'){state.compareOpen=false;return}state.detail=null;state.compareOpen=false;if(['list','map','favs','alerts'].includes(target))state.view=target;render();window.scrollTo({top:0,behavior:'smooth'});restoreMapViewportIfNeeded()}
+function launchForward(){if(!forwardSurface)return;if(forwardSurface==='compare')openComparison();else if(['list','map','favs','alerts'].includes(forwardSurface))setView(forwardSurface)}
+function contextNavigation(){const here=currentSurface(),left=navigationOrigin&&navigationOrigin!==here?navigationOrigin:null;return `<div class="contextnav">${left?`<button class="contextback" onclick="launchBack()">← ${surfaceLabel(left)}</button>`:'<span></span>'}${forwardSurface?`<button class="contextforward" onclick="launchForward()">${surfaceLabel(forwardSurface)} →</button>`:'<span></span>'}</div>`}
+const mapViewMemory={};
+function rememberMapViewport(id){const ctx=activeMapMarkers.get(id);if(ctx?.map)mapViewMemory[id]={center:ctx.map.getCenter(),zoom:ctx.map.getZoom()}}
+function restoreMapViewportIfNeeded(){if(state.view!=='map')return;setTimeout(()=>{const ctx=activeMapMarkers.get('demo-map'),m=mapViewMemory['demo-map'];if(ctx?.map&&m)ctx.map.setView(m.center,m.zoom,{animate:false})},60)}
+const _launchOpenDetail=openDetail;
+openDetail=function(id){if(state.view==='map')rememberMapViewport('demo-map');forwardSurface=null;_launchOpenDetail(id)}
+const _launchOpenComparison=openComparison;
+openComparison=function(){if(state.view==='map')rememberMapViewport('demo-map');forwardSurface=null;_launchOpenComparison()}
+closeDetail=function(){launchBack()}
+closeComparison=function(){launchBack()}
+
+function markerLabel(x){return verifiedEuro(x)}
+function collisionGroups(items,map){const points=items.filter(x=>Number.isFinite(x.lat)&&Number.isFinite(x.lng)).map(x=>({x,p:map.latLngToLayerPoint([x.lat,x.lng])}));const used=new Set(),groups=[];for(let i=0;i<points.length;i++){if(used.has(i))continue;const g=[points[i].x];used.add(i);for(let j=i+1;j<points.length;j++){if(used.has(j))continue;if(points[i].p.distanceTo(points[j].p)<58){g.push(points[j].x);used.add(j)}}groups.push(g)}return groups}
+function clusterIcon(count){return L.divIcon({className:'listing-cluster-wrap',html:`<button class="listing-cluster" type="button" aria-label="${count} alloggi vicini">${count}</button>`,iconSize:[38,38],iconAnchor:[19,19]})}
+initMap=function(id='demo-map',items=state.items,attempt=0){const el=document.getElementById(id);if(!el)return;if(!window.L){if(attempt<30)setTimeout(()=>initMap(id,items,attempt+1),150);return}const map=L.map(el,{scrollWheelZoom:false,tap:true,zoomControl:true}).setView([44.835,11.619],14);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors',crossOrigin:true}).addTo(map);const markers=new Map(),valid=items.filter(x=>Number.isFinite(x.lat)&&Number.isFinite(x.lng));activeMapMarkers.set(id,{map,markers});const draw=()=>{markers.forEach(({marker})=>map.removeLayer(marker));markers.clear();map.eachLayer(layer=>{if(layer.options?.pane==='markerPane'&&layer.options?.icon?.options?.className==='listing-cluster-wrap')map.removeLayer(layer)});const groups=collisionGroups(valid,map);groups.forEach(group=>{if(group.length>1&&map.getZoom()<17){const lat=group.reduce((s,x)=>s+x.lat,0)/group.length,lng=group.reduce((s,x)=>s+x.lng,0)/group.length,cm=L.marker([lat,lng],{icon:clusterIcon(group.length)}).addTo(map);cm.on('click',()=>map.setView([lat,lng],Math.min(18,map.getZoom()+2)));return}group.forEach(x=>{const marker=L.circleMarker([x.lat,x.lng],markerAppearance(x));marker.addTo(map).bindTooltip(markerLabel(x),{permanent:true,direction:'top',offset:[0,-8],className:'listing-price-tooltip'}).bindPopup(`<b>${x.title}</b><br>${verifiedEuro(x)} / mese<br><small>${x.locationStatus==='approximate_area'?'Posizione indicativa':'Posizione verificata sulla via'}</small><br><button class="pinopen" onclick="openDetail(${Number(x.id)})">Apri la scheda</button><button class="pincompare" onclick="toggleCompare('${Number(x.id)}',${!state.selected.has(Number(x.id))})">${state.selected.has(Number(x.id))?'✓ Nel confronto':'Confronta'}</button>`);markers.set(Number(x.id),{marker,x});marker.on('click',()=>{state.mapActiveListingId=Number(x.id);highlightMapMini(x.id);if(id==='home-map')highlightCard(x.id)});})})};draw();map.on('zoomend',draw);const bounds=valid.map(x=>[x.lat,x.lng]);if(bounds.length===1)map.setView(bounds[0],15);else if(bounds.length>1)map.fitBounds(bounds,{padding:[55,55],maxZoom:14});const saved=mapViewMemory[id];if(saved)map.setView(saved.center,saved.zoom,{animate:false});requestAnimationFrame(()=>map.invalidateSize());setTimeout(()=>map.invalidateSize(),300)}
+selectMapListing=function(mapId,id){state.mapActiveListingId=Number(id);highlightMapMini(id);const context=activeMapMarkers.get(mapId),entry=context?.markers.get(Number(id));if(!entry)return;context.markers.forEach(({marker,x})=>marker.setStyle?.(markerAppearance(x,false)));entry.marker.setStyle?.(markerAppearance(entry.x,true));entry.marker.bringToFront?.();entry.marker.openPopup();context.map.panTo(entry.marker.getLatLng())}
+
+function launchCostText(x){return x.realMonthlyCostStatus==='complete'&&Number.isFinite(x.realMonthlyCost)?euro(x.realMonthlyCost):`Da completare ${infoMark('Costo reale non completo: alcune spese non sono indicate')}`}
+const _designComparisonRow=designComparisonRow;
+designComparisonRow=function(label,xs,value,tag){if(label==='Costo reale')return _designComparisonRow(label,xs,launchCostText,x=>x.realMonthlyCostStatus==='complete'?(tag?tag(x):''):'');return _designComparisonRow(label,xs,value,tag)}
+const _launchComparison=comparison;
+comparison=function(){let html=_launchComparison();if(!html)return html;html=html.replace('<section class="compareview designcompare"',`<section class="compareview designcompare"`).replace(/<button class="designback"[^>]*>[^<]*<\/button>/,'');html=html.replace('<div class="compareintro">',contextNavigation()+'<div class="compareintro">');html=html.replace(/<div class="designphoto"([^>]*)><\/div>/g,(m,a)=>/background-image/.test(a)?m:`<div class="designphoto designphoto-empty"${a}>FOTO NON DISPONIBILE</div>`);return html}
+
+function shareComparison(){const xs=state.items.filter(x=>state.selected.has(Number(x.id))),url=comparisonShareUrl(),names=xs.slice(0,2).map(x=>x.title).join(' e '),subject='Ti mando due alloggi a Ferrara da confrontare',body=`Ciao! Guarda ${names}: ${url}`,message=`Guarda questo confronto di alloggi su FUORISEDE: ${url}`,overlay=document.createElement('div');overlay.className='shareoverlay';overlay.onclick=e=>{if(e.target===overlay)closeSharePanel()};overlay.innerHTML=`<div class="sharepanel" role="dialog" aria-modal="true"><h2>Condividi il confronto</h2><p class="note">Invialo a familiari o amici per valutarlo insieme.</p><div class="shareoptions"><a class="whatsapp" href="https://wa.me/?text=${encodeURIComponent(message)}" target="_blank" rel="noopener">WhatsApp</a><a class="emailshare" href="mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}">Email</a><button onclick="copyComparisonLink(this)">Copia link</button><button class="native" onclick="nativeShareComparison()">Altre app</button></div><button class="shareclose" onclick="closeSharePanel()">Chiudi</button></div>`;document.body.appendChild(overlay)}
+
+document.head.insertAdjacentHTML('beforeend',`<style id="launch-six-fixes">
+.verify-info{position:relative;display:inline-grid;place-items:center;width:15px;height:15px;border:1px solid currentColor;border-radius:50%;font:700 10px/1 sans-serif;color:#555;vertical-align:middle;cursor:help;margin-left:3px}
+.verify-info:hover:after,.verify-info:focus:after{content:attr(data-tip);position:absolute;z-index:5000;left:50%;bottom:calc(100% + 7px);transform:translateX(-50%);width:220px;padding:7px 9px;border-radius:8px;background:#222;color:#fff;font:500 11px/1.35 sans-serif;box-shadow:0 4px 15px #0003;white-space:normal}
+.listing-price-tooltip{pointer-events:auto!important;cursor:pointer!important;white-space:nowrap}
+.listing-price-tooltip .leaflet-tooltip-content{pointer-events:auto}
+.listing-cluster{width:38px;height:38px;border:3px solid #fff;border-radius:50%;background:var(--brick);color:#fff;font-weight:900;box-shadow:0 3px 12px #0003;cursor:pointer}.listing-cluster-wrap{background:transparent!important;border:0!important}
+.contextnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 18px}.contextnav button{border:1px solid var(--design-line);background:#fff;color:#171717;border-radius:999px;padding:9px 13px;font-weight:750;cursor:pointer}
+.designphoto-empty{display:grid!important;place-items:center;background:linear-gradient(135deg,#f6f0e7,#eadbd2)!important;color:#a84d3f;font-size:10px;font-weight:950;letter-spacing:.06em;text-align:center;min-height:150px}
+.emailshare{pointer-events:auto!important;opacity:1!important}
+@media(max-width:700px){.verify-info:hover:after,.verify-info:focus:after{left:auto;right:-8px;transform:none;width:190px}.contextnav{margin-bottom:12px}.designphoto-empty{min-height:110px}}
+</style>`);
