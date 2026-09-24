@@ -393,3 +393,5 @@ document.head.insertAdjacentHTML('beforeend',`<style id="compare-photo-placehold
 document.head.insertAdjacentHTML('beforeend',`<style id="favorite-heart-style">.heart{color:#fff!important;border:1px solid #b8b2aa!important;text-shadow:0 1px 2px #0005}.heart.is-fav{color:#c92f36!important;border-color:#c92f36!important;text-shadow:none}</style>`);
 
 document.head.insertAdjacentHTML('beforeend',`<style id="card-map-action-style">.cardactions .cardmaplink{display:inline-flex!important;align-items:center;justify-content:center;gap:5px;border:1px solid var(--design-line)!important;background:#fff!important;color:var(--design-ink)!important;border-radius:999px!important;padding:8px 11px!important;font:750 10px/1 sans-serif!important;white-space:nowrap}.map-pin-icon{font-size:11px;line-height:1}</style>`);
+
+document.head.insertAdjacentHTML('beforeend',`<style id="favorite-heart-black">.heart.is-fav,.ddphotoheart.active{color:#171717!important;border-color:#171717!important;text-shadow:none!important}.v3nav button:last-child b{background:#171717!important}</style>`);
