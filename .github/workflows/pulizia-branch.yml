@@ -1,0 +1,32 @@
+name: Pulizia branch (una tantum)
+
+# Cancella i vecchi branch già conservati nel branch "archivio" (vedi ARCHIVIO.md lì dentro).
+# Si avvia a mano: GitHub → Actions → "Pulizia branch (una tantum)" → Run workflow.
+# Restano: produzione, test-interno, demo, archivio (+ main e fuorisede-evoluzione-universale
+# finché Vercel non è stato spostato su produzione / test-interno).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pulizia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Verifica archivio e cancella i vecchi branch
+        run: |
+          git fetch --depth=1 origin archivio
+          PARENTS=$(git cat-file -p FETCH_HEAD | awk '/^parent/{print $2}')
+          for B in airtable-stats-preview android-verification-20260903i beta-map-fix brescia-michi-comparison claude/pin-mappa confronto-brescia-1 confronto-brescia-mapfix confronto-brescia-mapfix2 confronto-brescia-mapfix3 demo-esatta demo-pubblica feature-neutral-badges feature-price-context feature-stats-tooltips feature-stats-tooltips-v2 fix-expenses-known fuorisede-v3-design fuorisede-v3-development fuorisede-v3-operativa-4-schede fuorisede-validation-v2 iphone-qa-20260917 launch-fixes-20260924-from-316 launch-legal-links-preview local-test-detail-fix lock-approved-logo lock-approved-logo-2 lock-approved-logo-asset logo-fix-final logo-fix-final-2 logo-fix-final-3 logo-fix-real logo-fix-working operativa-4-schede-autorizzate phosphoro-daily-sync phosphoro-daily-sync-preview phosphoro-daily-sync-site pilot-monitoring pilot-phosphoro-ph4you preview-clean-503c31dc public-ferrara-launch repair-home-from-working-baseline scheda-proprietario-collaudo scheda-proprietario-operativa seo-ferrara-20260909 stabilize-ios-20260923 stats-tooltips-clean test test-multicity-milano test-pin-selezionato tmp-ignore tmp-logo-test tmp-logo-test-2 tmp-logo-test-3 v3-design-4-schede-autorizzate ; do
+            SHA=$(git ls-remote origin "refs/heads/$B" | cut -f1)
+            if [ -z "$SHA" ]; then echo "già assente: $B"; continue; fi
+            if echo "$PARENTS" | grep -q "$SHA"; then
+              git push origin --delete "$B" && echo "cancellato: $B"
+            else
+              echo "SALTATO (non presente in archivio, forse modificato dopo il 25/09): $B"
+            fi
+          done
