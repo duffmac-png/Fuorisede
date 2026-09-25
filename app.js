@@ -468,3 +468,6 @@ document.head.insertAdjacentHTML('beforeend',`<style id="launch-stability-fixes"
 .ddessentials>div:nth-child(3)>span:empty{display:none!important}
 .mapview>.contextnav{margin-bottom:10px!important}
 </style>`);
+
+/* Alloggi non più disponibili: pulsante "Mi interessa" disattivato. */
+(function(){const unavailable=x=>x?.availability?.status==='unavailable';const byId=id=>state.items.find(item=>Number(item.id)===Number(id));const baseDetail=detailView;detailView=function(x){const html=baseDetail(x);if(!unavailable(x))return html;return html.replace(/<div class="ddinterest">[\s\S]*?<\/div><button class="ddoriginal" onclick="(?:quickApply|requestDirectInterest)\([^<]+<\/button>/,'<div class="ddinterest">Questo alloggio non è più disponibile.</div><button class="ddoriginal" disabled aria-disabled="true" style="opacity:.45;cursor:not-allowed">Non più disponibile</button>')};const baseQuick=quickApply;quickApply=function(id){if(unavailable(byId(id)))return;return baseQuick(id)};if(typeof requestDirectInterest==='function'){const baseDirect=requestDirectInterest;requestDirectInterest=function(id){if(unavailable(byId(id)))return;return baseDirect(id)}}})();
