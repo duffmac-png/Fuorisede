@@ -1,5 +1,7 @@
 # FUORISEDE
 
+> **Versioni, branch e origine degli annunci: vedi [VERSIONI.md](VERSIONI.md).**
+
 **Fuori casa, ma nel posto giusto.**
 
 MVP web della piattaforma italiana dedicata alla ricerca di alloggi per studenti universitari fuori sede.

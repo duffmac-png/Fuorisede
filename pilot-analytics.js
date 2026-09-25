@@ -53,6 +53,7 @@
   }
 
   function sendRemote(event) {
+    if (w.FUORISEDE_VERSIONE !== 'produzione') return; /* le statistiche Airtable contano solo la versione online */
     try {
       fetch('/api/pilot-event', {
         method: 'POST',

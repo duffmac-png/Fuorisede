@@ -14,29 +14,31 @@
   "realMonthlyCostStatus": "unknown",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/856/foto_stanza/FE-PVE78-A-S6-1.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/856/foto_stanza/FE-PVE78-A-S6-2.jpg?w=1800&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/856/foto_stanza/FE-PVE78-A-S6-2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/856/foto_stanza/FE-PVE78-A-S6-3.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/856/foto_stanza/FE-PVE78-A-S6-4.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
-   "Ascensore",
    "Lavastoviglie",
+   "Ascensore",
    "Balcone",
+   "Aria condizionata",
    "Arredato",
-   "Aria condizionata"
+   "Stanza 13 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "transitorio · permanenza minima 3 mesi",
+   "contract": "Transitorio · permanenza minima 3 mesi",
    "deposit": "€ 1170",
-   "bathroom": "2 bagni nell'appartamento",
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
    "floor": "4° piano con ascensore"
   },
   "availability": {
    "availableFrom": "2027-02-01",
-   "availableLabel": null,
+   "availableLabel": "Disponibile dal 01/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -50,7 +52,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -59,7 +61,8 @@
    "minutesBike": 3,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10030,
@@ -76,29 +79,31 @@
   "realMonthlyCostStatus": "unknown",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/853/foto_stanza/FE-PVE78-A-S3-1.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/853/foto_stanza/FE-PVE78-A-S3-2.jpg?w=1800&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/853/foto_stanza/FE-PVE78-A-S3-2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/853/foto_stanza/FE-PVE78-A-S3-3.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/853/foto_stanza/FE-PVE78-A-S3-4.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
-   "Ascensore",
    "Lavastoviglie",
+   "Ascensore",
    "Balcone",
+   "Aria condizionata",
    "Arredato",
-   "Aria condizionata"
+   "Stanza 16,1 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "transitorio · permanenza minima 3 mesi",
+   "contract": "Transitorio · permanenza minima 3 mesi",
    "deposit": "€ 1290",
-   "bathroom": "2 bagni nell'appartamento",
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
    "floor": "4° piano con ascensore"
   },
   "availability": {
    "availableFrom": "2027-02-15",
-   "availableLabel": null,
+   "availableLabel": "Disponibile dal 15/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -112,7 +117,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -121,7 +126,8 @@
    "minutesBike": 3,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10031,
@@ -138,29 +144,30 @@
   "realMonthlyCostStatus": "unknown",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/852/foto_stanza/FE-PVE78-A-S2-1.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/852/foto_stanza/FE-PVE78-A-S2-2.jpg?w=1800&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/852/foto_stanza/FE-PVE78-A-S2-2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/852/foto_stanza/FE-PVE78-A-S2-3.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/852/foto_stanza/FE-PVE78-A-S2-4.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
-   "Ascensore",
    "Lavastoviglie",
+   "Ascensore",
    "Balcone",
    "Arredato",
-   "Stanza 9.80 m²"
+   "Stanza 9,8 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "transitorio · permanenza minima 3 mesi",
+   "contract": "Transitorio · permanenza minima 3 mesi",
    "deposit": "€ 1125",
-   "bathroom": "2 bagni nell'appartamento",
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
    "floor": "4° piano con ascensore"
   },
   "availability": {
    "availableFrom": "2027-02-01",
-   "availableLabel": null,
+   "availableLabel": "Disponibile dal 01/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -174,7 +181,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -183,7 +190,8 @@
    "minutesBike": 3,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10032,
@@ -200,29 +208,31 @@
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/851/foto_stanza/09-FE-PVE78-A-S1-5.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/851/foto_stanza/10-FE-PVE78-A-S1-4.jpg?w=1800&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/851/foto_stanza/10-FE-PVE78-A-S1-4.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/851/foto_stanza/20-FE-PVE78-A-S1-2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/851/foto_stanza/40-FE-PVE78-A-S1-6.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
-   "Ascensore",
    "Lavastoviglie",
+   "Ascensore",
    "Balcone",
+   "Aria condizionata",
    "Arredato",
-   "Aria condizionata"
+   "Stanza 12 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "transitorio · permanenza minima 3 mesi",
+   "contract": "Transitorio · permanenza minima 3 mesi",
    "deposit": "€ 1125",
-   "bathroom": "2 bagni nell'appartamento",
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
    "floor": "4° piano con ascensore"
   },
   "availability": {
    "availableFrom": "2027-02-01",
-   "availableLabel": null,
+   "availableLabel": "Disponibile dal 01/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -236,7 +246,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -245,7 +255,8 @@
    "minutesBike": 3,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10189,
@@ -261,30 +272,33 @@
   "realMonthlyCost": null,
   "realMonthlyCostStatus": "unknown",
   "photos": [
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/892/foto_stanza/Camera_da_letto__1_.jpg?w=1961&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/892/foto_stanza/Camera_da_letto__2_.jpg?w=1961&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/321/annuncio_foto/05_FE_DRS71aF-A-ZONA_LIVING_4.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/321/annuncio_foto/10_FE_DRS71aF-A-ZONA_LIVING_1.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/321/annuncio_foto/40_FE_DRS71aF-A-ZONA_LIVING_5.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/321/annuncio_foto/50_FE_DRS71aF-A-ZONA_LIVING_7.jpg?w=1600&h=1200"
   ],
   "features": [
+   "Appartamento intero",
    "Lavatrice",
-   "Ascensore",
    "Lavastoviglie",
    "Asciugatrice",
+   "Ascensore",
    "Balcone",
+   "Arredato",
    "Posto auto"
   ],
-  "accommodationType": "home",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "3+2 · permanenza minima 3 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 3 mesi",
    "deposit": "€ 4290",
-   "bathroom": "1 bagni nell'appartamento",
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
    "floor": "2° piano con ascensore"
   },
   "availability": {
    "availableFrom": "2026-12-18",
-   "availableLabel": null,
+   "availableLabel": "Disponibile dal 18/12/2026",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -298,16 +312,17 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
-   "campusName": "Le mura di Ferrara",
+   "campusName": "Stazione Ferrara Centrale",
    "distanceKm": null,
-   "minutesBike": 7,
+   "minutesBike": 5,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "apartment"
  },
  {
   "id": 10350,
@@ -324,29 +339,32 @@
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/907/foto_stanza/005-_S2.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/907/foto_stanza/006-_S2.jpg?w=1800&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/907/foto_stanza/006-_S2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/907/foto_stanza/007-_S2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/907/foto_stanza/008-_S2.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
    "Lavatrice",
-   "Ascensore",
    "Lavastoviglie",
    "Asciugatrice",
-   "Balcone"
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Stanza 8,5 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "3+2 · permanenza minima 4 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 4 mesi",
    "deposit": "€ 1047",
-   "bathroom": "2 bagni nell'appartamento",
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
    "floor": "1° piano con ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -360,7 +378,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -369,7 +387,8 @@
    "minutesBike": 6,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10351,
@@ -386,29 +405,32 @@
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/908/foto_stanza/FE_DRS71a_A-A_S3_1.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/908/foto_stanza/FE_DRS71a_A-A_S3_2.jpg?w=1800&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/908/foto_stanza/FE_DRS71a_A-A_S3_2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/908/foto_stanza/FE_DRS71a_A-A_S3_3.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/908/foto_stanza/FE_DRS71a_A-A_S3_4.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
    "Lavatrice",
-   "Ascensore",
    "Lavastoviglie",
    "Asciugatrice",
-   "Balcone"
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Stanza 9,5 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "3+2 · permanenza minima 4 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 4 mesi",
    "deposit": "€ 1080",
-   "bathroom": "2 bagni nell'appartamento",
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
    "floor": "1° piano con ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -422,7 +444,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -431,7 +453,8 @@
    "minutesBike": 6,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10352,
@@ -448,29 +471,32 @@
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/906/foto_stanza/001-_S1.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/906/foto_stanza/002-_S1.jpg?w=1799&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/906/foto_stanza/002-_S1.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/906/foto_stanza/003-_S1.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/906/foto_stanza/004-_S1.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
    "Lavatrice",
-   "Ascensore",
    "Lavastoviglie",
    "Asciugatrice",
-   "Balcone"
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Stanza 10 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "3+2 · permanenza minima 4 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 4 mesi",
    "deposit": "€ 990",
-   "bathroom": "2 bagni nell'appartamento",
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
    "floor": "1° piano con ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -484,7 +510,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -493,7 +519,8 @@
    "minutesBike": 6,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10354,
@@ -510,29 +537,32 @@
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/910/foto_stanza/000.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/910/foto_stanza/010.jpg?w=1800&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/910/foto_stanza/010.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/910/foto_stanza/020.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/910/foto_stanza/034-_S5.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
    "Lavatrice",
-   "Ascensore",
    "Lavastoviglie",
    "Asciugatrice",
-   "Balcone"
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Stanza 14,1 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "3+2 · permanenza minima 4 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 4 mesi",
    "deposit": "€ 1170",
-   "bathroom": "2 bagni nell'appartamento",
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
    "floor": "1° piano con ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -546,7 +576,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -555,7 +585,8 @@
    "minutesBike": 6,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10389,
@@ -572,29 +603,31 @@
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/919/foto_stanza/FE_ARM11-1_S2_1.jpg?w=1800&h=1200",
-   "https://phosphorosrl.imgix.net/upload/form/2/stanze/919/foto_stanza/FE_ARM11-1_S2_3.jpg?w=1800&h=1200"
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/919/foto_stanza/FE_ARM11-1_S2_3.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/919/foto_stanza/FE_ARM11-1_S2_4.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/333/annuncio_foto/10_FE_ARM11-1_CUCINA_1.jpg?w=1800&h=1200"
   ],
   "features": [
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
    "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Aria condizionata"
+   "Stanza 9,5 m²"
   ],
-  "accommodationType": "room",
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "transitorio · permanenza minima 4 mesi",
+   "contract": "Transitorio · permanenza minima 4 mesi",
    "deposit": "€ 1125",
-   "bathroom": "1 bagni nell'appartamento",
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
    "floor": "1° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -608,7 +641,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -617,7 +650,8 @@
    "minutesBike": 3,
    "travelEstimate": false
   },
-  "candidates": 0
+  "candidates": 0,
+  "accommodationType": "room"
  },
  {
   "id": 10392,
@@ -628,9 +662,9 @@
   "lat": 44.8399584,
   "lng": 11.619519,
   "locationStatus": "verified_street",
-  "price": 385.0,
+  "price": 385,
   "expenses": null,
-  "realMonthlyCost": 385.0,
+  "realMonthlyCost": 385,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/915/foto_stanza/FE_ARM11-2_S1_1.jpg?w=1800&h=1200",
@@ -642,21 +676,23 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 10,5 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 4 mesi",
+   "contract": "Transitorio · permanenza minima 4 mesi",
    "deposit": "€ 1155",
-   "bathroom": "Condiviso",
-   "floor": "1"
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
+   "floor": "1° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -670,13 +706,13 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
-   "campusName": "Castello Estense",
+   "campusName": "Giurisprudenza",
    "distanceKm": null,
-   "minutesBike": 1,
+   "minutesBike": 3,
    "travelEstimate": false
   },
   "candidates": 0,
@@ -691,9 +727,9 @@
   "lat": 44.8302911,
   "lng": 11.6253314,
   "locationStatus": "verified_street",
-  "price": 490.0,
+  "price": 490,
   "expenses": null,
-  "realMonthlyCost": 490.0,
+  "realMonthlyCost": 490,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1101/foto_stanza/10_FE_FND33-5_S2__1_.jpg?w=1799&h=1200",
@@ -705,22 +741,24 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
    "Balcone",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 14,5 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 4 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 4 mesi",
    "deposit": "€ 1470",
-   "bathroom": "Condiviso",
-   "floor": "2"
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
+   "floor": "2° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -734,13 +772,13 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
-   "campusName": "Architettura",
+   "campusName": "Polo Chimico Biomedico - Mammuth",
    "distanceKm": null,
-   "minutesBike": 2,
+   "minutesBike": 4,
    "travelEstimate": false
   },
   "candidates": 0,
@@ -769,21 +807,23 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 14,5 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 3 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 3 mesi",
    "deposit": "€ 1410",
-   "bathroom": "Condiviso",
-   "floor": "1"
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
+   "floor": "1° piano senza ascensore"
   },
   "availability": {
    "availableFrom": "2027-02-01",
-   "availableLabel": "2027-02-01",
+   "availableLabel": "Disponibile dal 01/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -797,13 +837,13 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
-   "campusName": "Architettura",
+   "campusName": "Polo Chimico Biomedico - Mammuth",
    "distanceKm": null,
-   "minutesBike": 2,
+   "minutesBike": 4,
    "travelEstimate": false
   },
   "candidates": 0,
@@ -818,9 +858,9 @@
   "lat": 44.8302911,
   "lng": 11.6253314,
   "locationStatus": "verified_street",
-  "price": 430.0,
+  "price": 430,
   "expenses": null,
-  "realMonthlyCost": 430.0,
+  "realMonthlyCost": 430,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1100/foto_stanza/10_FE_FND33-5_S1__2_.jpg?w=1799&h=1200",
@@ -832,21 +872,23 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 14,5 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 4 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 4 mesi",
    "deposit": "€ 1290",
-   "bathroom": "Condiviso",
-   "floor": "2"
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
+   "floor": "2° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -860,13 +902,13 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
-   "campusName": "Architettura",
+   "campusName": "Polo Chimico Biomedico - Mammuth",
    "distanceKm": null,
-   "minutesBike": 2,
+   "minutesBike": 4,
    "travelEstimate": false
   },
   "candidates": 0,
@@ -881,9 +923,9 @@
   "lat": 44.8302911,
   "lng": 11.6253314,
   "locationStatus": "verified_street",
-  "price": 470.0,
+  "price": 470,
   "expenses": null,
-  "realMonthlyCost": 470.0,
+  "realMonthlyCost": 470,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1102/foto_stanza/10_FE_FND33-6_S1__2_.jpg?w=1799&h=1200",
@@ -895,21 +937,23 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 15 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 4 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 4 mesi",
    "deposit": "€ 1410",
-   "bathroom": "Condiviso",
-   "floor": "2"
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
+   "floor": "2° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -923,13 +967,13 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
-   "campusName": "Studi Umanistici",
+   "campusName": "Polo Chimico Biomedico - Mammuth",
    "distanceKm": null,
-   "minutesBike": 2,
+   "minutesBike": 4,
    "travelEstimate": false
   },
   "candidates": 0,
@@ -944,9 +988,9 @@
   "lat": 44.8302911,
   "lng": 11.6253314,
   "locationStatus": "verified_street",
-  "price": 475.0,
+  "price": 475,
   "expenses": null,
-  "realMonthlyCost": 475.0,
+  "realMonthlyCost": 475,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1103/foto_stanza/10_FE_FND33-6_S2__4_.jpg?w=1799&h=1200",
@@ -958,21 +1002,23 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 18 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 4 mesi",
+   "contract": "Canone concordato 3+2 · permanenza minima 4 mesi",
    "deposit": "€ 1425",
-   "bathroom": "Condiviso",
-   "floor": "2"
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
+   "floor": "2° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -986,13 +1032,13 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
-   "campusName": "Studi Umanistici",
+   "campusName": "Polo Chimico Biomedico - Mammuth",
    "distanceKm": null,
-   "minutesBike": 2,
+   "minutesBike": 4,
    "travelEstimate": false
   },
   "candidates": 0,
@@ -1007,9 +1053,9 @@
   "lat": 44.841059,
   "lng": 11.614029,
   "locationStatus": "verified_street",
-  "price": 380.0,
+  "price": 380,
   "expenses": null,
-  "realMonthlyCost": 380.0,
+  "realMonthlyCost": 380,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1154/foto_stanza/10_FE_CVR136-A_S5-1.jpg?w=1799&h=1200",
@@ -1021,23 +1067,24 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
    "Ascensore",
    "Balcone",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 13 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 12 mesi",
+   "contract": "Canone libero 4+4 · permanenza minima 12 mesi",
    "deposit": "€ 1140",
-   "bathroom": "Condiviso",
-   "floor": "5"
+   "bathroom": "Condiviso · 3 bagni nell'appartamento",
+   "floor": "5° piano con ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1051,7 +1098,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1072,9 +1119,9 @@
   "lat": 44.841059,
   "lng": 11.614029,
   "locationStatus": "verified_street",
-  "price": 380.0,
+  "price": 380,
   "expenses": null,
-  "realMonthlyCost": 380.0,
+  "realMonthlyCost": 380,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1157/foto_stanza/05_FE_CVR136-A_S8-1.jpg?w=1799&h=1200",
@@ -1086,23 +1133,24 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
    "Ascensore",
    "Balcone",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 14 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 3 mesi",
+   "contract": "Canone libero 4+4 · permanenza minima 3 mesi",
    "deposit": "€ 1140",
-   "bathroom": "Condiviso",
-   "floor": "5"
+   "bathroom": "Condiviso · 3 bagni nell'appartamento",
+   "floor": "5° piano con ascensore"
   },
   "availability": {
    "availableFrom": "2026-12-01",
-   "availableLabel": "2026-12-01",
+   "availableLabel": "Disponibile dal 01/12/2026",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1116,7 +1164,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1137,9 +1185,9 @@
   "lat": 44.831691827758846,
   "lng": 11.605386361530572,
   "locationStatus": "verified_street",
-  "price": 475.0,
+  "price": 475,
   "expenses": null,
-  "realMonthlyCost": 475.0,
+  "realMonthlyCost": 475,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1147/foto_stanza/10_FE_CMP131-A_S3-1.jpg?w=1799&h=1200",
@@ -1151,23 +1199,24 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
    "Ascensore",
    "Balcone",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 9 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 12 mesi",
+   "contract": "Turistico · permanenza minima 12 mesi",
    "deposit": "€ 1425",
-   "bathroom": "Condiviso",
-   "floor": "3"
+   "bathroom": "Condiviso · 3 bagni nell'appartamento",
+   "floor": "3° piano con ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1181,7 +1230,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1202,9 +1251,9 @@
   "lat": 44.831691827758846,
   "lng": 11.605386361530572,
   "locationStatus": "verified_street",
-  "price": 480.0,
+  "price": 480,
   "expenses": null,
-  "realMonthlyCost": 480.0,
+  "realMonthlyCost": 480,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1161/foto_stanza/09_FE_CMP131-A_S8-8.jpg?w=1799&h=1200",
@@ -1216,23 +1265,24 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
    "Ascensore",
    "Balcone",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 15 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 12 mesi",
+   "contract": "Turistico · permanenza minima 12 mesi",
    "deposit": "€ 1440",
-   "bathroom": "Condiviso",
-   "floor": "3"
+   "bathroom": "Condiviso · 3 bagni nell'appartamento",
+   "floor": "3° piano con ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1246,7 +1296,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1281,23 +1331,24 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
    "Ascensore",
    "Balcone",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 9,5 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 12 mesi",
+   "contract": "Turistico · permanenza minima 12 mesi",
    "deposit": "€ 801",
-   "bathroom": "Condiviso",
-   "floor": "3"
+   "bathroom": "Condiviso · 3 bagni nell'appartamento",
+   "floor": "3° piano con ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1311,7 +1362,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1343,25 +1394,28 @@
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1183/foto_stanza/4_S6_04.jpg?w=1600&h=1200"
   ],
   "features": [
+   "Doppia uso singola",
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
    "Balcone",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 14 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 4 mesi",
+   "contract": "Transitorio per studenti · permanenza minima 4 mesi",
    "deposit": "€ 1230",
-   "bathroom": "Condiviso",
-   "floor": "1"
+   "bathroom": "Condiviso · 3 bagni nell'appartamento",
+   "floor": "1° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1375,7 +1429,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1396,9 +1450,9 @@
   "lat": 44.84065731081343,
   "lng": 11.628161694640077,
   "locationStatus": "verified_street",
-  "price": 335.0,
+  "price": 335,
   "expenses": null,
-  "realMonthlyCost": 335.0,
+  "realMonthlyCost": 335,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1173/foto_stanza/2_S3_00.jpg?w=1600&h=1200",
@@ -1410,21 +1464,23 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 8 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 4 mesi",
+   "contract": "Transitorio per studenti · permanenza minima 4 mesi",
    "deposit": "€ 1080",
-   "bathroom": "Condiviso",
-   "floor": "1"
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
+   "floor": "1° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1438,7 +1494,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1459,9 +1515,9 @@
   "lat": 44.84065731081343,
   "lng": 11.628161694640077,
   "locationStatus": "verified_street",
-  "price": 340.0,
+  "price": 340,
   "expenses": null,
-  "realMonthlyCost": 340.0,
+  "realMonthlyCost": 340,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1176/foto_stanza/3_S2_1.jpg?w=1600&h=1200",
@@ -1473,21 +1529,23 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 8,5 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 4 mesi",
+   "contract": "Transitorio per studenti · permanenza minima 4 mesi",
    "deposit": "€ 1020",
-   "bathroom": "Condiviso",
-   "floor": "1"
+   "bathroom": "Condiviso · 2 bagni nell'appartamento",
+   "floor": "1° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1501,7 +1559,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1522,9 +1580,9 @@
   "lat": 44.84065731081343,
   "lng": 11.628161694640077,
   "locationStatus": "verified_street",
-  "price": 360.0,
+  "price": 360,
   "expenses": null,
-  "realMonthlyCost": 360.0,
+  "realMonthlyCost": 360,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1190/foto_stanza/6_S4_-0.jpg?w=1600&h=1200",
@@ -1536,21 +1594,23 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 11 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 12 mesi",
+   "contract": "Transitorio per studenti · permanenza minima 12 mesi",
    "deposit": "€ 1080",
-   "bathroom": "Condiviso",
-   "floor": "2"
+   "bathroom": "Condiviso · 3 bagni nell'appartamento",
+   "floor": "2° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1564,7 +1624,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1599,22 +1659,24 @@
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
+   "Asciugatrice",
    "Balcone",
+   "Aria condizionata",
    "Arredato",
-   "Asciugatrice"
+   "Stanza 12 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 3 mesi",
+   "contract": "Transitorio per studenti · permanenza minima 3 mesi",
    "deposit": "€ 1140",
-   "bathroom": "Condiviso",
-   "floor": "1"
+   "bathroom": "Condiviso · 1 bagno nell'appartamento",
+   "floor": "1° piano senza ascensore"
   },
   "availability": {
    "availableFrom": "2027-02-15",
-   "availableLabel": "2027-02-15",
+   "availableLabel": "Disponibile dal 15/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1628,7 +1690,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1660,26 +1722,29 @@
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-04.jpg?w=1798&h=1200"
   ],
   "features": [
+   "Doppia uso singola",
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
-   "Ascensore",
-   "Arredato",
    "Asciugatrice",
-   "Bagno privato"
+   "Ascensore",
+   "Aria condizionata",
+   "Bagno privato",
+   "Arredato",
+   "Stanza 16 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 3 mesi",
+   "contract": "Turistico · permanenza minima 3 mesi",
    "deposit": "€ 801",
    "bathroom": "Privato",
    "floor": "Da verificare"
   },
   "availability": {
    "availableFrom": "2027-02-01",
-   "availableLabel": "2027-02-01",
+   "availableLabel": "Disponibile dal 01/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1693,7 +1758,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1725,26 +1790,29 @@
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-02.jpg?w=1798&h=1200"
   ],
   "features": [
+   "Stanza doppia",
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
-   "Ascensore",
-   "Arredato",
    "Asciugatrice",
-   "Bagno privato"
+   "Ascensore",
+   "Aria condizionata",
+   "Bagno privato",
+   "Arredato",
+   "Stanza 16 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 3 mesi",
+   "contract": "Turistico · permanenza minima 3 mesi",
    "deposit": "€ 678",
    "bathroom": "Privato",
    "floor": "Da verificare"
   },
   "availability": {
    "availableFrom": "2027-02-01",
-   "availableLabel": "2027-02-01",
+   "availableLabel": "Disponibile dal 01/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1758,7 +1826,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1779,9 +1847,9 @@
   "lat": 44.83511123594695,
   "lng": 11.618220525628821,
   "locationStatus": "verified_street",
-  "price": 226.0,
+  "price": 226,
   "expenses": null,
-  "realMonthlyCost": 226.0,
+  "realMonthlyCost": 226,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_letti_separati/202-22.png?w=1800&h=1200",
@@ -1790,26 +1858,29 @@
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-02.jpg?w=1798&h=1200"
   ],
   "features": [
+   "Stanza doppia",
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
-   "Ascensore",
-   "Arredato",
    "Asciugatrice",
-   "Bagno privato"
+   "Ascensore",
+   "Aria condizionata",
+   "Bagno privato",
+   "Arredato",
+   "Stanza 16 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 3 mesi",
+   "contract": "Turistico · permanenza minima 3 mesi",
    "deposit": "€ 678",
    "bathroom": "Privato",
    "floor": "Da verificare"
   },
   "availability": {
    "availableFrom": "2027-02-01",
-   "availableLabel": "2027-02-01",
+   "availableLabel": "Disponibile dal 01/02/2027",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1823,7 +1894,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",
@@ -1844,9 +1915,9 @@
   "lat": 44.829659883503545,
   "lng": 11.62,
   "locationStatus": "verified_street",
-  "price": 510.0,
+  "price": 510,
   "expenses": null,
-  "realMonthlyCost": 510.0,
+  "realMonthlyCost": 510,
   "realMonthlyCostStatus": "minimum_known",
   "photos": [
    "https://phosphorosrl.imgix.net/upload/form/2/stanze/1521/foto_stanza/010.png?w=1800&h=1200",
@@ -1855,25 +1926,27 @@
    "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/460/annuncio_foto/011.png?w=1800&h=1200"
   ],
   "features": [
+   "Doppia uso singola",
    "Wi-Fi",
    "Lavatrice",
    "Lavastoviglie",
    "Balcone",
+   "Bagno privato",
    "Arredato",
-   "Bagno privato"
+   "Stanza 15,5 m²"
   ],
   "details": {
    "utilities": "Da verificare nell’annuncio Phosphoro",
-   "contract": "Permanenza minima 12 mesi",
+   "contract": "Turistico · permanenza minima 12 mesi",
    "deposit": "€ 1530",
    "bathroom": "Privato",
-   "floor": "1"
+   "floor": "1° piano senza ascensore"
   },
   "availability": {
    "availableFrom": null,
    "availableLabel": "Disponibile ora",
    "status": "confirmed",
-   "confirmedAt": "2026-09-22"
+   "confirmedAt": "2026-09-25"
   },
   "publication": {
    "status": "authorized",
@@ -1887,7 +1960,7 @@
    "expensesDeclared": false,
    "contractDeclared": true,
    "utilitiesDeclared": false,
-   "listingConfirmedAt": "2026-09-22"
+   "listingConfirmedAt": "2026-09-25"
   },
   "campusReference": {
    "campusId": "centro",

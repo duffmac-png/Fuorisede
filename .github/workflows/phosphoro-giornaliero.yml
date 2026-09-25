@@ -1,0 +1,61 @@
+name: Phosphoro · aggiornamento giornaliero
+
+# Ogni notte legge il feed Phosphoro (URL) e aggiorna data/phosphoro-ferrara.json
+# nei branch "produzione" e "test-interno". Vercel ripubblica da solo.
+# Se il feed non risponde o è anomalo, il job fallisce (GitHub manda una mail)
+# e gli annunci restano quelli del giorno prima.
+on:
+  schedule:
+    - cron: '15 3 * * *'   # 03:15 UTC = 05:15 ora legale italiana (04:15 in inverno)
+  workflow_dispatch:        # avvio manuale: GitHub → Actions → "Phosphoro · aggiornamento giornaliero" → Run workflow
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phosphoro-giornaliero
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Branch produzione
+        uses: actions/checkout@v4
+        with:
+          ref: produzione
+          path: produzione
+
+      - name: Branch test-interno
+        uses: actions/checkout@v4
+        with:
+          ref: test-interno
+          path: test-interno
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Leggi e valida il feed Phosphoro
+        id: sync
+        run: node produzione/scripts/sync-phosphoro.mjs produzione
+
+      - name: Pubblica su produzione e test-interno
+        env:
+          SUMMARY: ${{ steps.sync.outputs.summary }}
+        run: |
+          cp produzione/data/phosphoro-ferrara.json test-interno/data/phosphoro-ferrara.json
+          for BRANCH in produzione test-interno; do
+            cd "$GITHUB_WORKSPACE/$BRANCH"
+            if git diff --quiet -- data/phosphoro-ferrara.json; then
+              echo "$BRANCH: nessuna modifica."
+              continue
+            fi
+            git config user.name "fuorisede-bot"
+            git config user.email "fuorisede.it@gmail.com"
+            git add data/phosphoro-ferrara.json
+            git commit -m "$SUMMARY"
+            git pull --rebase origin "$BRANCH"
+            git push origin HEAD:"$BRANCH"
+          done
