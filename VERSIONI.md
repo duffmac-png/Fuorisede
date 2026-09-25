@@ -1,10 +1,12 @@
 # FUORISEDE · le 3 versioni
 
+Il sito pubblico è **www.fuori-sede.it** (Vercel, progetto `fuorisede-evoluzione-universale`); test-interno è su fuorisede.vercel.app.
+
 Il codice è lo stesso per tutte le versioni. Cambia solo il branch e il file `versione.js`.
 
 | Branch | A cosa serve | Annunci | Online? |
 |---|---|---|---|
-| **`produzione`** | Il sito pubblico | Ferrara: Phosphoro + ACER + privati | Sì, è il sito vero (fuorisede.it) |
+| **`produzione`** | Il sito pubblico | Ferrara: Phosphoro + ACER + privati | Sì, è il sito vero: www.fuori-sede.it |
 | **`test-interno`** | Prove interne prima di pubblicare | Quelli di produzione + Milano (Sandbox Immobiliare.it) | No: banner rosso "TEST INTERNO", statistiche spente |
 | **`demo`** | Vecchia demo, non più usata | 3 alloggi fittizi | No |
 

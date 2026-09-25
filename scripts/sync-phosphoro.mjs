@@ -90,7 +90,7 @@ async function loadFeed() {
   let last;
   for (let i = 0; i < 3; i++) {
     try {
-      const r = await fetch(FEED, { headers: { accept: 'application/json', 'user-agent': 'FUORISEDE/1.0 (+https://fuorisede.it)' } });
+      const r = await fetch(FEED, { headers: { accept: 'application/json', 'user-agent': 'FUORISEDE/1.0 (+https://www.fuori-sede.it)' } });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return await r.json();
     } catch (e) { last = e; await new Promise(res => setTimeout(res, 5000 * (i + 1))); }

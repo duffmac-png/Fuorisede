@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fuorisede-evoluzione-universale.vercel.app/sitemap.xml
+Sitemap: https://www.fuori-sede.it/sitemap.xml
 # SEO crawl config refreshed 2026-09-11
