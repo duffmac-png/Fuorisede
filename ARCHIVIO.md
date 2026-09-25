@@ -59,3 +59,5 @@ Per recuperarne uno: `git branch <nome> <commit>` usando il commit qui sotto.
 | tmp-logo-test-2 | `b066410b24c860b8ad1adf0a715699f03e39278d` | 2026-08-21 |
 | tmp-logo-test-3 | `b066410b24c860b8ad1adf0a715699f03e39278d` | 2026-08-21 |
 | v3-design-4-schede-autorizzate | `8cb9bf913a4ec654830dcbbbe04b20e1881a340a` | 2026-08-21 |
+| main | `f571dff26b3ee72e4b9254a66914eda0995bd7a8` | 2026-09-25 |
+| fuorisede-evoluzione-universale | `bfdf65cf1941448bf78e7243cb4758fbe10ec282` | 2026-09-25 |
