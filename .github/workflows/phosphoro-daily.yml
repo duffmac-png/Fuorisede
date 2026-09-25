@@ -1,0 +1,56 @@
+name: Aggiornamento giornaliero Phosphoro
+
+# Ogni notte scarica il feed Phosphoro, aggiorna gli annunci Ferrara
+# e li pubblica sul branch del sito (Vercel ripubblica in automatico).
+# Se il feed non risponde o è anomalo il job fallisce e i dati restano quelli del giorno prima.
+on:
+  schedule:
+    - cron: '15 3 * * *'   # 03:15 UTC = 05:15 ora italiana (04:15 in inverno)
+  workflow_dispatch:        # avvio manuale da GitHub → Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phosphoro-daily
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: fuorisede-evoluzione-universale
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Script di sincronizzazione (main)
+        uses: actions/checkout@v4
+        with:
+          path: tool
+
+      - name: Sito pubblicato (${{ env.TARGET_BRANCH }})
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          path: site
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Scarica e valida il feed Phosphoro
+        id: sync
+        run: node tool/scripts/sync-phosphoro.mjs site
+
+      - name: Pubblica se qualcosa è cambiato
+        working-directory: site
+        run: |
+          if git diff --quiet -- data/phosphoro-ferrara.json && git ls-files --error-unmatch data/phosphoro-ferrara.json >/dev/null 2>&1; then
+            echo "Nessuna modifica."
+            exit 0
+          fi
+          git config user.name "fuorisede-bot"
+          git config user.email "fuorisede.it@gmail.com"
+          git add data/phosphoro-ferrara.json
+          git commit -m "${{ steps.sync.outputs.summary }}"
+          git push origin HEAD:${{ env.TARGET_BRANCH }}
