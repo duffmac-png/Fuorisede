@@ -1,9 +1,9 @@
-/* FUORISEDE PUBLIC FERRARA loader: 5 schede esistenti + 30 Phosphoro. Intercetta subito il fetch dati e attende il dataset completo, evitando la race con app.js. */
+/* FUORISEDE PUBLIC FERRARA loader: schede FUORISEDE + annunci Phosphoro (aggiornati ogni notte). Intercetta subito il fetch dati e attende il dataset completo, evitando la race con app.js. */
 window.FUORISEDE_FALLBACK_LISTINGS=null;
 (function(){
   const nativeFetch=window.fetch.bind(window);
-  const paths=['/data/listings-operativa-v3.json','/data/phosphoro-1.json','/data/phosphoro-2.json','/data/phosphoro-3.json','/data/phosphoro-4.json','/data/phosphoro-5.json','/data/phosphoro-6.json'];
-  const datasetPromise=Promise.all(paths.map(async p=>{const r=await nativeFetch(p,{cache:'no-store'});if(!r.ok)throw new Error(p+' '+r.status);return r.json()})).then(parts=>{
+  const paths=['/data/listings-operativa-v3.json','/data/phosphoro-ferrara.json']; /* phosphoro-ferrara.json aggiornato ogni notte da GitHub Actions */
+  const datasetPromise=Promise.all(paths.map(async(p,i)=>{try{const r=await nativeFetch(p,{cache:'no-store'});if(!r.ok)throw new Error(p+' '+r.status);return await r.json()}catch(e){if(i===0)throw e;console.warn('[FUORISEDE] annunci Phosphoro non caricati',e);return []}})).then(parts=>{
     const seen=new Set();
     const all=parts.flat().filter(x=>{if(x.city!=='Ferrara')return false;const k=String(x.id);if(seen.has(k))return false;seen.add(k);return true});
     window.FUORISEDE_FALLBACK_LISTINGS=all;

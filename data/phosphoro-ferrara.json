@@ -1,0 +1,1902 @@
+[
+ {
+  "id": 10025,
+  "externalId": "25",
+  "title": "13mq per una Singola Davvero Originale",
+  "city": "Ferrara",
+  "address": "Corso Piave 78, Ferrara",
+  "lat": 44.841727,
+  "lng": 11.603969,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/856/foto_stanza/FE-PVE78-A-S6-1.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/856/foto_stanza/FE-PVE78-A-S6-2.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Ascensore",
+   "Lavastoviglie",
+   "Balcone",
+   "Arredato",
+   "Aria condizionata"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "transitorio · permanenza minima 3 mesi",
+   "deposit": "€ 1170",
+   "bathroom": "2 bagni nell'appartamento",
+   "floor": "4° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": "2027-02-01",
+   "availableLabel": null,
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_PVE78-A_S6_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Fisica e Scienze della Terra",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10030,
+  "externalId": "30",
+  "title": "Ampia Singola con Aria Condizionata",
+  "city": "Ferrara",
+  "address": "Corso Piave 78, Ferrara",
+  "lat": 44.841727,
+  "lng": 11.603969,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/853/foto_stanza/FE-PVE78-A-S3-1.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/853/foto_stanza/FE-PVE78-A-S3-2.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Ascensore",
+   "Lavastoviglie",
+   "Balcone",
+   "Arredato",
+   "Aria condizionata"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "transitorio · permanenza minima 3 mesi",
+   "deposit": "€ 1290",
+   "bathroom": "2 bagni nell'appartamento",
+   "floor": "4° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": "2027-02-15",
+   "availableLabel": null,
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_PVE78-A_S3_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Fisica e Scienze della Terra",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10031,
+  "externalId": "31",
+  "title": "Stile e Comfort in una Stanza Pensata in Dettaglio",
+  "city": "Ferrara",
+  "address": "Corso Piave 78, Ferrara",
+  "lat": 44.841727,
+  "lng": 11.603969,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/852/foto_stanza/FE-PVE78-A-S2-1.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/852/foto_stanza/FE-PVE78-A-S2-2.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Ascensore",
+   "Lavastoviglie",
+   "Balcone",
+   "Arredato",
+   "Stanza 9.80 m²"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "transitorio · permanenza minima 3 mesi",
+   "deposit": "€ 1125",
+   "bathroom": "2 bagni nell'appartamento",
+   "floor": "4° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": "2027-02-01",
+   "availableLabel": null,
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_PVE78-A_S2_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Fisica e Scienze della Terra",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10032,
+  "externalId": "32",
+  "title": "Luminosa Singola con Balcone e Clima",
+  "city": "Ferrara",
+  "address": "Corso Piave 78, Ferrara",
+  "lat": 44.841727,
+  "lng": 11.603969,
+  "locationStatus": "verified_street",
+  "price": 375,
+  "expenses": null,
+  "realMonthlyCost": 375,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/851/foto_stanza/09-FE-PVE78-A-S1-5.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/851/foto_stanza/10-FE-PVE78-A-S1-4.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Ascensore",
+   "Lavastoviglie",
+   "Balcone",
+   "Arredato",
+   "Aria condizionata"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "transitorio · permanenza minima 3 mesi",
+   "deposit": "€ 1125",
+   "bathroom": "2 bagni nell'appartamento",
+   "floor": "4° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": "2027-02-01",
+   "availableLabel": null,
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_PVE78-A_S1_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Fisica e Scienze della Terra",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10189,
+  "externalId": "189",
+  "title": "Lo stile di vita che hai sempre sognato!",
+  "city": "Ferrara",
+  "address": "Darsena 71/A, Ferrara",
+  "lat": 44.836516,
+  "lng": 11.603206,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/892/foto_stanza/Camera_da_letto__1_.jpg?w=1961&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/892/foto_stanza/Camera_da_letto__2_.jpg?w=1961&h=1200"
+  ],
+  "features": [
+   "Lavatrice",
+   "Ascensore",
+   "Lavastoviglie",
+   "Asciugatrice",
+   "Balcone",
+   "Posto auto"
+  ],
+  "accommodationType": "home",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "3+2 · permanenza minima 3 mesi",
+   "deposit": "€ 4290",
+   "bathroom": "1 bagni nell'appartamento",
+   "floor": "2° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": "2026-12-18",
+   "availableLabel": null,
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_DRS71a-F-A",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Le mura di Ferrara",
+   "distanceKm": null,
+   "minutesBike": 7,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10350,
+  "externalId": "350",
+  "title": "Terrazzo e tanta luce per una camera davvero accogliente!",
+  "city": "Ferrara",
+  "address": "Via Darsena 71/A, Ferrara",
+  "lat": 44.836309,
+  "lng": 11.603632,
+  "locationStatus": "verified_street",
+  "price": 349,
+  "expenses": null,
+  "realMonthlyCost": 349,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/907/foto_stanza/005-_S2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/907/foto_stanza/006-_S2.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Ascensore",
+   "Lavastoviglie",
+   "Asciugatrice",
+   "Balcone"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "3+2 · permanenza minima 4 mesi",
+   "deposit": "€ 1047",
+   "bathroom": "2 bagni nell'appartamento",
+   "floor": "1° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_DRS71a/A-A_S2_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Fisica e Scienze della Terra",
+   "distanceKm": null,
+   "minutesBike": 6,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10351,
+  "externalId": "351",
+  "title": "Singola dallo Stile Unico",
+  "city": "Ferrara",
+  "address": "Via Darsena 71/A, Ferrara",
+  "lat": 44.836309,
+  "lng": 11.603632,
+  "locationStatus": "verified_street",
+  "price": 360,
+  "expenses": null,
+  "realMonthlyCost": 360,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/908/foto_stanza/FE_DRS71a_A-A_S3_1.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/908/foto_stanza/FE_DRS71a_A-A_S3_2.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Ascensore",
+   "Lavastoviglie",
+   "Asciugatrice",
+   "Balcone"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "3+2 · permanenza minima 4 mesi",
+   "deposit": "€ 1080",
+   "bathroom": "2 bagni nell'appartamento",
+   "floor": "1° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_DRS71a/A-A_S3_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Fisica e Scienze della Terra",
+   "distanceKm": null,
+   "minutesBike": 6,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10352,
+  "externalId": "352",
+  "title": "Stanza bellissima a un prezzo bellissimo!",
+  "city": "Ferrara",
+  "address": "Via Darsena 71/A, Ferrara",
+  "lat": 44.836309,
+  "lng": 11.603632,
+  "locationStatus": "verified_street",
+  "price": 330,
+  "expenses": null,
+  "realMonthlyCost": 330,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/906/foto_stanza/001-_S1.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/906/foto_stanza/002-_S1.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Ascensore",
+   "Lavastoviglie",
+   "Asciugatrice",
+   "Balcone"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "3+2 · permanenza minima 4 mesi",
+   "deposit": "€ 990",
+   "bathroom": "2 bagni nell'appartamento",
+   "floor": "1° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_DRS71a/A-A_S1_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Fisica e Scienze della Terra",
+   "distanceKm": null,
+   "minutesBike": 6,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10354,
+  "externalId": "354",
+  "title": "Non ci sono parole per la suite di questo appartamento!",
+  "city": "Ferrara",
+  "address": "Via Darsena 71/A, Ferrara",
+  "lat": 44.836309,
+  "lng": 11.603632,
+  "locationStatus": "verified_street",
+  "price": 390,
+  "expenses": null,
+  "realMonthlyCost": 390,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/910/foto_stanza/000.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/910/foto_stanza/010.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Ascensore",
+   "Lavastoviglie",
+   "Asciugatrice",
+   "Balcone"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "3+2 · permanenza minima 4 mesi",
+   "deposit": "€ 1170",
+   "bathroom": "2 bagni nell'appartamento",
+   "floor": "1° piano con ascensore"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_DRS71a/A-A_S5_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Fisica e Scienze della Terra",
+   "distanceKm": null,
+   "minutesBike": 6,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10389,
+  "externalId": "389",
+  "title": "Nella Residenza PHO.ROOM Singola a Due Passi da Economia!",
+  "city": "Ferrara",
+  "address": "Armari 11, Ferrara",
+  "lat": 44.8399584,
+  "lng": 11.619519,
+  "locationStatus": "verified_street",
+  "price": 375,
+  "expenses": null,
+  "realMonthlyCost": 375,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/919/foto_stanza/FE_ARM11-1_S2_1.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/919/foto_stanza/FE_ARM11-1_S2_3.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Asciugatrice",
+   "Arredato",
+   "Aria condizionata"
+  ],
+  "accommodationType": "room",
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "transitorio · permanenza minima 4 mesi",
+   "deposit": "€ 1125",
+   "bathroom": "1 bagni nell'appartamento",
+   "floor": "1° piano senza ascensore"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_ARM11-1_S2_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Giurisprudenza",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0
+ },
+ {
+  "id": 10392,
+  "externalId": "392",
+  "title": "Vivi un'Esperienza Co-Living nel Cuore di Ferrara",
+  "city": "Ferrara",
+  "address": "Armari 11, Ferrara",
+  "lat": 44.8399584,
+  "lng": 11.619519,
+  "locationStatus": "verified_street",
+  "price": 385.0,
+  "expenses": null,
+  "realMonthlyCost": 385.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/915/foto_stanza/FE_ARM11-2_S1_1.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/915/foto_stanza/FE_ARM11-2_S1_2.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/915/foto_stanza/FE_ARM11-2_S1_3.jpg?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/915/foto_stanza/FE_ARM11-2_S1_4.jpg?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 4 mesi",
+   "deposit": "€ 1155",
+   "bathroom": "Condiviso",
+   "floor": "1"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_ARM11-2_S1_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Castello Estense",
+   "distanceKm": null,
+   "minutesBike": 1,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10753,
+  "externalId": "753",
+  "title": "Singola di Stile in PHO.ROOM 2.0",
+  "city": "Ferrara",
+  "address": "Fondobanchetto 33, Ferrara",
+  "lat": 44.8302911,
+  "lng": 11.6253314,
+  "locationStatus": "verified_street",
+  "price": 490.0,
+  "expenses": null,
+  "realMonthlyCost": 490.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1101/foto_stanza/10_FE_FND33-5_S2__1_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1101/foto_stanza/15_FE_FND33-5_S2__5_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1101/foto_stanza/20_FE_FND33-5_S2__2_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1101/foto_stanza/25_FE_FND33-5_S2__4_.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Balcone",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 4 mesi",
+   "deposit": "€ 1470",
+   "bathroom": "Condiviso",
+   "floor": "2"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_FND33-5_S2_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Architettura",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10789,
+  "externalId": "789",
+  "title": "Ampia Singola Luminosa, Vicinissima alle Facoltà!",
+  "city": "Ferrara",
+  "address": "Fondobanchetto 33, Ferrara",
+  "lat": 44.8302911,
+  "lng": 11.6253314,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1097/foto_stanza/10_FE_FND33-4_S1__4_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1097/foto_stanza/11_FE_FND33-4_S1__5_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1097/foto_stanza/21_FE_FND33-4_S1__1_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1097/foto_stanza/22_FE_FND33-4_S1__2_.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 3 mesi",
+   "deposit": "€ 1410",
+   "bathroom": "Condiviso",
+   "floor": "1"
+  },
+  "availability": {
+   "availableFrom": "2027-02-01",
+   "availableLabel": "2027-02-01",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_FND33-4_S1_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Architettura",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10792,
+  "externalId": "792",
+  "title": "Camera Stilosa in Esclusiva Residenza Universitaria",
+  "city": "Ferrara",
+  "address": "Fondobanchetto 33, Ferrara",
+  "lat": 44.8302911,
+  "lng": 11.6253314,
+  "locationStatus": "verified_street",
+  "price": 430.0,
+  "expenses": null,
+  "realMonthlyCost": 430.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1100/foto_stanza/10_FE_FND33-5_S1__2_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1100/foto_stanza/20_FE_FND33-5_S1__1_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1100/foto_stanza/30_FE_FND33-5_S1__3_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1100/foto_stanza/40_FE_FND33-5_S1__4_.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 4 mesi",
+   "deposit": "€ 1290",
+   "bathroom": "Condiviso",
+   "floor": "2"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_FND33-5_S1_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Architettura",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10793,
+  "externalId": "793",
+  "title": "15mq di Puro Stile in PHO.ROOM 2.0",
+  "city": "Ferrara",
+  "address": "Fondobanchetto 33, Ferrara",
+  "lat": 44.8302911,
+  "lng": 11.6253314,
+  "locationStatus": "verified_street",
+  "price": 470.0,
+  "expenses": null,
+  "realMonthlyCost": 470.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1102/foto_stanza/10_FE_FND33-6_S1__2_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1102/foto_stanza/20_FE_FND33-6_S1__1_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1102/foto_stanza/30_FE_FND33-6_S1__4_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1102/foto_stanza/40_FE_FND33-6_S1__3_.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 4 mesi",
+   "deposit": "€ 1410",
+   "bathroom": "Condiviso",
+   "floor": "2"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_FND33-6_S1_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Studi Umanistici",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10794,
+  "externalId": "794",
+  "title": "Singola Esclusiva nella Residenza PHO.ROOM 2.0 - Vicina a Tutte le Facoltà",
+  "city": "Ferrara",
+  "address": "Fondobanchetto 33, Ferrara",
+  "lat": 44.8302911,
+  "lng": 11.6253314,
+  "locationStatus": "verified_street",
+  "price": 475.0,
+  "expenses": null,
+  "realMonthlyCost": 475.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1103/foto_stanza/10_FE_FND33-6_S2__4_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1103/foto_stanza/11_FE_FND33-6_S2__7_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1103/foto_stanza/12_FE_FND33-6_S2__5_.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1103/foto_stanza/20_FE_FND33-6_S2__3_.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 4 mesi",
+   "deposit": "€ 1425",
+   "bathroom": "Condiviso",
+   "floor": "2"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_FND33-6_S2_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Studi Umanistici",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10883,
+  "externalId": "883",
+  "title": "Singola Luminosa con Balcone",
+  "city": "Ferrara",
+  "address": "Viale Cavour 136, Ferrara",
+  "lat": 44.841059,
+  "lng": 11.614029,
+  "locationStatus": "verified_street",
+  "price": 380.0,
+  "expenses": null,
+  "realMonthlyCost": 380.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1154/foto_stanza/10_FE_CVR136-A_S5-1.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1154/foto_stanza/30_FE_CVR136-A_S5-4.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1154/foto_stanza/40_FE_CVR136-A_S5-3.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1154/foto_stanza/50_FE_CVR136-A_S5-2.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 12 mesi",
+   "deposit": "€ 1140",
+   "bathroom": "Condiviso",
+   "floor": "5"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_CVR136-A_S5_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Biologia Università di Ferrara",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10885,
+  "externalId": "885",
+  "title": "Singola Spazio e Libertà con Balcone",
+  "city": "Ferrara",
+  "address": "Viale Cavour 136, Ferrara",
+  "lat": 44.841059,
+  "lng": 11.614029,
+  "locationStatus": "verified_street",
+  "price": 380.0,
+  "expenses": null,
+  "realMonthlyCost": 380.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1157/foto_stanza/05_FE_CVR136-A_S8-1.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1157/foto_stanza/10_FE_CVR136-A_S8.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1157/foto_stanza/30_FE_CVR136-A_S8-2.jpg?w=1606&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1157/foto_stanza/40_FE_CVR136-A_S8-3.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 3 mesi",
+   "deposit": "€ 1140",
+   "bathroom": "Condiviso",
+   "floor": "5"
+  },
+  "availability": {
+   "availableFrom": "2026-12-01",
+   "availableLabel": "2026-12-01",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_CVR136-A_S8_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Dipartimento di Biologia Università di Ferrara",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10929,
+  "externalId": "929",
+  "title": "Graziosa Singola con Balcone ideale Medicina",
+  "city": "Ferrara",
+  "address": "via Giuseppe Compagnoni 131, Ferrara",
+  "lat": 44.831691827758846,
+  "lng": 11.605386361530572,
+  "locationStatus": "verified_street",
+  "price": 475.0,
+  "expenses": null,
+  "realMonthlyCost": 475.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1147/foto_stanza/10_FE_CMP131-A_S3-1.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1147/foto_stanza/20_FE_CMP131-A_S3-4.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1147/foto_stanza/30_FE_CMP131-S3__4_.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1147/foto_stanza/40_FE_CMP131-S3__2_.jpg?w=1600&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 12 mesi",
+   "deposit": "€ 1425",
+   "bathroom": "Condiviso",
+   "floor": "3"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_CMP131-A_S3_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Ingegneria e Fisica",
+   "distanceKm": null,
+   "minutesBike": 4,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10930,
+  "externalId": "930",
+  "title": "15mq, Letto da Re e Balcone: L'Università è Dietro l'Angolo!",
+  "city": "Ferrara",
+  "address": "via Giuseppe Compagnoni 131, Ferrara",
+  "lat": 44.831691827758846,
+  "lng": 11.605386361530572,
+  "locationStatus": "verified_street",
+  "price": 480.0,
+  "expenses": null,
+  "realMonthlyCost": 480.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1161/foto_stanza/09_FE_CMP131-A_S8-8.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1161/foto_stanza/10_FE_CMP131-S8__3_.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1161/foto_stanza/11_FE_CMP131-A_S8-7.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1161/foto_stanza/11_FE_CMP131-S8__6_.jpg?w=1625&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 12 mesi",
+   "deposit": "€ 1440",
+   "bathroom": "Condiviso",
+   "floor": "3"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_CMP131-A_S8_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Ingegneria e Fisica",
+   "distanceKm": null,
+   "minutesBike": 4,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10935,
+  "externalId": "935",
+  "title": "Vicini all'Uni con Letto a Castello: Vivi in Altezza!",
+  "city": "Ferrara",
+  "address": "via Giuseppe Compagnoni 131, Ferrara",
+  "lat": 44.831691827758846,
+  "lng": 11.605386361530572,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1160/foto_stanza/09_FE_CMP131-A_S7-7.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1160/foto_stanza/10_FE_CMP131-S7__1_.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1160/foto_stanza/12_FE_CMP131-A_S7-5.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1160/foto_stanza/20_FE_CMP131-S7__5_.jpg?w=1600&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Ascensore",
+   "Balcone",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 12 mesi",
+   "deposit": "€ 801",
+   "bathroom": "Condiviso",
+   "floor": "3"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_CMP131-A_S7_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Ingegneria e Fisica",
+   "distanceKm": null,
+   "minutesBike": 4,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10954,
+  "externalId": "954",
+  "title": "Ampia e Luminosa Singola con Aria Condizionata",
+  "city": "Ferrara",
+  "address": "Montebello 91, Ferrara",
+  "lat": 44.840344,
+  "lng": 11.628272,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1183/foto_stanza/4_S6_00.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1183/foto_stanza/4_S6_02.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1183/foto_stanza/4_S6_03.jpg?w=1587&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1183/foto_stanza/4_S6_04.jpg?w=1600&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Balcone",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 4 mesi",
+   "deposit": "€ 1230",
+   "bathroom": "Condiviso",
+   "floor": "1"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_MNT91-4_D6_1+uso_singola",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Matematica",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10957,
+  "externalId": "957",
+  "title": "Singola Confortevole e Vicina alle Facoltà",
+  "city": "Ferrara",
+  "address": "MONTEBELLO 91, Ferrara",
+  "lat": 44.84065731081343,
+  "lng": 11.628161694640077,
+  "locationStatus": "verified_street",
+  "price": 335.0,
+  "expenses": null,
+  "realMonthlyCost": 335.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1173/foto_stanza/2_S3_00.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1173/foto_stanza/2_S3_01.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1173/foto_stanza/2_S3_02.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/404/annuncio_foto/001.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 4 mesi",
+   "deposit": "€ 1080",
+   "bathroom": "Condiviso",
+   "floor": "1"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_MNT91-2_S3_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Matematica",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10958,
+  "externalId": "958",
+  "title": "Ambiente Sereno per Studi e Lavoro! Con Aria Condizionata!",
+  "city": "Ferrara",
+  "address": "MONTEBELLO 91, Ferrara",
+  "lat": 44.84065731081343,
+  "lng": 11.628161694640077,
+  "locationStatus": "verified_street",
+  "price": 340.0,
+  "expenses": null,
+  "realMonthlyCost": 340.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1176/foto_stanza/3_S2_1.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1176/foto_stanza/3_S2_3.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1176/foto_stanza/3_S2_7.jpg?w=900&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/405/annuncio_foto/000-1.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 4 mesi",
+   "deposit": "€ 1020",
+   "bathroom": "Condiviso",
+   "floor": "1"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_MNT91-3_S2_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Matematica",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10960,
+  "externalId": "960",
+  "title": "Ampia Singola Study-Friendly con Climatizzatore!",
+  "city": "Ferrara",
+  "address": "MONTEBELLO 91, Ferrara",
+  "lat": 44.84065731081343,
+  "lng": 11.628161694640077,
+  "locationStatus": "verified_street",
+  "price": 360.0,
+  "expenses": null,
+  "realMonthlyCost": 360.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1190/foto_stanza/6_S4_-0.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1190/foto_stanza/6_S4_-1.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/408/annuncio_foto/000.jpg?w=1799&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/408/annuncio_foto/002.jpg?w=1799&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 12 mesi",
+   "deposit": "€ 1080",
+   "bathroom": "Condiviso",
+   "floor": "2"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_MNT91-6_S4_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Matematica",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 10962,
+  "externalId": "962",
+  "title": "Accogliente Singola da 12mq con Aria Condizionata!",
+  "city": "Ferrara",
+  "address": "MONTEBELLO 91, Ferrara",
+  "lat": 44.84065731081343,
+  "lng": 11.628161694640077,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1186/foto_stanza/5_S2_00.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1186/foto_stanza/5_S2_01.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1186/foto_stanza/5_S2_2.jpg?w=1600&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1186/foto_stanza/5_S2_6.jpg?w=1600&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Balcone",
+   "Arredato",
+   "Asciugatrice"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 3 mesi",
+   "deposit": "€ 1140",
+   "bathroom": "Condiviso",
+   "floor": "1"
+  },
+  "availability": {
+   "availableFrom": "2027-02-15",
+   "availableLabel": "2027-02-15",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_MNT91-5_S2_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Matematica",
+   "distanceKm": null,
+   "minutesBike": 3,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 11109,
+  "externalId": "1109",
+  "title": "Camera con Bagno Privato, Clima e Prezzo All Inclusive",
+  "city": "Ferrara",
+  "address": "via Correggiari 4A, Ferrara",
+  "lat": 44.83511123594695,
+  "lng": 11.618220525628821,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-01.jpg?w=1798&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-02.jpg?w=1798&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-03.jpg?w=1798&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-04.jpg?w=1798&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Ascensore",
+   "Arredato",
+   "Asciugatrice",
+   "Bagno privato"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 3 mesi",
+   "deposit": "€ 801",
+   "bathroom": "Privato",
+   "floor": "Da verificare"
+  },
+  "availability": {
+   "availableFrom": "2027-02-01",
+   "availableLabel": "2027-02-01",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_CRR4A-A_D202_1+uso_singola",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Economia",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 11110,
+  "externalId": "1110",
+  "title": "Camera con Bagno Privato, Clima e Prezzo All Inclusive",
+  "city": "Ferrara",
+  "address": "via Correggiari 4A, Ferrara",
+  "lat": 44.83511123594695,
+  "lng": 11.618220525628821,
+  "locationStatus": "verified_street",
+  "price": null,
+  "expenses": null,
+  "realMonthlyCost": null,
+  "realMonthlyCostStatus": "unknown",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_letti_separati/202-22.png?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_letti_separati/202-21.png?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-01.jpg?w=1798&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-02.jpg?w=1798&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Ascensore",
+   "Arredato",
+   "Asciugatrice",
+   "Bagno privato"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 3 mesi",
+   "deposit": "€ 678",
+   "bathroom": "Privato",
+   "floor": "Da verificare"
+  },
+  "availability": {
+   "availableFrom": "2027-02-01",
+   "availableLabel": "2027-02-01",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_CRR4A-A_D202_1",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": false,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Economia",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 11111,
+  "externalId": "1111",
+  "title": "Camera con Bagno Privato, Clima e Prezzo All Inclusive",
+  "city": "Ferrara",
+  "address": "via Correggiari 4A, Ferrara",
+  "lat": 44.83511123594695,
+  "lng": 11.618220525628821,
+  "locationStatus": "verified_street",
+  "price": 226.0,
+  "expenses": null,
+  "realMonthlyCost": 226.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_letti_separati/202-22.png?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_letti_separati/202-21.png?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-01.jpg?w=1798&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1386/foto_stanza/202-02.jpg?w=1798&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Ascensore",
+   "Arredato",
+   "Asciugatrice",
+   "Bagno privato"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 3 mesi",
+   "deposit": "€ 678",
+   "bathroom": "Privato",
+   "floor": "Da verificare"
+  },
+  "availability": {
+   "availableFrom": "2027-02-01",
+   "availableLabel": "2027-02-01",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_CRR4A-A_D202_2",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Economia",
+   "distanceKm": null,
+   "minutesBike": 2,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ },
+ {
+  "id": 11468,
+  "externalId": "1468",
+  "title": "Stanza doppia uso singola con bagno esclusivo e prezzo tutto incluso",
+  "city": "Ferrara",
+  "address": "Carlo Mayr 142, Ferrara",
+  "lat": 44.829659883503545,
+  "lng": 11.62,
+  "locationStatus": "verified_street",
+  "price": 510.0,
+  "expenses": null,
+  "realMonthlyCost": 510.0,
+  "realMonthlyCostStatus": "minimum_known",
+  "photos": [
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1521/foto_stanza/010.png?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/stanze/1521/foto_stanza/020.png?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/460/annuncio_foto/010.png?w=1800&h=1200",
+   "https://phosphorosrl.imgix.net/upload/form/2/appartamenti/460/annuncio_foto/011.png?w=1800&h=1200"
+  ],
+  "features": [
+   "Wi-Fi",
+   "Lavatrice",
+   "Lavastoviglie",
+   "Balcone",
+   "Arredato",
+   "Bagno privato"
+  ],
+  "details": {
+   "utilities": "Da verificare nell’annuncio Phosphoro",
+   "contract": "Permanenza minima 12 mesi",
+   "deposit": "€ 1530",
+   "bathroom": "Privato",
+   "floor": "1"
+  },
+  "availability": {
+   "availableFrom": null,
+   "availableLabel": "Disponibile ora",
+   "status": "confirmed",
+   "confirmedAt": "2026-09-22"
+  },
+  "publication": {
+   "status": "authorized",
+   "authorized": true,
+   "source": "Phosphoro",
+   "sourceUrl": "https://phosphoro.com/annuncio/FE_MYR142-A_D1_1+uso_singola",
+   "sourceType": "portal"
+  },
+  "validation": {
+   "priceDeclared": true,
+   "expensesDeclared": false,
+   "contractDeclared": true,
+   "utilitiesDeclared": false,
+   "listingConfirmedAt": "2026-09-22"
+  },
+  "campusReference": {
+   "campusId": "centro",
+   "campusName": "Studi Umanistici",
+   "distanceKm": null,
+   "minutesBike": 1,
+   "travelEstimate": false
+  },
+  "candidates": 0,
+  "accommodationType": "room"
+ }
+]
