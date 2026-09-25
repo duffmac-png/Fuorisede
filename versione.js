@@ -3,4 +3,4 @@
  *   produzione   → sito pubblico: Ferrara (Phosphoro + ACER + privati). Statistiche Airtable attive.
  *   test-interno → come produzione + annunci Immobiliare.it Milano (Sandbox). Non va pubblicato; statistiche spente.
  */
-window.FUORISEDE_VERSIONE = 'produzione';
+window.FUORISEDE_VERSIONE = 'test-interno';

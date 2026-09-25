@@ -1,5 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://www.fuori-sede.it/sitemap.xml
-# SEO crawl config refreshed 2026-09-11
+Disallow: /
