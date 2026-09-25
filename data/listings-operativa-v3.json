@@ -147,9 +147,9 @@
     },
     "availability": {
       "availableFrom": null,
-      "availableLabel": "Disponibile ora",
-      "status": "confirmed",
-      "confirmedAt": "2026-08-19"
+      "availableLabel": "Non più disponibile",
+      "status": "unavailable",
+      "confirmedAt": "2026-09-25"
     },
     "publication": {
       "status": "authorized",
@@ -199,10 +199,10 @@
       "description": "Segnalazione autorizzata dall’offerente. Prezzo, dotazioni e fotografie devono ancora essere integrati; disponibilità prevista da fine novembre 2026."
     },
     "availability": {
-      "availableFrom": "2026-11-25",
-      "availableLabel": "Da fine novembre 2026",
-      "status": "confirmed",
-      "confirmedAt": "2026-08-19"
+      "availableFrom": null,
+      "availableLabel": "Non più disponibile",
+      "status": "unavailable",
+      "confirmedAt": "2026-09-25"
     },
     "publication": {
       "status": "authorized",
